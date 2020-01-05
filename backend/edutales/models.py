@@ -3,7 +3,6 @@ from django.db import models
 
 class Quiz(models.Model):
     name = models.TextField()
-    tale = models.OneToOneField(models.Tale, on_delete=models.CASCADE, null=True)
     points = models.PositiveIntegerField()
     question = models.TextField()
 
@@ -11,12 +10,6 @@ class Quiz(models.Model):
             return self.name
 
 
-class Region(models.Model):
-    name = models.TextField()
-    destination = models.ForeignKey(models.Destination, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.name
 
 
 class Tale(models.Model):
@@ -28,7 +21,7 @@ class Tale(models.Model):
     title = models.TextField()
     type = models.CharField(max_length=1, choices=CHOICES, null=True)
     text = models.TextField()
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+    quiz = models.OneToOneField(Quiz, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
         return self.title
@@ -43,6 +36,14 @@ class Destination(models.Model):
             return self.name
 
 
+class Region(models.Model):
+    name = models.TextField()
+    destination = models.ForeignKey(Destination, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.name
+
+
 class GameType(models.Model):
     name = models.TextField()
 
@@ -51,7 +52,6 @@ class GameType(models.Model):
 
 
 class Progress(models.Model):
-    user = models.ForeignKey(models.User, on_delete=models.CASCADE, null=True)
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE, null=True)
     points = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 
