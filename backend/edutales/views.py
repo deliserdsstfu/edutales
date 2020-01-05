@@ -8,40 +8,40 @@ from rest_framework.decorators import api_view
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 
-from edutales.models import Region, Tale, Parent, Media
-from edutales.serializers import CountryOptionSerializer, MovieListSerializer, MovieFormSerializer, PersonOptionSerializer, \
-    MediaSerializer
+from edutales.models import Region, Tale, Parent
+from edutales.serializers import RegionOptionSerializer, TaleListSerializer, TaleFormSerializer, ParentOptionSerializer, \
+    RewardSerializer
 
 
-@swagger_auto_schema(method='GET', responses={200: CountryOptionSerializer(many=True)})
+@swagger_auto_schema(method='GET', responses={200: RegionOptionSerializer(many=True)})
 @api_view(['GET'])
 def country_option_list(request):
     countries = Region.objects.all()
-    serializer = CountryOptionSerializer(countries, many=True)
+    serializer = RegionOptionSerializer(countries, many=True)
     return Response(serializer.data)
 
 
-@swagger_auto_schema(method='GET', responses={200: MovieListSerializer(many=True)})
+@swagger_auto_schema(method='GET', responses={200: TaleListSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('yamod.view_movie', raise_exception=True)
 def movies_list(request):
     countries = Tale.objects.all()
-    serializer = MovieListSerializer(countries, many=True)
+    serializer = TaleListSerializer(countries, many=True)
     return Response(serializer.data)
 
 
-@swagger_auto_schema(method='POST', request_body=MovieFormSerializer, responses={200: MovieFormSerializer()})
+@swagger_auto_schema(method='POST', request_body=TaleFormSerializer, responses={200: TaleFormSerializer()})
 @api_view(['POST'])
 @permission_required('yamod.add_movie', raise_exception=True)
 def movie_form_create(request):
-    serializer = MovieFormSerializer(data=request.data)
+    serializer = TaleFormSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
 
 
-@swagger_auto_schema(method='PUT', request_body=MovieFormSerializer, responses={200: MovieFormSerializer()})
+@swagger_auto_schema(method='PUT', request_body=TaleFormSerializer, responses={200: TaleFormSerializer()})
 @api_view(['PUT'])
 @permission_required('yamod.change_movie', raise_exception=True)
 def movie_form_update(request, pk):
@@ -50,14 +50,14 @@ def movie_form_update(request, pk):
     except Tale.DoesNotExist:
         return Response({'error': 'Tale does not exist.'}, status=404)
 
-    serializer = MovieFormSerializer(movie, data=request.data)
+    serializer = TaleFormSerializer(movie, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=400)
 
 
-@swagger_auto_schema(method='GET', responses={200: MovieFormSerializer()})
+@swagger_auto_schema(method='GET', responses={200: TaleFormSerializer()})
 @api_view(['GET'])
 @permission_required('yamod.view_movie', raise_exception=True)
 def movie_form_get(request, pk):
@@ -66,7 +66,7 @@ def movie_form_get(request, pk):
     except Tale.DoesNotExist:
         return Response({'error': 'Tale does not exist.'}, status=404)
 
-    serializer = MovieFormSerializer(movie)
+    serializer = TaleFormSerializer(movie)
     return Response(serializer.data)
 
 
@@ -81,11 +81,11 @@ def movie_delete(request, pk):
     return Response(status=204)
 
 
-@swagger_auto_schema(method='GET', responses={200: PersonOptionSerializer(many=True)})
+@swagger_auto_schema(method='GET', responses={200: ParentOptionSerializer(many=True)})
 @api_view(['GET'])
 def person_option_list(request):
     people = Parent.objects.all()
-    serializer = PersonOptionSerializer(people, many=True)
+    serializer = ParentOptionSerializer(people, many=True)
     return Response(serializer.data)
 
 
@@ -99,7 +99,7 @@ class FileUploadView(views.APIView):
             'content_type': file.content_type,
             'size': file.size,
         }
-        serializer = MediaSerializer(data=file_input)
+        serializer = RewardSerializer(data=file_input)
         if serializer.is_valid():
             serializer.save()
             default_storage.save('media/' + str(serializer.data['id']), ContentFile(file.read()))
@@ -117,7 +117,7 @@ def media_download(request, pk):
     return response
 
 
-@swagger_auto_schema(method='GET', responses={200: MediaSerializer()})
+@swagger_auto_schema(method='GET', responses={200: RewardSerializer()})
 @api_view(['GET'])
 def media_get(request, pk):
     try:
@@ -125,5 +125,5 @@ def media_get(request, pk):
     except Tale.DoesNotExist:
         return Response({'error': 'Media does not exist.'}, status=404)
 
-    serializer = MediaSerializer(media)
+    serializer = RewardSerializer(media)
     return Response(serializer.data)

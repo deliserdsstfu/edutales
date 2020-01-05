@@ -1,32 +1,42 @@
 from rest_framework import serializers
-from .models import Region, Tale, Parent, Media
+from .models import Region, Tale, Parent, Reward, Child
 
 
-class CountryOptionSerializer(serializers.ModelSerializer):
+class RegionOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
         fields = ['id', 'name']
 
 
-class MovieListSerializer(serializers.ModelSerializer):
-    country_name = serializers.SerializerMethodField()
+class ChildListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
-        fields = ['id', 'title', 'genre', 'country_name']
-
-    def get_country_name(self, obj):
-        return obj.country.name if obj.country else ''
+        model = Child
+        fields = '__all__'
 
 
-class MovieFormSerializer(serializers.ModelSerializer):
+class ChildFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Child
+        fields = '__all__'
+
+
+class TaleListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tale
         fields = '__all__'
 
 
-class PersonOptionSerializer(serializers.ModelSerializer):
+class TaleFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tale
+        fields = '__all__'
+
+
+class ParentOptionSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
 
     class Meta:
@@ -37,7 +47,7 @@ class PersonOptionSerializer(serializers.ModelSerializer):
         return ' '.join(filter(None, (obj.first_name, obj.last_name)))
 
 
-class MediaSerializer(serializers.ModelSerializer):
+class RewardSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Media
+        model = Reward
         fields = '__all__'
