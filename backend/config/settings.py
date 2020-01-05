@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'config',
-    'yamod'
+    'edutales'
 ]
 
 MIDDLEWARE = [
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'yamod.urls'
+ROOT_URLCONF = 'edutales.urls'
 
 TEMPLATES = [
     {
