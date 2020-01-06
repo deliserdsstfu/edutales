@@ -1,10 +1,15 @@
 from rest_framework import serializers
-from .models import Region, Tale, Parent, Reward, Child, Quiz
+from .models import *
 
 
 class RegionOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
+        fields = ['id', 'name']
+
+class GameTypeOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GameType
         fields = ['id', 'name']
 
 
@@ -85,4 +90,47 @@ class QuizFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
+
+class DestinationListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tale
+
+
+
+class DestinationFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tale
+
+
+
+class DestinationOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tale
+        fields = ['id', 'title']
+
+class ProgressListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tale
+
+
+
+class ProgressFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tale
+
+
+
+class ProgressOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tale
+        fields = ['id', 'title']
+
+
+
 
