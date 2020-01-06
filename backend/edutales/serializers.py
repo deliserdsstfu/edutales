@@ -86,49 +86,64 @@ class RewardSerializer(serializers.ModelSerializer):
 
 
 
-class QuizFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Quiz
-
 class DestinationListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
+        model = Destination
 
 
 
 class DestinationFormSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
+        model = Destination
 
 
 
 class DestinationOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
+        model = Destination
         fields = ['id', 'title']
 
 class ProgressListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
+        model = Progress
 
 
 
 class ProgressFormSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
+        model = Progress
 
 
 
 class ProgressOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
+        model = Progress
+        fields = ['id', 'title']
+
+class QuizListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
+
+
+
+class QuizFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
+
+
+
+class QuizOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
         fields = ['id', 'title']
 
 

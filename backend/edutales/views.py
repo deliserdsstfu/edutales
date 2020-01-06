@@ -27,6 +27,14 @@ def gametype_option_list(request):
     return Response(serializer.data)
 
 
+@swagger_auto_schema(method='GET', responses={200: QuizListSerializer(many=True)})
+@api_view(['GET'])
+@permission_required('edutales.view_quiz', raise_exception=True)
+def quiz_list(request):
+    quizs = Quiz.objects.all()
+    serializer = QuizListSerializer(quizs, many=True)
+    return Response(serializer.data)
+
 @swagger_auto_schema(method='POST', request_body=QuizFormSerializer, responses={200: QuizFormSerializer()})
 @api_view(['POST'])
 @permission_required('edutales.add_quiz', raise_exception=True)
@@ -36,6 +44,45 @@ def quiz_form_create(request):
         serializer.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
+
+
+@swagger_auto_schema(method='PUT', request_body=QuizFormSerializer, responses={200: QuizFormSerializer()})
+@api_view(['PUT'])
+@permission_required('edutales.change_quiz', raise_exception=True)
+def quiz_form_update(request, pk):
+    try:
+        quiz = Quiz.objects.get(pk=pk)
+    except Quiz.DoesNotExist:
+        return Response({'error': 'Quiz does not exist.'}, status=404)
+
+    serializer = QuizFormSerializer(quiz, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+@api_view(['DELETE'])
+@permission_required('edutales.delete_quiz', raise_exception=True)
+def quiz_delete(request, pk):
+    try:
+        quiz = Quiz.objects.get(pk=pk)
+    except Quiz.DoesNotExist:
+        return Response({'error': 'Quiz does not exist.'}, status=404)
+    quiz.delete()
+    return Response(status=204)
+
+
+@swagger_auto_schema(method='GET', responses={200: QuizFormSerializer()})
+@api_view(['GET'])
+@permission_required('edutales.view_quiz', raise_exception=True)
+def quiz_form_get(request, pk):
+    try:
+        quiz = Quiz.objects.get(pk=pk)
+    except Quiz.DoesNotExist:
+        return Response({'error': 'Quiz does not exist.'}, status=404)
+
+    serializer = QuizFormSerializer(quiz)
+    return Response(serializer.data)
 
 @swagger_auto_schema(method='GET', responses={200: TaleListSerializer(many=True)})
 @api_view(['GET'])
@@ -209,6 +256,63 @@ def progress_form_get(request, pk):
     serializer = ProgressFormSerializer(progress)
     return Response(serializer.data)
 
+@swagger_auto_schema(method='GET', responses={200: ChildListSerializer(many=True)})
+@api_view(['GET'])
+@permission_required('edutales.view_child', raise_exception=True)
+def child_list(request):
+    childs = Child.objects.all()
+    serializer = ChildListSerializer(childs, many=True)
+    return Response(serializer.data)
+
+@swagger_auto_schema(method='POST', request_body=ChildFormSerializer, responses={200: ChildFormSerializer()})
+@api_view(['POST'])
+@permission_required('edutales.add_child', raise_exception=True)
+def child_form_create(request):
+    serializer = ChildFormSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
+
+@swagger_auto_schema(method='PUT', request_body=ChildFormSerializer, responses={200: ChildFormSerializer()})
+@api_view(['PUT'])
+@permission_required('edutales.change_child', raise_exception=True)
+def child_form_update(request, pk):
+    try:
+        child = Child.objects.get(pk=pk)
+    except Child.DoesNotExist:
+        return Response({'error': 'Child does not exist.'}, status=404)
+
+    serializer = ChildFormSerializer(child, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+@api_view(['DELETE'])
+@permission_required('edutales.delete_child', raise_exception=True)
+def child_delete(request, pk):
+    try:
+        child = Child.objects.get(pk=pk)
+    except Child.DoesNotExist:
+        return Response({'error': 'Child does not exist.'}, status=404)
+    child.delete()
+    return Response(status=204)
+
+
+@swagger_auto_schema(method='GET', responses={200: ChildFormSerializer()})
+@api_view(['GET'])
+@permission_required('edutales.view_child', raise_exception=True)
+def child_form_get(request, pk):
+    try:
+        child = Child.objects.get(pk=pk)
+    except Child.DoesNotExist:
+        return Response({'error': 'Child does not exist.'}, status=404)
+
+    serializer = ChildFormSerializer(child)
+    return Response(serializer.data)
+
 
 
 
@@ -219,6 +323,63 @@ def progress_form_get(request, pk):
 def parent_option_list(request):
     parents = Parent.objects.all()
     serializer = ParentOptionSerializer(parents, many=True)
+    return Response(serializer.data)
+
+@swagger_auto_schema(method='GET', responses={200: ParentListSerializer(many=True)})
+@api_view(['GET'])
+@permission_required('edutales.view_parent', raise_exception=True)
+def parent_list(request):
+    parents = Parent.objects.all()
+    serializer = ParentListSerializer(parents, many=True)
+    return Response(serializer.data)
+
+@swagger_auto_schema(method='POST', request_body=ParentFormSerializer, responses={200: ParentFormSerializer()})
+@api_view(['POST'])
+@permission_required('edutales.add_parent', raise_exception=True)
+def parent_form_create(request):
+    serializer = ParentFormSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
+
+@swagger_auto_schema(method='PUT', request_body=ParentFormSerializer, responses={200: ParentFormSerializer()})
+@api_view(['PUT'])
+@permission_required('edutales.change_parent', raise_exception=True)
+def parent_form_update(request, pk):
+    try:
+        parent = Parent.objects.get(pk=pk)
+    except Parent.DoesNotExist:
+        return Response({'error': 'Parent does not exist.'}, status=404)
+
+    serializer = ParentFormSerializer(parent, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+@api_view(['DELETE'])
+@permission_required('edutales.delete_parent', raise_exception=True)
+def parent_delete(request, pk):
+    try:
+        parent = Parent.objects.get(pk=pk)
+    except Parent.DoesNotExist:
+        return Response({'error': 'Parent does not exist.'}, status=404)
+    parent.delete()
+    return Response(status=204)
+
+
+@swagger_auto_schema(method='GET', responses={200: ParentFormSerializer()})
+@api_view(['GET'])
+@permission_required('edutales.view_parent', raise_exception=True)
+def parent_form_get(request, pk):
+    try:
+        parent = Parent.objects.get(pk=pk)
+    except Parent.DoesNotExist:
+        return Response({'error': 'Parent does not exist.'}, status=404)
+
+    serializer = ParentFormSerializer(parent)
     return Response(serializer.data)
 
 
