@@ -2,10 +2,11 @@ from django.contrib import admin
 from .models import *
 
 
-class TaleAdmin(admin.ModelAdmin): pass
+class TaleAdmin(admin.ModelAdmin):
+    display_list = '_all_'
 
-
-class ParentAdmin(admin.ModelAdmin): pass
+class ParentAdmin(admin.ModelAdmin):
+    display_list = '_all_'
 
 
 class RegionAdmin(admin.ModelAdmin): pass

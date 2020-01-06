@@ -1,32 +1,49 @@
 from rest_framework import serializers
-from .models import Region, Tale, Parent, Media
+from .models import Region, Tale, Parent, Reward, Child, Quiz
 
 
-class CountryOptionSerializer(serializers.ModelSerializer):
+class RegionOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
         fields = ['id', 'name']
 
 
-class MovieListSerializer(serializers.ModelSerializer):
-    country_name = serializers.SerializerMethodField()
+class ChildListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
-        fields = ['id', 'title', 'genre', 'country_name']
-
-    def get_country_name(self, obj):
-        return obj.country.name if obj.country else ''
+        model = Child
 
 
-class MovieFormSerializer(serializers.ModelSerializer):
+
+class ChildFormSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
+        model = Child
+
+
+
+class ChildOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Child
+        fields = ['id', 'user_name']
+
+
+class ParentListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Parent
         fields = '__all__'
 
 
-class PersonOptionSerializer(serializers.ModelSerializer):
+class ParentFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Parent
+
+
+
+class ParentOptionSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
 
     class Meta:
@@ -37,7 +54,35 @@ class PersonOptionSerializer(serializers.ModelSerializer):
         return ' '.join(filter(None, (obj.first_name, obj.last_name)))
 
 
-class MediaSerializer(serializers.ModelSerializer):
+class TaleListSerializer(serializers.ModelSerializer):
+
     class Meta:
-        model = Media
-        fields = '__all__'
+        model = Tale
+
+
+
+class TaleFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tale
+
+
+
+class TaleOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tale
+        fields = ['id', 'title']
+
+
+class RewardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reward
+
+
+
+class QuizFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
+
