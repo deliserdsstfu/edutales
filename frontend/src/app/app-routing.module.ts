@@ -29,7 +29,6 @@ const routes: Routes = [
   { path: 'landing',          component: LandingComponent },
   { path: 'nucleoicons',      component: NucleoiconsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-
 ];
 
 @NgModule({
