@@ -16,6 +16,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('', admin.site.urls),
     path('admin/', admin.site.urls),
     path('tale/list', views.tale_list),
     path('tale/create', views.tale_form_create),
@@ -50,11 +51,11 @@ urlpatterns = [
     path('parent/<int:pk>/update', views.parent_form_update),
     path('parent/<int:pk>/delete', views.parent_delete),
     path('parent/options', views.parent_option_list),
-    url(r'^api-token-auth/', obtain_jwt_token),
-    url(r'^reward$', FileUploadView.as_view()),
     path('reward/<int:pk>', views.reward_download),
     path('reward/<int:pk>/get', views.reward_get),
 
+    url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^reward$', FileUploadView.as_view()),
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
