@@ -16,10 +16,10 @@ import {AppRoutingModule} from './app-routing.module';
 import { WorldmapComponent } from './worldmap/worldmap.component';
 import { RegionmapComponent } from './regionmap/regionmap.component';
 import { DestinationmapComponent } from './destinationmap/destinationmap.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './examples/profile/profile.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ChildFormComponent } from './child-form/child-form.component';
-import {SignupComponent} from './signup/signup.component';
+import {SignupComponent} from './examples/signup/signup.component';
 import {LandingComponent} from './examples/landing/landing.component';
 
 

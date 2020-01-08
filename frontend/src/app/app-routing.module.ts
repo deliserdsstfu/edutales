@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ParentFormComponent} from './parent-form/parent-form.component';
 import {ComponentsComponent} from './components/components.component';
-import {ProfileComponent} from './profile/profile.component';
-import {SignupComponent} from './signup/signup.component';
+import {ProfileComponent} from './examples/profile/profile.component';
+import {SignupComponent} from './examples/signup/signup.component';
 import {LandingComponent} from './examples/landing/landing.component';
 import {NucleoiconsComponent} from './components/nucleoicons/nucleoicons.component';
 import {CommonModule} from '@angular/common';
@@ -23,10 +23,11 @@ const routes: Routes = [
   { path: 'logout',         component: LogoutComponent},
   { path: 'parent-form',    component: ParentFormComponent},
   { path: 'home',           component: ComponentsComponent },
-  { path: 'profile',        component: ProfileComponent },
+  { path: 'user-profile',   component: ProfileComponent },
   { path: 'signup',         component: SignupComponent },
   { path: 'landing',        component: LandingComponent },
   { path: 'nucleoicons',    component: NucleoiconsComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
