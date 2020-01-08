@@ -19,6 +19,8 @@ import { DestinationmapComponent } from './destinationmap/destinationmap.compone
 import { ProfileComponent } from './profile/profile.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ChildFormComponent } from './child-form/child-form.component';
+import {SignupComponent} from './signup/signup.component';
+import {LandingComponent} from './examples/landing/landing.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { ChildFormComponent } from './child-form/child-form.component';
     DestinationmapComponent,
     ProfileComponent,
     LogoutComponent,
-    ChildFormComponent
+    ChildFormComponent,
+    SignupComponent,
+    LandingComponent,
   ],
   imports: [
     BrowserModule,

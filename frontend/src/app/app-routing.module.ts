@@ -15,7 +15,6 @@ import {DestinationmapComponent} from './destinationmap/destinationmap.component
 import {WorldmapComponent} from './worldmap/worldmap.component';
 
 const routes: Routes = [
-  //{path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'parent-form',    component: ParentFormComponent},
   { path: 'child-form',     component: ChildFormComponent},
   { path: 'worldmap',       component: WorldmapComponent},
@@ -23,7 +22,7 @@ const routes: Routes = [
   { path: 'destinationmap', component: DestinationmapComponent},
   { path: 'logout',         component: LogoutComponent},
   { path: 'parent-form',    component: ParentFormComponent},
-  { path: 'home',           component: ComponentsComponent }, 
+  { path: 'home',           component: ComponentsComponent },
   { path: 'profile',        component: ProfileComponent },
   { path: 'signup',         component: SignupComponent },
   { path: 'landing',        component: LandingComponent },
