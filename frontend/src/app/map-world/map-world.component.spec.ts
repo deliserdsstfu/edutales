@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorldmapComponent } from './worldmap.component';
+import { MapWorldComponent } from './map-world.component';
 
-describe('WorldmapComponent', () => {
-  let component: WorldmapComponent;
-  let fixture: ComponentFixture<WorldmapComponent>;
+describe('MapWorldComponent', () => {
+  let component: MapWorldComponent;
+  let fixture: ComponentFixture<MapWorldComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WorldmapComponent ]
+      declarations: [ MapWorldComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WorldmapComponent);
+    fixture = TestBed.createComponent(MapWorldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
