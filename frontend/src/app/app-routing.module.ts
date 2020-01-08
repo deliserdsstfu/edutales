@@ -10,27 +10,12 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 
 const routes: Routes = [
-<<<<<<< HEAD
-  { path: 'parent-form',    component: ParentFormComponent},
-  { path: 'child-form',     component: ChildFormComponent},
-  { path: 'worldmap',       component: WorldmapComponent},
-  { path: 'regionmap',      component: RegionmapComponent},
-  { path: 'destinationmap', component: DestinationmapComponent},
-  { path: 'logout',         component: LogoutComponent},
-  { path: 'parent-form',    component: ParentFormComponent},
-  { path: 'home',           component: ComponentsComponent },
-  { path: 'user-profile',   component: ProfileComponent },
-  { path: 'signup',         component: SignupComponent },
-  { path: 'landing',        component: LandingComponent },
-  { path: 'nucleoicons',    component: NucleoiconsComponent },
-=======
   { path: 'parent-form', component: ParentFormComponent},
   { path: 'home',             component: ComponentsComponent },
   { path: 'user-profile',     component: ProfileComponent },
   { path: 'signup',           component: SignupComponent },
   { path: 'landing',          component: LandingComponent },
   { path: 'nucleoicons',      component: NucleoiconsComponent },
->>>>>>> parent of 073a922... Merge remote-tracking branch 'origin/clemens' into claudia
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
