@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {ParentFormComponent} from './parent-form/parent-form.component';
 import {ComponentsComponent} from './components/components.component';
 import {ProfileComponent} from './examples/profile/profile.component';
-import {SignupComponent} from './examples/signup/signup.component';
+import {SignupComponent} from './signup/signup.component';
 import {LandingComponent} from './examples/landing/landing.component';
 import {NucleoiconsComponent} from './components/nucleoicons/nucleoicons.component';
 import {CommonModule} from '@angular/common';

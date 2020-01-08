@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
         this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
             if (window.outerWidth > 991) {
                 window.document.children[0].scrollTop = 0;
-            }else{
+            } else {
                 window.document.activeElement.scrollTop = 0;
             }
             this.navbar.sidebarClose();
@@ -53,10 +53,9 @@ export class AppComponent implements OnInit {
     removeFooter() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         titlee = titlee.slice( 1 );
-        if(titlee === 'signup' || titlee === 'nucleoicons'){
+        if (titlee === 'signup' || titlee === 'nucleoicons') {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
