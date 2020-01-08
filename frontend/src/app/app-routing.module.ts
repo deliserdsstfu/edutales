@@ -8,13 +8,9 @@ import {LandingComponent} from './examples/landing/landing.component';
 import {NucleoiconsComponent} from './components/nucleoicons/nucleoicons.component';
 import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
-import {ChildFormComponent} from './child-form/child-form.component';
-import {RegionmapComponent} from './regionmap/regionmap.component';
-import {LogoutComponent} from './logout/logout.component';
-import {DestinationmapComponent} from './destinationmap/destinationmap.component';
-import {WorldmapComponent} from './worldmap/worldmap.component';
 
 const routes: Routes = [
+<<<<<<< HEAD
   { path: 'parent-form',    component: ParentFormComponent},
   { path: 'child-form',     component: ChildFormComponent},
   { path: 'worldmap',       component: WorldmapComponent},
@@ -27,6 +23,14 @@ const routes: Routes = [
   { path: 'signup',         component: SignupComponent },
   { path: 'landing',        component: LandingComponent },
   { path: 'nucleoicons',    component: NucleoiconsComponent },
+=======
+  { path: 'parent-form', component: ParentFormComponent},
+  { path: 'home',             component: ComponentsComponent },
+  { path: 'user-profile',     component: ProfileComponent },
+  { path: 'signup',           component: SignupComponent },
+  { path: 'landing',          component: LandingComponent },
+  { path: 'nucleoicons',      component: NucleoiconsComponent },
+>>>>>>> parent of 073a922... Merge remote-tracking branch 'origin/clemens' into claudia
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
@@ -39,3 +43,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
