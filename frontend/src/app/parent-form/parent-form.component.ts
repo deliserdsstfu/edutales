@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parent-form.component.scss']
 })
 export class ParentFormComponent implements OnInit {
+  test: Date = new Date();
+  focus;
+  focus1;
 
   constructor() { }
 

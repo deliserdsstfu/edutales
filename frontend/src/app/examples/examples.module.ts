@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LandingComponent } from './landing/landing.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from '../profile/profile.component';
 import { SignupComponent } from '../signup/signup.component';
 
 @NgModule({
