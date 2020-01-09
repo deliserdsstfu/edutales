@@ -1,23 +1,28 @@
 <div class="wrapper">
-  <div class="page-header" style="background-image: url('~assets/img/login-image.jpg');">
+  <div class="page-header" style="background-image: url('assets/img/login-image.jpg');">
     <div class="filter"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
           <div class="card card-register">
             <h3 class="title">Register</h3>
-            <form class="register-form">
-              <label>Username</label>
+            <form [formGroup]="parentFormGroup" class="register-form">
+              <label>Vorname</label>
               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
-                <div class="input-group-prepend">
-                                  <span class="input-group-text">
-                                      <i class="nc-icon nc-single-02"></i>
-                                  </span>
-                </div>
-
-                <input type="text" class="form-control" placeholder="Username" (focus)="focus=true" (blur)="focus=false" >
+                <input type="text" class="form-control" placeholder="First Name" formControlName="first_name" (focus)="focus=true" (blur)="focus=false" >
               </div>
-
+              <label>Nachname</label>
+              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                <input type="text" class="form-control" placeholder="Last Name" formControlName="last_name" (focus)="focus=true" (blur)="focus=false" >
+              </div>
+              <label>Year of Birth</label>
+              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                <input type="number" class="form-control" placeholder="Year of Birth" formControlName="year_of_birth" (focus)="focus=true" (blur)="focus=false" >
+              </div>
+              <label>Region</label>
+              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                <input type="text" class="form-control" placeholder="Region" formControlName="region" (focus)="focus=true" (blur)="focus=false" >
+              </div>
               <label>Password</label>
               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
                 <div class="input-group-prepend">
@@ -27,13 +32,13 @@
                 </div>
                 <input type="text" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
               </div>
-              <button class="btn btn-danger btn-block btn-round">Register</button>
+              <button class="btn btn-danger btn-block btn-round" [disabled]="!parentFormGroup.valid" (click)="createParent()">
+                <span *ngIf="!parentFormGroup.controls.id.value">Register</span>
+               <!-- <span *ngIf="animalFormGroup.controls.id.value">Update</span> -->
+              </button>
             </form>
           </div>
         </div>
-      </div>
-      <div class="footer register-footer text-center">
-        <h6>&copy;{{test | date: 'yyyy'}}, made with <i class="fa fa-heart heart"></i> by Edutales</h6>
       </div>
     </div>
   </div>
