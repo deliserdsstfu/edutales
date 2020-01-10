@@ -26,7 +26,7 @@ export class ChildFormComponent implements OnInit {
       this.childFormGroup = this.fb.group({
           id: [null],
           user_name: ['', [Validators.required]],
-          day_of_birth: [90, [Validators.max(18)]],
+          year_of_birth: [90, [Validators.max(3000)]],
       });
 
       if (data.child) {
@@ -44,33 +44,14 @@ export class ChildFormComponent implements OnInit {
         } else {
             this.childService.createChild(child)
                 .subscribe((response: any) => {
-                    this.router.navigate(['/child-form/' + response.id]);
+                    this.router.navigate(['/user-profile/']);
                 });
         }
-    }
-    user_nameValidator(): AsyncValidatorFn {
-        return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
-            return this.childService.getBooks()
-                .pipe(
-                    map((childs: any[]) => {
-                        const currentId = this.childFormGroup.controls.id.value;
-                        const currentUser_Name = this.childFormGroup.controls.user_name.value;
-                        const childWithSameUser_Name = childs.find((m) => {
-                            return (currentId || m.id !== currentId) && m.title === currentUser_Name;
-                        });
-                        if (childWithSameUser_Name) {
-                            return {
-                                titleAlreadyExists: true
-                            };
-                        } else {
-                            return null;
-                        }
-                    })
-                );
-        };
-    }
+
 
 }
+}
+
 
 
 
