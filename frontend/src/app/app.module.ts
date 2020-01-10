@@ -13,6 +13,12 @@ import { ExamplesModule } from './examples/examples.module';
 import {HttpClientModule} from '@angular/common/http';
 import { ParentFormComponent } from './parent-form/parent-form.component';
 import {AppRoutingModule} from './app-routing.module';
+import { ChildFormComponent } from './child-form/child-form.component';
+import { MapWorldComponent } from './map-world/map-world.component';
+import { MapRegionComponent } from './map-region/map-region.component';
+import { MapDestinationComponent } from './map-destination/map-destination.component';
+import { LogoutComponent } from './logout/logout.component';
+
 
 
 @NgModule({
@@ -20,7 +26,12 @@ import {AppRoutingModule} from './app-routing.module';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    ParentFormComponent
+    ParentFormComponent,
+    ChildFormComponent,
+    MapWorldComponent,
+    MapRegionComponent,
+    MapDestinationComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
