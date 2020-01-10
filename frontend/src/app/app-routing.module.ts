@@ -12,6 +12,7 @@ import {ChildFormComponent} from './child-form/child-form.component';
 import {MapDestinationComponent} from './map-destination/map-destination.component';
 import {MapRegionComponent} from './map-region/map-region.component';
 import {MapWorldComponent} from './map-world/map-world.component';
+import {AboutUsComponent} from './about-us/about-us.component';
 
 const routes: Routes = [
   { path: 'parent-form', component: ParentFormComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'signup',           component: SignupComponent },
   { path: 'landing',          component: LandingComponent },
   { path: 'nucleoicons',      component: NucleoiconsComponent },
+  { path: 'about-us', component: AboutUsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
