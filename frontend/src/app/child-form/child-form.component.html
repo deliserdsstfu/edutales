@@ -15,8 +15,11 @@
               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
                 <input type="number" class="form-control" placeholder="Year of Birth" formControlName="year_of_birth" (focus)="focus=true" (blur)="focus=false" >
               </div>
+              <br>
               <button class="btn btn-danger btn-block btn-round" [disabled]="!childFormGroup.valid" (click)="createChild()">
-                <span *ngIf="!childFormGroup.controls.id">Register Child</span>
+                <span *ngIf="!childFormGroup.controls.id">Create Child</span>
+                <span *ngIf="childFormGroup.controls.id.value">Update</span>
+
               </button>
             </form>
           </div>
