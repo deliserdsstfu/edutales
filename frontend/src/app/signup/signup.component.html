@@ -17,16 +17,15 @@
                                   <i class="fa fa-twitter"></i>
                               </a>
                           </div>
-                          <form class="register-form">
-                              <label>Email</label>
+                          <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
+                              <label>Username</label>
                               <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text">
                                       <i class="nc-icon nc-email-85"></i>
                                   </span>
                                 </div>
-
-                                  <input type="text" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
+                                  <input type="text" placeholder="Username" formControlName="username" (focus)="focus=true" (blur)="focus=false" >
                               </div>
 
                               <label>Password</label>
@@ -36,9 +35,9 @@
                                       <i class="nc-icon nc-key-25"></i>
                                   </span>
                                 </div>
-                                  <input type="text" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
+                                  <input type="text" placeholder="Password" formControlName="password" (focus)="focus1=true" (blur)="focus1=false" >
                               </div>
-                              <button class="btn btn-danger btn-block btn-round">Register</button>
+                              <button class="btn btn-danger btn-block btn-round" type="submit">Login</button>
                           </form>
                           <div class="forgot">
                               <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
