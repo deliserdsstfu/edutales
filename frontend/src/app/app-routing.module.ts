@@ -13,19 +13,20 @@ import {MapDestinationComponent} from './map-destination/map-destination.compone
 import {MapRegionComponent} from './map-region/map-region.component';
 import {MapWorldComponent} from './map-world/map-world.component';
 import {AboutUsComponent} from './about-us/about-us.component';
+import {AuthGuard} from './auth.guard';
 
 const routes: Routes = [
-  { path: 'parent-form', component: ParentFormComponent},
-  { path: 'child-form', component: ChildFormComponent},
-  { path: 'map-destination', component: MapDestinationComponent},
-  { path: 'map-region', component: MapRegionComponent},
-  { path: 'map-world', component: MapWorldComponent},
-  { path: 'home',             component: ComponentsComponent },
-  { path: 'user-profile',     component: ProfileComponent },
-  { path: 'signup',           component: SignupComponent },
-  { path: 'landing',          component: LandingComponent },
-  { path: 'nucleoicons',      component: NucleoiconsComponent },
-  { path: 'about-us', component: AboutUsComponent },
+  { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard]},
+  { path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard]},
+  { path: 'map-destination', component: MapDestinationComponent, canActivate: [AuthGuard]},
+  { path: 'map-region', component: MapRegionComponent, canActivate: [AuthGuard]},
+  { path: 'map-world', component: MapWorldComponent, canActivate: [AuthGuard]},
+  { path: 'home',             component: ComponentsComponent, canActivate: [AuthGuard] },
+  { path: 'user-profile',     component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'signup',           component: SignupComponent, canActivate: [AuthGuard] },
+  { path: 'landing',          component: LandingComponent, canActivate: [AuthGuard] },
+  { path: 'nucleoicons',      component: NucleoiconsComponent, canActivate: [AuthGuard] },
+  { path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
