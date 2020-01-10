@@ -26,10 +26,13 @@
                 <li class="nav-item" *ngIf="isHome()">
                     <a [routerLink]="['/signup']" class="btn btn-light btn-round">Login</a>
                 </li>
-                <li class="nav-item" *ngIf="!isHome() && !isLogin() && !isRegister() && !isAboutUs()">
+                <li class="nav-item" *ngIf="isLoggedIn" >
+                    <app-logout class="btn btn-light btn-round"> </app-logout>
+                </li>
+                <li class="nav-item" *ngIf="!isHome() && !isLogin() && !isRegister()">
                     <a [routerLink]="['/home']" class="nav-link"><i class="nc-icon nc-compass-05"></i>Home</a>
                 </li>
-                <li class="nav-item" *ngIf="!isHome() && !isLogin() && !isRegister() && !isAboutUs()">
+                <li class="nav-item" *ngIf="!isHome() && !isLogin() && !isRegister()">
                     <a [routerLink]="['/user-profile']" class="nav-link"><i class="nc-icon nc-single-02"></i>Profile</a>
                 </li>
                 <li class="nav-item" *ngIf="isLogin()">

@@ -26,6 +26,6 @@ export class ParentService {
   }
 
   deleteParent(parent) {
-    return this.http.delete('/api/Parent/' + parent.id + '/delete', parent);
+    return this.http.delete('/api/parent/' + parent.id + '/delete', parent);
   }
 }
