@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ParentService} from '../service/parent.service';
+import {UserService} from '../service/user.service';
 
 @Component({
     selector: 'app-profile',
@@ -8,8 +10,24 @@ import { Component, OnInit } from '@angular/core';
 
 export class ProfileComponent implements OnInit {
 
-    constructor() { }
 
-    ngOnInit() {}
+    parents: any[];
+    displayedColumns = ['first_name', 'last_name', 'children'];
 
+    constructor(private parentService: ParentService, public userService: UserService) {
+    }
+
+    ngOnInit() {
+        this.parentService.getParents()
+            .subscribe((response: any[]) => {
+                this.parents = response;
+            });
+    }
+
+    deleteParent(parent: any) {
+        this.parentService.deleteParent(parent)
+            .subscribe(() => {
+                this.ngOnInit();
+            });
+    }
 }
