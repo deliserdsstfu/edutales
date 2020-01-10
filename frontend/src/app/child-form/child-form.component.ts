@@ -7,7 +7,7 @@ import {ChildService} from '../service/child.service';
 @Component({
     selector: 'app-child-form',
     templateUrl: './child-form.component.html',
-    styleUrls: ['./child-form.component.scss']
+    styleUrls: ['./child-form.component.scss'],
 })
 export class ChildFormComponent implements OnInit {
     focus;
