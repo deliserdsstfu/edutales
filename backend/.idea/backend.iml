@@ -2,7 +2,7 @@
 <module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Python" name="Python">
-      <configuration sdkName="Python 3.8 (backend)" />
+      <configuration sdkName="Python 3.8 Edutales" />
     </facet>
   </component>
   <component name="NewModuleRootManager">
@@ -11,7 +11,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Python 3.8 (backend) interpreter library" level="application" />
+    <orderEntry type="library" name="Python 3.8 Edutales interpreter library" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_FOLDERS">
