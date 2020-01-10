@@ -12,7 +12,7 @@ export class ProfileComponent implements OnInit {
 
 
     parents: any[];
-    displayedColumns = ['first_name', 'last_name', 'children'];
+    displayedColumns = ['user', 'year_of_birth', 'region', 'children'];
 
     constructor(private parentService: ParentService, public userService: UserService) {
     }

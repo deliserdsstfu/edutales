@@ -57,8 +57,7 @@ class Progress(models.Model):
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE, null=True)
     points = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 
-    def __str__(self):
-        return self.user
+
 
 
 class Reward(models.Model):
