@@ -2,7 +2,7 @@
 # Created by https://www.gitignore.io/api/git,macos,django,python,angular,pycharm,windows,intellij
 # Edit at https://www.gitignore.io/?templates=git,macos,django,python,angular,pycharm,windows,intellij
 
-
+.DS_Store
 venv
 
 ### Angular ###
