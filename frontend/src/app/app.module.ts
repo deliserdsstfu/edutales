@@ -19,7 +19,11 @@ import { MapRegionComponent } from './map-region/map-region.component';
 import { MapDestinationComponent } from './map-destination/map-destination.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import {JwtModule} from '@auth0/angular-jwt';
 
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 
 @NgModule({
@@ -33,7 +37,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     MapRegionComponent,
     MapDestinationComponent,
     LogoutComponent,
-    AboutUsComponent
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,12 @@ import { AboutUsComponent } from './about-us/about-us.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    JwtModule.forRoot({
+      config : {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:4200']
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
