@@ -6,7 +6,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LandingComponent } from './landing/landing.component';
 import {SignupComponent} from '../signup/signup.component';
 import {ProfileComponent} from '../profile/profile.component';
-import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -15,7 +14,6 @@ import {MatTableModule} from '@angular/material/table';
         FormsModule,
         NgbModule,
         ReactiveFormsModule,
-        MatTableModule,
     ],
     declarations: [
         LandingComponent,
