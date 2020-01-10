@@ -70,9 +70,16 @@ class Reward(models.Model):
 
 
 class Child(models.Model):
+
+    CHOICES = (
+        ('p', 'Pink'),
+        ('b', 'Blue'),
+        ('g', 'Green')
+    )
+
     user_name = models.TextField()
     year_of_birth = models.IntegerField()
-    game = models.ForeignKey(GameType, on_delete=models.CASCADE, null=True)
+    game = models.CharField(max_length=1, choices=CHOICES, null=True)
     progress = models.ForeignKey(Progress, on_delete=models.CASCADE, null=True)
     reward = models.ForeignKey(Reward, on_delete=models.CASCADE, null=True)
 

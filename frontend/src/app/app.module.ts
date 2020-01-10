@@ -19,6 +19,7 @@ import { MapRegionComponent } from './map-region/map-region.component';
 import { MapDestinationComponent } from './map-destination/map-destination.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { ChildListComponent } from './child-list/child-list.component';
 
 
 
@@ -33,7 +34,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     MapRegionComponent,
     MapDestinationComponent,
     LogoutComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    ChildListComponent
   ],
   imports: [
     BrowserModule,
