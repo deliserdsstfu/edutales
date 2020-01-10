@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {UserService} from '../../service/user.service';
 
 @Component({
     selector: 'app-navbar',
@@ -9,12 +10,15 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
-
-    constructor(public location: Location, private element : ElementRef) {
+    isLoggedIn = false;
+    constructor(public location: Location, private element : ElementRef, private userService: UserService) {
         this.sidebarVisible = false;
     }
 
     ngOnInit() {
+        this.userService.isLoggedIn.subscribe((isLoggedIn) => {
+            this.isLoggedIn = isLoggedIn;
+        });
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     }
