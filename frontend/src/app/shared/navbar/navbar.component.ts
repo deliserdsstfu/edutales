@@ -71,6 +71,18 @@ export class NavbarComponent implements OnInit {
             return false;
         }
     }
+    isAboutUs() {
+        var titlee = this.location.prepareExternalUrl(this.location.path());
+        if(titlee.charAt(0) === '#'){
+            titlee = titlee.slice( 1 );
+        }
+        if( titlee === '/about-us' ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     isLogin() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         if (titlee.charAt(0) === '#'){
