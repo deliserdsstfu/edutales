@@ -26,6 +26,9 @@
                 <li class="nav-item" *ngIf="isHome()">
                     <a [routerLink]="['/signup']" class="btn btn-light btn-round">Login</a>
                 </li>
+                <li class="nav-item" *ngIf="isHome()">
+                    <app-logout class="btn btn-light btn-round"> </app-logout>
+                </li>
                 <li class="nav-item" *ngIf="!isHome() && !isLogin() && !isRegister()">
                     <a [routerLink]="['/home']" class="nav-link"><i class="nc-icon nc-compass-05"></i>Home</a>
                 </li>
