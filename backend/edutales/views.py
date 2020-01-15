@@ -268,7 +268,8 @@ def child_list(request):
 @api_view(['POST'])
 @permission_required('edutales.add_child', raise_exception=True)
 def child_form_create(request):
-    serializer = ChildFormSerializer(data=request.data)
+    data = JSONParser().parse(request)
+    serializer = ChildFormSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)
@@ -284,7 +285,8 @@ def child_form_update(request, pk):
     except Child.DoesNotExist:
         return Response({'error': 'Child does not exist.'}, status=404)
 
-    serializer = ChildFormSerializer(child, data=request.data)
+    data = JSONParser().parse(request)
+    serializer = ChildFormSerializer(child, data=data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)

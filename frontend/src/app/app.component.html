@@ -1,3 +1,24 @@
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
 <app-footer *ngIf="removeFooter()"></app-footer>
+
+
+
+<!--
+<mat-toolbar *ngIf="isLoggedIn">
+    <button mat-button [matMenuTriggerFor]="childMenu">Book</button>
+    <mat-menu #childMenu="matMenu">
+        <button mat-menu-item routerLink="child-list">List childs</button>
+        <button mat-menu-item routerLink="child-form">Create childs</button>
+
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="parentMenu">Parent</button>
+    <mat-menu #parentMenu="matMenu">
+        <button mat-menu-item routerLink="lender-list">List parents</button>
+        <button mat-menu-item routerLink="lender-form">Create parents</button>
+    </mat-menu>
+    <app-logout></app-logout>
+</mat-toolbar>
+<router-outlet></router-outlet>
+-->
+

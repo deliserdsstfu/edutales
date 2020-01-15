@@ -24,15 +24,11 @@ class ChildListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
 class ChildFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
         fields = '__all__'
-
-
 
 
 class ChildOptionSerializer(serializers.ModelSerializer):
@@ -56,8 +52,6 @@ class ParentFormSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
 class ParentOptionSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
 
@@ -75,12 +69,10 @@ class TaleListSerializer(serializers.ModelSerializer):
         model = Tale
 
 
-
 class TaleFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tale
-
 
 
 class TaleOptionSerializer(serializers.ModelSerializer):
@@ -95,19 +87,15 @@ class RewardSerializer(serializers.ModelSerializer):
         model = Reward
 
 
-
 class DestinationListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Destination
 
-
-
 class DestinationFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Destination
-
 
 
 class DestinationOptionSerializer(serializers.ModelSerializer):
@@ -116,18 +104,17 @@ class DestinationOptionSerializer(serializers.ModelSerializer):
         model = Destination
         fields = ['id', 'title']
 
+
 class ProgressListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Progress
 
 
-
 class ProgressFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Progress
-
 
 
 class ProgressOptionSerializer(serializers.ModelSerializer):
