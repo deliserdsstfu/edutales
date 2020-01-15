@@ -27,13 +27,12 @@
                         <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
                             <input type="text" class="form-control" placeholder="Region" formControlName="region" (focus)="focus=true" (blur)="focus=false" >
                         </div>
-                        <button class="btn btn-danger btn-block btn-round" [disabled]="!parentFormGroup.valid" (click)="createParent()">
-                            <span *ngIf="!parentFormGroup.controls.id.value">Register</span>
-                            <!-- <span *ngIf="animalFormGroup.controls.id.value">Update</span> -->
-                        </button>
                         <div class="row">
                             <div class="col-md-6 ml-auto mr-auto text-center">
-                                <button class="btn btn-outline-default btn-round" [routerLink]="['/parent-form']"><i class="fa fa-cog"></i>Update Profile</button>
+                            <button class="btn btn-outline-default btn-round" [disabled]="!parentFormGroup.valid" (click)="createParent()">
+                                <span *ngIf="parentFormGroup.controls.id.value"><i class="fa fa-cog"></i>Update Profile</span>
+                                <!-- <span *ngIf="animalFormGroup.controls.id.value">Update</span> -->
+                                </button>
                             </div>
                         </div>
                     </form>
