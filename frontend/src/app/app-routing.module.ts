@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'signup',           component: SignupComponent },
   { path: 'landing',          component: LandingComponent, canActivate: [AuthGuard] },
   { path: 'nucleoicons',      component: NucleoiconsComponent, canActivate: [AuthGuard] },
-  { path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuard] },
+  { path: 'about-us', component: AboutUsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
