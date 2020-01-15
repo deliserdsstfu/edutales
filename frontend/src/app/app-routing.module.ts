@@ -22,7 +22,6 @@ const routes: Routes = [
   { path: 'map-region', component: MapRegionComponent, canActivate: [AuthGuard]},
   { path: 'map-world', component: MapWorldComponent, canActivate: [AuthGuard]},
   { path: 'home',             component: ComponentsComponent },
-  { path: 'user-profile',     component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'user-profile/:id',     component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'signup',           component: SignupComponent },
   { path: 'landing',          component: LandingComponent, canActivate: [AuthGuard] },

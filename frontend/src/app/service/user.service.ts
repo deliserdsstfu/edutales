@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +27,8 @@ export class UserService {
         .subscribe((res: any) => {
           this.isLoggedIn.next(true);
           localStorage.setItem('access_token', res.token);
-          this.router.navigate(['user-profile']);
+          // @ts-ignore
+          this.router.navigate(['/user-profile/' + parentService.getParent()]);
         }, () => {
           alert('wrong username or password');
         });

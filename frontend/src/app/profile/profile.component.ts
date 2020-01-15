@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
+        const data = this.route.snapshot.data;
         this.parentFormGroup = this.fb.group({
             'id': [null],
             'first_name': ['', Validators.required],
@@ -33,13 +34,9 @@ export class ProfileComponent implements OnInit {
             'children': [null]
         });
 
-        const id = this.route.snapshot.paramMap.get('id');
-        if (id) {
-            this.http.get('/api/parent/' + id + '/get')
-                .subscribe((response) => {
-                    this.parentFormGroup.patchValue(response, {emitEvent: false});
-                });
-        }
+       if (data.parent) {
+           this.parentFormGroup.patchValue(data.parent);
+       }
 
         this.parentService.getParents()
             .subscribe((response: any[]) => {
@@ -56,9 +53,14 @@ export class ProfileComponent implements OnInit {
 
     createParent() {
         const parent = this.parentFormGroup.value;
-        this.parentService.updateParent(parent)
-            .subscribe(() => {
-                this.router.navigate(['/user-profile/' + parent.id]);
-            });
+        if (parent.id) {
+            this.parentService.updateParent(parent)
+                .subscribe(() => {
+                    this.router.navigate(['/user-profile/' + parent.id]);
+                });
+        }
+
     }
 }
+
+
