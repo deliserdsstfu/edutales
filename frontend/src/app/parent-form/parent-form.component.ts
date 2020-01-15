@@ -15,7 +15,6 @@ export class ParentFormComponent implements OnInit {
   focus1;
   parentFormGroup;
 
-
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               private router: Router, private parentService: ParentService) { }
   ngOnInit() {

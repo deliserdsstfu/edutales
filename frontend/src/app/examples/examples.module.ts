@@ -15,6 +15,7 @@ import {AppRoutingModule} from '../app-routing.module';
         FormsModule,
         NgbModule,
         ReactiveFormsModule,
+        AppRoutingModule,
     ],
     declarations: [
         LandingComponent,
