@@ -31,8 +31,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {ChildListComponent} from './child-list/child-list.component';
 import { HomeComponent } from './home/home.component';
+import {ChildListComponent} from './child-list/child-list.component';
 
 
 export function tokenGetter() {
@@ -52,8 +52,8 @@ export function tokenGetter() {
     MapDestinationComponent,
     LogoutComponent,
     AboutUsComponent,
-    ChildListComponent,
-    HomeComponent
+    HomeComponent,
+    ChildListComponent
   ],
   imports: [
     BrowserModule,
@@ -83,13 +83,16 @@ export function tokenGetter() {
     MatCheckboxModule,
 
     JwtModule.forRoot({
-      config : {
+      config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: ['localhost:4200']
       }
     })
   ],
   providers: [],
+  exports: [
+    ChildListComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

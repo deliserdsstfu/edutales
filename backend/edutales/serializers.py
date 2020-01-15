@@ -123,7 +123,7 @@ class ProgressOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Progress
-        fields = ['id', 'title']
+        fields = '__all__'
 
 
 class QuizListSerializer(serializers.ModelSerializer):

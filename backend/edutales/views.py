@@ -258,10 +258,9 @@ def progress_form_get(request, pk):
 
 @swagger_auto_schema(method='GET', responses={200: ChildListSerializer(many=True)})
 @api_view(['GET'])
-@permission_required('edutales.view_child', raise_exception=True)
 def child_list(request):
-    childs = Child.objects.all()
-    serializer = ChildListSerializer(childs, many=True)
+    children = Child.objects.all()
+    serializer = ChildListSerializer(children, many=True)
     return Response(serializer.data)
 
 @swagger_auto_schema(method='POST', request_body=ChildFormSerializer, responses={200: ChildFormSerializer()})

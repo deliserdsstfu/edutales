@@ -4,6 +4,7 @@ import {UserService} from '../service/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import {ChildListComponent} from '../child-list/child-list.component';
 
 @Component({
     selector: 'app-profile',

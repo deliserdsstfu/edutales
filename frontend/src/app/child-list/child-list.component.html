@@ -1,9 +1,14 @@
+<div class ="wrapper">
+<div class="col-lg-4 col-sm-6 mr-auto ml-auto">
 <table mat-table [dataSource]="children">
   <ng-container matColumnDef="user_name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
     <td mat-cell *matCellDef="let child">{{child.user_name}}</td>
   </ng-container>
-
+  <ng-container matColumnDef="year_of_birth">
+    <th mat-header-cell *matHeaderCellDef>Year of Birth</th>
+    <td mat-cell *matCellDef="let child">{{child.year_of_birth}}</td>
+  </ng-container>
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let child">
@@ -15,4 +20,6 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>
+</div>
 

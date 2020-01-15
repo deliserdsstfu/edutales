@@ -16,15 +16,17 @@ import {AboutUsComponent} from './about-us/about-us.component';
 import {AuthGuard} from './auth.guard';
 import {ParentResolver} from './resolver/parent.resolver';
 import {HomeComponent} from './home/home.component';
+import {ChildListComponent} from './child-list/child-list.component';
 
 const routes: Routes = [
   { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard]},
   { path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard]},
+  { path: 'child-list', component: ChildListComponent, canActivate: [AuthGuard]},
   { path: 'map-destination', component: MapDestinationComponent, canActivate: [AuthGuard]},
   { path: 'map-region', component: MapRegionComponent, canActivate: [AuthGuard]},
   { path: 'map-world', component: MapWorldComponent, canActivate: [AuthGuard]},
-  { path: 'home',             component: ComponentsComponent },
-  { path: 'home1', component: HomeComponent },
+  { path: 'home1',             component: ComponentsComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'user-profile',     component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'user-profile/:id', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
       parent: ParentResolver

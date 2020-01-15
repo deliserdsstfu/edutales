@@ -10,7 +10,7 @@ import {ChildService} from '../service/child.service';
 export class ChildListComponent implements OnInit {
 
   children: any[];
-  displayedColumns = ['user_name', 'id'];
+  displayedColumns = ['user_name', 'year_of_birth', 'id'];
 
   constructor(private http: HttpClient, private childService: ChildService) { }
 
