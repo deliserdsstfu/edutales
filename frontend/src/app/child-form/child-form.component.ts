@@ -15,6 +15,7 @@ export class ChildFormComponent implements OnInit {
     childFormGroup;
 
 
+
     constructor(private fb: FormBuilder, private childService: ChildService, private route: ActivatedRoute,
                 private router: Router) {
     }
@@ -44,14 +45,11 @@ export class ChildFormComponent implements OnInit {
         } else {
             this.childService.createChild(child)
                 .subscribe((response: any) => {
-                    this.router.navigate(['/user-profile/']);
+                    this.router.navigate(['child-form/']);
                 });
         }
 
 
 }
 }
-
-
-
 

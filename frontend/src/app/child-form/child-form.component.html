@@ -19,7 +19,6 @@
               <button class="btn btn-danger btn-block btn-round" [disabled]="!childFormGroup.valid" (click)="createChild()">
                 <span *ngIf="!childFormGroup.controls.id">Create Child</span>
                 <span *ngIf="childFormGroup.controls.id.value">Update</span>
-
               </button>
             </form>
           </div>

@@ -14,6 +14,7 @@ import {MapRegionComponent} from './map-region/map-region.component';
 import {MapWorldComponent} from './map-world/map-world.component';
 import {AboutUsComponent} from './about-us/about-us.component';
 import {AuthGuard} from './auth.guard';
+import {ChildResolver} from './resolver/child.resolver';
 
 const routes: Routes = [
   { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard]},
@@ -28,6 +29,20 @@ const routes: Routes = [
   { path: 'nucleoicons',      component: NucleoiconsComponent, canActivate: [AuthGuard] },
   { path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'child-form',
+    component: ChildFormComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
+    path: 'child-form/:id',
+    component: ChildFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      child: ChildResolver
+    }
+  }
 ];
 
 @NgModule({
