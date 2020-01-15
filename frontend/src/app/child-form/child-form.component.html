@@ -1,3 +1,42 @@
-<p>
-  child-form works!
+<p *ngFor="let alert of alerts">
+  <ngb-alert [type]="alert.type"  [dismissible]="false">
+    <div class="container">
+      <ng-container *ngIf="alert.icon">
+        <i class="nc-icon {{alert.icon}}"></i>
+      </ng-container>
+
+      {{ alert.message }}
+      <button type="button" name="button" class="close" (click)="closeAlert(alert)">
+        <i class="nc-icon nc-simple-remove"></i>
+      </button>
+    </div>
+  </ngb-alert>
 </p>
+<div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+<form [formGroup]="childFormGroup" class="register-form">
+  <br>
+  <br>
+  <br>
+  <label>Username</label>
+  <div class="input-group form-group-no-border">
+    <input type="text" placeholder="Name" class="form-control" formControlName="user_name">
+  </div>
+  <label>Year of Birth</label>
+  <div class="input-group form-group-no-border">
+    <input type="number" class="form-control" placeholder="Year of Birth" formControlName="year_of_birth">
+  </div>
+  <label>Game type</label><br>
+  <select placeholder="game type" formControlName="game">
+    <option [value]="game.key" *ngFor="let game of gameService.opNames | keyvalue">{{game.value}}</option>
+  </select>
+  <br>
+  <div class="row">
+    <div class="col-md-6 ml-auto mr-auto text-center">
+      <button class="btn btn-outline-default btn-round" [disabled]="!childFormGroup.valid" (click)="createChild()"><i class="fa fa-cog"></i>
+        <span *ngIf="!childFormGroup.controls.id.value">Create</span>
+        <span *ngIf="childFormGroup.controls.id.value">Update</span>
+      </button>
+    </div>
+  </div>
+</form>
+</div>
