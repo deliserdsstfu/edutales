@@ -31,6 +31,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {AgmCoreModule} from '@agm/core';
 
 
 
@@ -83,6 +84,9 @@ export function tokenGetter() {
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCSKOJGEKdNYe_Et8g3CC7rrJnPo6ff9qc'
+    }),
 
     JwtModule.forRoot({
       config : {

@@ -7,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapWorldComponent implements OnInit {
 
+  latitude = 47.06667;
+  longitude = 15.45;
+  locationChosen = false;
+
+  onChoseLocation(event) {
+    this.latitude = event.coords.lat;
+    this.longitude = event.coords.lng;
+    this.locationChosen = true;
+  }
+
   constructor() { }
 
   ngOnInit() {
