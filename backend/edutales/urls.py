@@ -52,6 +52,13 @@ urlpatterns = [
     path('parent/options', views.parent_option_list),
     path('reward/<int:pk>', views.reward_download),
     path('reward/<int:pk>/get', views.reward_get),
+    path('user-profile/list', views.parent_list),
+    path('user-profile/create', views.parent_form_create),
+    path('user-profile/<int:pk>/get', views.parent_form_get),
+    path('user-profile/<int:pk>/update', views.parent_form_update),
+    path('user-profile/<int:pk>/delete', views.parent_delete),
+    path('user-profile/options', views.parent_option_list),
+
 
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^reward$', FileUploadView.as_view()),

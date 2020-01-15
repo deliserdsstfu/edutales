@@ -12,19 +12,17 @@ import {HttpClient} from '@angular/common/http';
 })
 
 export class ProfileComponent implements OnInit {
-    test: Date = new Date();
-    focus;
-    focus1;
-    parentFormGroup;
-    parents: any[];
-    displayedColumns = ['user', 'year_of_birth', 'region', 'children'];
+
+    profileFormGroup;
 
     constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
-                private router: Router, private parentService: ParentService, public userService: UserService) {
+                private router: Router, private parentService: ParentService) {
     }
 
     ngOnInit() {
-        this.parentFormGroup = this.fb.group({
+        const data = this.route.snapshot.data;
+
+        this.profileFormGroup = this.fb.group({
             'id': [null],
             'first_name': ['', Validators.required],
             'last_name': ['', Validators.required],
@@ -33,32 +31,23 @@ export class ProfileComponent implements OnInit {
             'children': [null]
         });
 
-        const id = this.route.snapshot.paramMap.get('id');
-        if (id) {
-            this.http.get('/api/parent/' + id + '/get')
-                .subscribe((response) => {
-                    this.parentFormGroup.patchValue(response, {emitEvent: false});
-                });
+        if (data.parent) {
+            this.profileFormGroup.patchValue(data.parent);
         }
-
-        this.parentService.getParents()
-            .subscribe((response: any[]) => {
-                this.parents = response;
-            });
-    }
-
-    deleteParent(parent: any) {
-        this.parentService.deleteParent(parent)
-            .subscribe(() => {
-                this.ngOnInit();
-            });
     }
 
     createParent() {
-        const parent = this.parentFormGroup.value;
-        this.parentService.updateParent(parent)
-            .subscribe(() => {
-                this.router.navigate(['/user-profile/' + parent.id]);
-            });
+        const parent = this.profileFormGroup.value;
+        if (parent.id) {
+            this.parentService.updateParent(parent)
+                .subscribe(() => {
+                    alert('updated successfully');
+                });
+        } else {
+            this.parentService.createParent(parent)
+                .subscribe((response: any) => {
+                    this.router.navigate(['/user-profile/' + response.id]);
+                });
+        }
     }
 }

@@ -32,6 +32,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {ChildListComponent} from './child-list/child-list.component';
+import { HomeComponent } from './home/home.component';
 
 
 export function tokenGetter() {
@@ -51,7 +52,8 @@ export function tokenGetter() {
     MapDestinationComponent,
     LogoutComponent,
     AboutUsComponent,
-    ChildListComponent
+    ChildListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

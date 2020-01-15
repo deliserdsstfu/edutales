@@ -7,6 +7,7 @@ class RegionOptionSerializer(serializers.ModelSerializer):
         model = Region
         fields = ['id', 'name']
 
+
 class GameTypeOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = GameType
@@ -17,14 +18,14 @@ class ChildListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
-
+        fields = '__all__'
 
 
 class ChildFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
-
+        fields = '__all__'
 
 
 class ChildOptionSerializer(serializers.ModelSerializer):
@@ -45,7 +46,7 @@ class ParentFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Parent
-
+        fields = '__all__'
 
 
 class ParentOptionSerializer(serializers.ModelSerializer):
@@ -53,24 +54,21 @@ class ParentOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Parent
-        fields = ['id', 'name']
-
-    def get_name(self, obj):
-        return ' '.join(filter(None, (obj.first_name, obj.last_name)))
+        fields = '__all__'
 
 
 class TaleListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tale
-
+        fields = '__all__'
 
 
 class TaleFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tale
-
+        fields = '__all__'
 
 
 class TaleOptionSerializer(serializers.ModelSerializer):
@@ -83,21 +81,21 @@ class TaleOptionSerializer(serializers.ModelSerializer):
 class RewardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reward
-
+        fields = '__all__'
 
 
 class DestinationListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Destination
-
+        fields = '__all__'
 
 
 class DestinationFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Destination
-
+        fields = '__all__'
 
 
 class DestinationOptionSerializer(serializers.ModelSerializer):
@@ -106,18 +104,19 @@ class DestinationOptionSerializer(serializers.ModelSerializer):
         model = Destination
         fields = ['id', 'title']
 
+
 class ProgressListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Progress
-
+        fields = '__all__'
 
 
 class ProgressFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Progress
-
+        fields = '__all__'
 
 
 class ProgressOptionSerializer(serializers.ModelSerializer):
@@ -126,18 +125,19 @@ class ProgressOptionSerializer(serializers.ModelSerializer):
         model = Progress
         fields = ['id', 'title']
 
+
 class QuizListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-
+        fields = '__all__'
 
 
 class QuizFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-
+        fields = '__all__'
 
 
 class QuizOptionSerializer(serializers.ModelSerializer):
@@ -145,7 +145,3 @@ class QuizOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quiz
         fields = ['id', 'title']
-
-
-
-
