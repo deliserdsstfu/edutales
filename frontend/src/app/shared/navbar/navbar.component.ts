@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import {UserService} from '../../service/user.service';
+import {SignupComponent} from '../../signup/signup.component';
 
 @Component({
     selector: 'app-navbar',

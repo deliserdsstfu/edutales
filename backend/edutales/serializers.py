@@ -45,7 +45,7 @@ class ParentFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Parent
-
+        fields = '__all__'
 
 
 class ParentOptionSerializer(serializers.ModelSerializer):
