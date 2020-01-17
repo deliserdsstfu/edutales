@@ -17,6 +17,7 @@ import {AuthGuard} from './auth.guard';
 import {ParentResolver} from './resolver/parent.resolver';
 import {HomeComponent} from './home/home.component';
 import {ChildListComponent} from './child-list/child-list.component';
+import {ChildOptionsResolver} from './resolver/child-options.resolver';
 
 const routes: Routes = [
   { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard]},
@@ -29,7 +30,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'user-profile',     component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'user-profile/:id', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
-      parent: ParentResolver
+    parent: ParentResolver, childOptionsResolver: ChildOptionsResolver,
     } },
   { path: 'signup',           component: SignupComponent },
   { path: 'landing',          component: LandingComponent, canActivate: [AuthGuard] },
