@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TaleService} from '../service/tale.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-world-map',
@@ -11,16 +13,24 @@ export class WorldMapComponent implements OnInit {
   longitude = 15.45;
   locationChosen = false;
 
+
+
   onChoseLocation(event) {
     this.latitude = event.coords.lat;
     this.longitude = event.coords.lng;
     this.locationChosen = true;
   }
 
-  constructor() { }
+  constructor(private taleService: TaleService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  getTale(id) {
+    this.taleService.getTale(id)
+      .subscribe(() => {
+        this.router.navigate(['/tale-quiz/' + id ]);
+      });
+  }
 
 }
