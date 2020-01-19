@@ -79,7 +79,7 @@ npm install -g @angular/cli
   - File -> Open -> Select **backend** directory -> OK (if requested **open in new window**)
 
 ### Run Project in IDE
-  - backend: Start Django Application 
+  - **backend**: Start Django Application 
 ```bash
 python manage.py makemigrations
 ```
@@ -90,7 +90,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-  - frontend: Start via **Angular CLI** 
+  - **frontend**: Start via **Angular CLI** 
 ```bash
 ng serve --open
 ```
