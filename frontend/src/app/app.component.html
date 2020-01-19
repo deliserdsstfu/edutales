@@ -17,6 +17,12 @@
     <button mat-menu-item routerLink="tale-list">List</button>
     <button mat-menu-item routerLink="tale-form">Create</button>
   </mat-menu>
+  <button mat-button
+          [matMenuTriggerFor]="quizMenu">Quiz</button>
+  <mat-menu #quizMenu="matMenu">
+    <button mat-menu-item routerLink="quiz-list">List</button>
+    <button mat-menu-item routerLink="quiz-form">Create</button>
+  </mat-menu>
   <app-logout></app-logout>
 </mat-toolbar>
 <router-outlet></router-outlet>

@@ -30,6 +30,8 @@ import {HttperrorInterceptor} from './httperror.interceptor';
 import { WorldMapComponent } from './world-map/world-map.component';
 import { TaleFormComponent } from './tale-form/tale-form.component';
 import { TaleListComponent } from './tale-list/tale-list.component';
+import { QuizFormComponent } from './quiz-form/quiz-form.component';
+import { QuizListComponent } from './quiz-list/quiz-list.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -48,6 +50,8 @@ export function tokenGetter() {
     WorldMapComponent,
     TaleFormComponent,
     TaleListComponent,
+    QuizFormComponent,
+    QuizListComponent,
   ],
   imports: [
     BrowserModule,

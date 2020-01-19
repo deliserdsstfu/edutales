@@ -13,6 +13,9 @@ import {WorldMapComponent} from './world-map/world-map.component';
 import {TaleFormComponent} from './tale-form/tale-form.component';
 import {TaleListComponent} from './tale-list/tale-list.component';
 import {TaleResolver} from './resolver/tale.resolver';
+import {QuizFormComponent} from './quiz-form/quiz-form.component';
+import {QuizResolver} from './resolver/quiz.resolver';
+import {QuizListComponent} from './quiz-list/quiz-list.component';
 
 
 const routes: Routes = [
@@ -34,6 +37,11 @@ const routes: Routes = [
   { path: 'tale-form', component: TaleFormComponent, canActivate: [AuthGuard] },
   { path: 'tale-form/:id', component: TaleFormComponent, canActivate: [AuthGuard], resolve: {
       tale: TaleResolver
+    }},
+  { path: 'quiz-list', component: QuizListComponent, canActivate: [AuthGuard] },
+  { path: 'quiz-form', component: QuizFormComponent, canActivate: [AuthGuard] },
+  { path: 'quiz-form/:id', component: QuizFormComponent, canActivate: [AuthGuard], resolve: {
+      quiz: QuizResolver
     }},
   {path: 'login', component: LoginComponent},
 ];

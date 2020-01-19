@@ -7,6 +7,7 @@ class Quiz(models.Model):
     name = models.TextField()
     points = models.PositiveIntegerField()
     question = models.TextField()
+    answer = models.TextField(null=True)
 
     def __str__(self):
             return self.name
