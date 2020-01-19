@@ -1,4 +1,4 @@
-<mat-toolbar *ngIf="isLoggedIn">
+<mat-toolbar *ngIf="isLoggedIn && !isWorldMap()">
   <button mat-button
           [matMenuTriggerFor]="parentMenu">Parent</button>
   <mat-menu #parentMenu="matMenu">
@@ -25,4 +25,8 @@
   </mat-menu>
   <app-logout></app-logout>
 </mat-toolbar>
+<mat-toolbar *ngIf="isWorldMap()">
+  <app-logout></app-logout>
+</mat-toolbar>
+
 <router-outlet></router-outlet>
