@@ -10,6 +10,9 @@ import {ChildOptionsResolver} from './resolver/child-options.resolver';
 import {ParentResolver} from './resolver/parent.resolver';
 import {ChildResolver} from './resolver/child.resolver';
 import {WorldMapComponent} from './world-map/world-map.component';
+import {TaleFormComponent} from './tale-form/tale-form.component';
+import {TaleListComponent} from './tale-list/tale-list.component';
+import {TaleResolver} from './resolver/tale.resolver';
 
 
 const routes: Routes = [
@@ -27,6 +30,11 @@ const routes: Routes = [
     child: ChildResolver
     } },
   { path: '', redirectTo: 'parent-list', pathMatch: 'full' },
+  { path: 'tale-list', component: TaleListComponent, canActivate: [AuthGuard] },
+  { path: 'tale-form', component: TaleFormComponent, canActivate: [AuthGuard] },
+  { path: 'tale-form/:id', component: TaleFormComponent, canActivate: [AuthGuard], resolve: {
+      tale: TaleResolver
+    }},
   {path: 'login', component: LoginComponent},
 ];
 

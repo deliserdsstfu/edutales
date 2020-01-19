@@ -28,6 +28,8 @@ import { AgmCoreModule } from '@agm/core';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import {HttperrorInterceptor} from './httperror.interceptor';
 import { WorldMapComponent } from './world-map/world-map.component';
+import { TaleFormComponent } from './tale-form/tale-form.component';
+import { TaleListComponent } from './tale-list/tale-list.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -44,6 +46,8 @@ export function tokenGetter() {
     ChildListComponent,
     ChildFormComponent,
     WorldMapComponent,
+    TaleFormComponent,
+    TaleListComponent,
   ],
   imports: [
     BrowserModule,

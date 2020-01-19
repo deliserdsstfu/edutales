@@ -34,6 +34,21 @@ def child_option_list(request):
     return Response(serializer.data)
 
 
+@swagger_auto_schema(method='GET', responses={200: TaleOptionSerializer(many=True)})
+@api_view(['GET'])
+def tale_option_list(request):
+    tales = Tale.objects.all()
+    serializer = TaleOptionSerializer(tales, many=True)
+    return Response(serializer.data)
+
+
+@swagger_auto_schema(method='GET', responses={200: QuizOptionSerializer(many=True)})
+@api_view(['GET'])
+def quiz_option_list(request):
+    quizzes = Quiz.objects.all()
+    serializer = QuizOptionSerializer(quizzes, many=True)
+    return Response(serializer.data)
+
 @swagger_auto_schema(method='GET', responses={200: QuizListSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('edutales.view_quiz', raise_exception=True)

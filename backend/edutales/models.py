@@ -12,12 +12,10 @@ class Quiz(models.Model):
             return self.name
 
 
-
-
 class Tale(models.Model):
     CHOICES = (
-        ('a', 'Action'),
-        ('c', 'Comedy')
+        ('w', 'witzig'),
+        ('g', 'gruselig')
     )
 
     title = models.TextField()
