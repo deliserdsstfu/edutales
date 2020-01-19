@@ -28,6 +28,8 @@ import { AgmCoreModule } from '@agm/core';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import {HttperrorInterceptor} from './httperror.interceptor';
 import { WorldMapComponent } from './world-map/world-map.component';
+import { TaleFormComponent } from './tale-form/tale-form.component';
+import { TaleListComponent } from './tale-list/tale-list.component';
 import { RewardFormComponent } from './reward-form/reward-form.component';
 import { RewardListComponent } from './reward-list/reward-list.component';
 
@@ -46,6 +48,8 @@ export function tokenGetter() {
     ChildListComponent,
     ChildFormComponent,
     WorldMapComponent,
+    TaleFormComponent,
+    TaleListComponent,
     RewardFormComponent,
     RewardListComponent,
   ],
@@ -60,7 +64,7 @@ export function tokenGetter() {
     MatToolbarModule,
     MatMenuModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBQULObsqi9Ta67z1coKGpT2RqOlmJ42Q8'
+      apiKey: 'AIzaSyCSKOJGEKdNYe_Et8g3CC7rrJnPo6ff9qc'
     }),
     MatFormFieldModule,
     MatSelectModule,
