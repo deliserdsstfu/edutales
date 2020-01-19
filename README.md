@@ -90,10 +90,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-  - **frontend**: Start via **Angular CLI** 
-```bash
-ng serve --open
-```
+  - **frontend**: Start via **Angular CLI Server** 
   - Check application running on http://localhost:4200 in browser
       - Default Admin:
           - User: admin
