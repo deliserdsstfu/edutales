@@ -18,6 +18,7 @@ German is used a s the language for the contend, so the target group is initiall
 - Stefan Krausler-Baumann
 - Karl Kreiner
 
+
 ## Requirements
 **Python 3.7**
 
@@ -53,14 +54,13 @@ npm install -g @angular/cli
 
 > Get [HERE](https://www.jetbrains.com/webstorm/download/?gclid=Cj0KCQiAmZDxBRDIARIsABnkbYQh0CAw_NJ2stLpvqywIAGTgB6gBUD679HLSsITKNjMBasJLeykCB4aAqiOEALw_wcB&gclsrc=aw.ds#section=mac) for Windows, MAC and Linux
 
+
 ## Installation for Developers
  - Clone this repository to your local machine
  - Switch to **backend** directory
     - Adapt settings in **application.properties** in src/main/resources
  - Switch to **frontend** directory
     - use ```npm install``` to install all required libraries
-
-    
 
 ### Import in IDE IntelliJ (Tested with Version 2019.2.4, Version 2019.3)
 - Open IntelligJ
@@ -87,12 +87,17 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-  - frontend: Start via **Angular CLI** ```ng serve --open```
+  - frontend: Start via **Angular CLI** 
+```bash
+ng serve --open
+```
   - Check application running on http://localhost:4200 in browser
       - Default Admin:
           - User: admin
           - Password: admin
 
+
+## Possible REST Calls
 
 
 
