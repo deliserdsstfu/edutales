@@ -7,27 +7,16 @@
   <mat-form-field>
     <input matInput type="number" placeholder="Year of Birth" formControlName="year_of_birth" required>
     <mat-hint align="end">Year of Birth of the child</mat-hint>
-    <mat-error *ngIf="childFormGroup.controls.postcode.hasError('required')">Postcode is required</mat-error>
-    <mat-error *ngIf="childFormGroup.controls.postcode.hasError('max')">Postcode is to long</mat-error>
-    <mat-error *ngIf="childFormGroup.controls.postcode.hasError('min')">Postcode is to short</mat-error>
+    <mat-error *ngIf="childFormGroup.controls.year_of_birth.hasError('required')">Year is required</mat-error>
+    <mat-error *ngIf="childFormGroup.controls.year_of_birth.hasError('max')">Year is to long</mat-error>
+    <mat-error *ngIf="childFormGroup.controls.year_of_birth.hasError('min')">Year is to short</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-select placeholder="Game type" formControlName="game">
       <mat-option [value]="game.key"
                   *ngFor="let game of gameService.opNames | keyvalue">{{game.value}}</mat-option>
     </mat-select>
-    <mat-hint align="end">Animal is spayed?</mat-hint>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput type="text" placeholder="Street" formControlName="street" required>
-    <mat-hint align="end">The street of the child</mat-hint>
-    <mat-error *ngIf="childFormGroup.controls.street.hasError('required')">Street is required</mat-error>
-    <mat-error *ngIf="childFormGroup.controls.street.hasError('badWord')">Street contains "bad word"</mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput type="text" placeholder="City" formControlName="city" required>
-    <mat-hint align="end">The city of the child</mat-hint>
-    <mat-error *ngIf="childFormGroup.controls.city.hasError('required')">City is required</mat-error>
+    <mat-hint align="end">Which color should the game have?</mat-hint>
   </mat-form-field>
   <br>
   <mat-card-actions align="center">

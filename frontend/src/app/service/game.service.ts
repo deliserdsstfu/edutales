@@ -6,4 +6,11 @@ import { Injectable } from '@angular/core';
 export class GameService {
 
   constructor() { }
+
+  opNames = {
+    g: 'Green',
+    b: 'Blue',
+    p: 'Pink'
+  };
+
 }
