@@ -58,8 +58,6 @@ class Progress(models.Model):
     points = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 
 
-
-
 class Reward(models.Model):
     name = models.TextField()
     original_file_name = models.TextField()
