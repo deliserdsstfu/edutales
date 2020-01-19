@@ -22,7 +22,7 @@ German is used a s the language for the contend, so the target group is initiall
 ## Requirements
 **Python 3.7**
 
-> Get [HERE](https://www.python.org/downloads/) for MAC OS
+> Get [HERE](https://www.python.org/downloads/) for MAC
 
 > Get [HERE](https://www.wikihow.com/Install-Python-on-Windows) for Windows
 
@@ -44,7 +44,7 @@ npm install -g @angular/cli
 ```
 **IntelliJ IDEA**
 
-> Get [Here](https://www.jetbrains.com/idea/download/?gclid=Cj0KCQiAmZDxBRDIARIsABnkbYQoAQd_Fdq_3xvTysNcmjpuOQFlEcJDKHZClNqqutfFywDCfqnc1ewaAuA7EALw_wcB#section=mac) for Windows, MAC and Linux
+> Get [HERE](https://www.jetbrains.com/idea/download/?gclid=Cj0KCQiAmZDxBRDIARIsABnkbYQoAQd_Fdq_3xvTysNcmjpuOQFlEcJDKHZClNqqutfFywDCfqnc1ewaAuA7EALw_wcB#section=mac) for Windows, MAC and Linux
 
 **PyCharm** (Alternative for IntelliJ IDEA) (Backend-Development)
 
@@ -57,15 +57,20 @@ npm install -g @angular/cli
 
 ## Installation for Developers
  - Clone this repository to your local machine
- - Switch to **backend** directory
-    - Adapt settings in **application.properties** in src/main/resources
+ - Add Python Support in **IntelliJ IDEA**
+  - Configure -> Plugins -> Install Python Community Edition 
  - Switch to **frontend** directory
-    - use ```npm install``` to install all required libraries
+  - ????
 
 ### Import in IDE IntelliJ (Tested with Version 2019.2.4, Version 2019.3)
 - Open IntelligJ
   - File -> Open -> Select **backend** directory -> OK (if requested **open in new window**)
   - File -> Open -> Select **frontend** direcotry -> OK (if reuqested **open in new window**)
+- Switch to **backend**
+  - Select Python interpreter in File -> Preferences -> Project: backend -> Project Interpreter
+  - Install requirements from **requirements.txt** in backend/
+- Switch to **frontend**
+  - use ```npm install``` to install all required libraries
   
 ### Alternative Import in PyCharm (Backend) (Tested with Version 2019.2.3)
 - Open PyCharm
@@ -77,13 +82,13 @@ npm install -g @angular/cli
 
 ### Run Project in IDE
   - backend: Start Django Application 
-```python
+```bash
 python manage.py makemigrations
 ```
-```python
+```bash
 python manage.py migrate
 ```
-```python
+```bash
 python manage.py runserver
 ```
 
@@ -97,7 +102,7 @@ ng serve --open
           - Password: admin
 
 
-## Possible REST Calls
+## Possible Calls
 
 
 
