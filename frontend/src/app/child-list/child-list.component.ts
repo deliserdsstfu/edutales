@@ -10,22 +10,22 @@ import {ChildService} from '../service/child.service';
 export class ChildListComponent implements OnInit {
 
   children: any[];
-  displayedColumns = ['user_name', 'id'];
+  displayedColumns = ['name', 'id']
 
   constructor(private http: HttpClient, private childService: ChildService) { }
 
   ngOnInit() {
     this.childService.getChildren()
-        .subscribe((response: any[]) => {
-          this.children = response;
-        });
+      .subscribe((response: any[]) => {
+        this.children = response;
+      });
   }
 
   deleteChild(child) {
     this.childService.deleteChild(child)
-        .subscribe(() => {
-          this.ngOnInit();
-        });
+      .subscribe(() => {
+        this.ngOnInit();
+      });
   }
 
 }

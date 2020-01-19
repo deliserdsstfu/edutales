@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChildFormComponent } from './child-form.component';
 
-describe('ChildFormComponent', () => {
+describe('ShelterFormComponent', () => {
   let component: ChildFormComponent;
   let fixture: ComponentFixture<ChildFormComponent>;
 
