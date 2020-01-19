@@ -9,7 +9,7 @@ class Quiz(models.Model):
     question = models.TextField()
 
     def __str__(self):
-            return self.name
+        return self.name
 
 
 
@@ -35,7 +35,7 @@ class Destination(models.Model):
     tale = models.ForeignKey(Tale, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-            return self.name
+        return self.name
 
 
 class Region(models.Model):
@@ -89,15 +89,19 @@ class Child(models.Model):
 
 
 class Parent(models.Model):
+    first_name = models.TextField(null= True)
+    last_name = models.TextField(null= True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null= True)
-    year_of_birth = models.IntegerField(blank=True, null=True)
+    day_of_birth = models.DateField(null=True)
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
     children = models.ForeignKey(Child, on_delete=models.CASCADE, null=True)
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Parent.objects.create(user=instance)
+
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):

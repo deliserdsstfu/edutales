@@ -313,6 +313,13 @@ def child_form_get(request, pk):
     serializer = ChildFormSerializer(child)
     return Response(serializer.data)
 
+@swagger_auto_schema(method='GET', responses={200: ChildOptionSerializer(many=True)})
+@api_view(['GET'])
+def child_option_list(request):
+    children = Child.objects.all()
+    serializer = ChildOptionSerializer(children, many=True)
+    return Response(serializer.data)
+
 
 
 
@@ -324,6 +331,8 @@ def parent_option_list(request):
     parents = Parent.objects.all()
     serializer = ParentOptionSerializer(parents, many=True)
     return Response(serializer.data)
+
+
 
 @swagger_auto_schema(method='GET', responses={200: ParentListSerializer(many=True)})
 @api_view(['GET'])

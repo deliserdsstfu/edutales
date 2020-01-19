@@ -28,7 +28,7 @@ export class ParentFormComponent implements OnInit {
       'first_name': ['', Validators.required],
       'last_name': ['', Validators.required],
       'region': [null],
-      'year_of_birth': [1, Validators.max(2000)],
+      'day_of_birth': [null],
       'children': [null]
     });
 

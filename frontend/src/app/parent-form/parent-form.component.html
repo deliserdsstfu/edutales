@@ -1,16 +1,11 @@
-<form [formGroup]="profileFormGroup" class="profile-form">
+<form [formGroup]="parentFormGroup" class="parent-form">
   <mat-form-field>
     <input matInput type="text" placeholder="First Name" formControlName="first_name" required>
     <mat-hint align="end">First Name</mat-hint>
-    <mat-error *ngIf="profileFormGroup.controls.name.hasError('required')">Name is required</mat-error>
+    <mat-error *ngIf="parentFormGroup.controls.name.hasError('required')">Name is required</mat-error>
     <!-- <mat-error *ngIf="profileFormGroup.controls.title.hasError('title')">Title already exists</mat-error> -->
   </mat-form-field>
-  <mat-form-field>
-    <input matInput type="text" placeholder="Last Name" formControlName="last_name" required>
-    <mat-hint align="end">Last Name</mat-hint>
-    <mat-error *ngIf="profileFormGroup.controls.name.hasError('required')">Name is required</mat-error>
-    <!-- <mat-error *ngIf="profileFormGroup.controls.title.hasError('title')">Title already exists</mat-error> -->
-  </mat-form-field>
+
   <app-date placeholder="Entry date" formControlName="entry_date" hint="The entry date of the profile"
             [required]="true"></app-date>
   <mat-form-field>
@@ -24,9 +19,9 @@
 
   <br/>
   <mat-card-actions align="center">
-    <button mat-raised-button color="primary" [disabled]="!profileFormGroup.valid" (click)="createProfile()">
-      <span *ngIf="!profileFormGroup.controls.id.value">Create</span>
-      <span *ngIf="profileFormGroup.controls.id.value">Update</span>
+    <button mat-raised-button color="primary" [disabled]="!parentFormGroup.valid" (click)="createParent()">
+      <span *ngIf="!parentFormGroup.controls.id.value">Create</span>
+      <span *ngIf="parentFormGroup.controls.id.value">Update</span>
     </button>
   </mat-card-actions>
 </form>
