@@ -1,55 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import {ChildService} from '../service/child.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {ChildService} from '../service/child.service';
+import {GameService} from '../service/game.service';
 
 @Component({
-    selector: 'app-child-form',
-    templateUrl: './child-form.component.html',
-    styleUrls: ['./child-form.component.scss'],
+  selector: 'app-child-form',
+  templateUrl: './child-form.component.html',
+  styleUrls: ['./child-form.component.scss']
 })
 export class ChildFormComponent implements OnInit {
 
-    childFormGroup;
+  childFormGroup;
 
+  // tslint:disable-next-line:max-line-length
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute, public childService: ChildService, public gameService: GameService) {
+  }
 
-
-    constructor(private fb: FormBuilder, private childService: ChildService, private route: ActivatedRoute,
-                private router: Router) {
-    }
 
   ngOnInit() {
+    const data = this.route.snapshot.data;
 
-      const data = this.route.snapshot.data;
+    this.childFormGroup = this.fb.group({
+      id: [null],
+      user_name: ['', Validators.required],
+      year_of_birth: [null, Validators.required],
+      game: [null],
+      progress: [null],
+      reward: [null]
+    });
 
-      this.childFormGroup = this.fb.group({
-          id: [null],
-          user_name: ['', [Validators.required]],
-          year_of_birth: [90, [Validators.max(3000)]],
-      });
-
-      if (data.child) {
-          this.childFormGroup.patchValue(data.child);
-      }
+    if (data.child) {
+      this.childFormGroup.patchValue(data.child);
+    }
   }
-    // tslint:disable-next-line:one-line
-    createChild(){
-        const child = this.childFormGroup.value;
-        if (child.id) {
-            this.childService.updateChild(child)
-                .subscribe(() => {
-                    alert('updated successfully');
-                });
-        } else {
-            this.childService.createChild(child)
-                .subscribe((response: any) => {
-                    this.router.navigate(['child-form/']);
-                });
-        }
+  createChild() {
+    const child = this.childFormGroup.value;
+    if (child.id) {
+      this.childService.updateChild(child)
+        .subscribe(() => {
+          alert('updated successfully');
+        });
+    } else {
+      this.childService.createChild(child)
+        .subscribe((response: any) => {
+          this.router.navigate(['/child-form/' + response.id]);
+        });
+    }
+  }
 
 
 }
-}
-

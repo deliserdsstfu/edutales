@@ -402,8 +402,8 @@ class FileUploadView(views.APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=400)
 
-
-def reward_download(request, pk):
+"""
+    def reward_download(request, pk):
     reward = Reward.objects.get(pk=pk)
     data = default_storage.open('reward/' + str(pk)).read()
     content_type = reward.content_type
@@ -411,15 +411,63 @@ def reward_download(request, pk):
     original_file_name =reward.original_file_name
     response['Content-Disposition'] = 'inline; filename=' + original_file_name
     return response
+"""
 
-
-@swagger_auto_schema(method='GET', responses={200: RewardSerializer()})
+@swagger_auto_schema(method='GET', responses={200: RewardListSerializer(many=True)})
 @api_view(['GET'])
-def reward_get(request, pk):
+@permission_required('edutales.view_reward', raise_exception=True)
+def reward_list(request):
+    rewards = Reward.objects.all()
+    serializer = RewardListSerializer(rewards, many=True)
+    return Response(serializer.data)
+
+@swagger_auto_schema(method='POST', request_body=RewardFormSerializer, responses={200: RewardFormSerializer()})
+@api_view(['POST'])
+@permission_required('edutales.add_reward', raise_exception=True)
+def reward_form_create(request):
+    data = JSONParser().parse(request)
+    serializer = RewardFormSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
+
+@swagger_auto_schema(method='PUT', request_body=RewardFormSerializer, responses={200: RewardFormSerializer()})
+@api_view(['PUT'])
+@permission_required('edutales.change_reward', raise_exception=True)
+def reward_form_update(request, pk):
     try:
         reward = Reward.objects.get(pk=pk)
-    except Tale.DoesNotExist:
+    except Reward.DoesNotExist:
         return Response({'error': 'Reward does not exist.'}, status=404)
 
-    serializer = RewardSerializer(reward)
+    data = JSONParser().parse(request)
+    serializer = RewardFormSerializer(reward, data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+@api_view(['DELETE'])
+@permission_required('edutales.delete_reward', raise_exception=True)
+def reward_delete(request, pk):
+    try:
+        reward = Reward.objects.get(pk=pk)
+    except Reward.DoesNotExist:
+        return Response({'error': 'Reward does not exist.'}, status=404)
+    reward.delete()
+    return Response(status=204)
+
+
+@swagger_auto_schema(method='GET', responses={200: RewardFormSerializer()})
+@api_view(['GET'])
+@permission_required('edutales.view_reward', raise_exception=True)
+def reward_form_get(request, pk):
+    try:
+        reward = Reward.objects.get(pk=pk)
+    except Reward.DoesNotExist:
+        return Response({'error': 'Reward does not exist.'}, status=404)
+
+    serializer = RewardFormSerializer(reward)
     return Response(serializer.data)

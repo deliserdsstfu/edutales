@@ -1,56 +1,44 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import {ParentListComponent} from './parent-list/parent-list.component';
 import {ParentFormComponent} from './parent-form/parent-form.component';
-import {ComponentsComponent} from './components/components.component';
-import {ProfileComponent} from './profile/profile.component';
-import {SignupComponent} from './signup/signup.component';
-import {LandingComponent} from './examples/landing/landing.component';
-import {NucleoiconsComponent} from './components/nucleoicons/nucleoicons.component';
-import {CommonModule} from '@angular/common';
-import {BrowserModule} from '@angular/platform-browser';
+import {LoginComponent} from './login/login.component';
+import {AuthGuard} from './guards/auth.guard';
+import {ChildListComponent} from './child-list/child-list.component';
 import {ChildFormComponent} from './child-form/child-form.component';
-import {MapDestinationComponent} from './map-destination/map-destination.component';
-import {MapRegionComponent} from './map-region/map-region.component';
-import {MapWorldComponent} from './map-world/map-world.component';
-import {AboutUsComponent} from './about-us/about-us.component';
-import {AuthGuard} from './auth.guard';
+import {ChildOptionsResolver} from './resolver/child-options.resolver';
+import {ParentResolver} from './resolver/parent.resolver';
 import {ChildResolver} from './resolver/child.resolver';
+import {RewardListComponent} from './reward-list/reward-list.component';
+import {RewardFormComponent} from './reward-form/reward-form.component';
+import {RewardResolver} from './resolver/reward.resolver';
+
 
 const routes: Routes = [
-  { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard]},
-  { path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard]},
-  { path: 'map-destination', component: MapDestinationComponent, canActivate: [AuthGuard]},
-  { path: 'map-region', component: MapRegionComponent, canActivate: [AuthGuard]},
-  { path: 'map-world', component: MapWorldComponent, canActivate: [AuthGuard]},
-  { path: 'home',             component: ComponentsComponent },
-  { path: 'user-profile',     component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'signup',           component: SignupComponent },
-  { path: 'landing',          component: LandingComponent, canActivate: [AuthGuard] },
-  { path: 'nucleoicons',      component: NucleoiconsComponent, canActivate: [AuthGuard] },
-  { path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'child-form',
-    component: ChildFormComponent,
-    canActivate: [AuthGuard]
-  },
+  { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard] },
+  { path: 'child-list', component: ChildListComponent, canActivate: [AuthGuard] },
+  { path: 'reward-list', component: RewardListComponent, canActivate: [AuthGuard] },
 
-  {
-    path: 'child-form/:id',
-    component: ChildFormComponent,
-    canActivate: [AuthGuard],
-    resolve: {
-      child: ChildResolver
-    }
-  }
+  { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
+    childOptions: ChildOptionsResolver,
+    } },
+  { path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard] },
+  { path: 'reward-form', component: RewardFormComponent, canActivate: [AuthGuard] },
+  { path: 'parent-form/:id', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
+      childOptions: ChildOptionsResolver,  parent: ParentResolver
+    } },
+  { path: 'child-form/:id', component: ChildFormComponent, canActivate: [AuthGuard], resolve: {
+    child: ChildResolver
+    } },
+  { path: 'reward-form/:id', component: RewardFormComponent, canActivate: [AuthGuard], resolve: {
+      reward: RewardResolver
+    } },
+  { path: '', redirectTo: 'parent-list', pathMatch: 'full' },
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-    CommonModule,
-    BrowserModule,
-    ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,0 +1,35 @@
+<form [formGroup]="rewardFormGroup" class="child-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Name" formControlName="name" required>
+    <mat-hint align="end">The name of the reward</mat-hint>
+    <mat-error *ngIf="rewardFormGroup.controls.name.hasError('required')">Name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="File Name" formControlName="original_file_name" required>
+    <mat-hint align="end">The filename reward</mat-hint>
+    <mat-error *ngIf="rewardFormGroup.controls.original_file_name.hasError('required')">Name is required</mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Content Type" formControlName="content_type" required>
+    <mat-hint align="end">The content of the reward</mat-hint>
+    <mat-error *ngIf="rewardFormGroup.controls.content_type.hasError('required')">Content is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Size" formControlName="size" required>
+    <mat-hint align="end">The size of the file</mat-hint>
+    <mat-error *ngIf="rewardFormGroup.controls.size.hasError('max')">Size is too big</mat-error>
+  </mat-form-field>
+
+  <br>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!rewardFormGroup.valid" (click)="createReward()">
+      <span *ngIf="!rewardFormGroup.controls.id.value">Create</span>
+      <span *ngIf="rewardFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>
+

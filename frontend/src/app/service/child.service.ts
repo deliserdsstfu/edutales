@@ -5,13 +5,15 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class ChildService {
-// Child Services
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
+
+  getChildren() {
+    return this.http.get('/api/child/list');
   }
 
-  getBooks() {
-    return this.http.get('/api/child/list');
+  getChild(id) {
+    return this.http.get('/api/child/' + id + '/get');
   }
 
   createChild(child) {
@@ -22,13 +24,11 @@ export class ChildService {
     return this.http.put('/api/child/' + child.id + '/update', child);
   }
 
-  getChild(id) {
-    return this.http.get('/api/child/' + id + '/get');
+  deleteChild(child) {
+    return this.http.delete('/api/child/' + child.id + '/delete', child);
   }
 
-  deleteChild(child) {
-    return this.http.delete('/api/child/' + child.id + '/delete');
+  retrieveChildOptions() {
+    return this.http.get <any[]>('api/child/options');
   }
 }
-
-

@@ -1,24 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import {ParentService} from '../service/parent.service';
+import {UserService} from '../service/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import {ChildListComponent} from '../child-list/child-list.component';
 
 @Component({
   selector: 'app-parent-form',
   templateUrl: './parent-form.component.html',
   styleUrls: ['./parent-form.component.scss']
 })
+
 export class ParentFormComponent implements OnInit {
-  test: Date = new Date();
-  focus;
-  focus1;
+
   parentFormGroup;
 
-
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
-              private router: Router, private parentService: ParentService) { }
+              private router: Router, private parentService: ParentService) {
+  }
+
   ngOnInit() {
+    const data = this.route.snapshot.data;
+
     this.parentFormGroup = this.fb.group({
       'id': [null],
       'first_name': ['', Validators.required],
@@ -28,26 +32,23 @@ export class ParentFormComponent implements OnInit {
       'children': [null]
     });
 
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.http.get('/api/parent/' + id + '/get')
-          .subscribe((response) => {
-            this.parentFormGroup.patchValue(response, {emitEvent: false});
-          });
+    if (data.parent) {
+      this.parentFormGroup.patchValue(data.parent);
     }
   }
+
   createParent() {
     const parent = this.parentFormGroup.value;
-    /*if (parent.id) {
+    if (parent.id) {
       this.parentService.updateParent(parent)
-          .subscribe(() => {
-            this.router.navigate(['/login/' + parent.id]);
-          });
-    } else {*/
+        .subscribe(() => {
+          alert('updated successfully');
+        });
+    } else {
       this.parentService.createParent(parent)
-          .subscribe(() => {
-            this.router.navigate(['/login/']);
-          });
+        .subscribe((response: any) => {
+          this.router.navigate(['/parent-form/' + response.id]);
+        });
     }
-
+  }
 }

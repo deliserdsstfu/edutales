@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {BehaviorSubject} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable({
@@ -23,19 +23,19 @@ export class UserService {
 
   login(userData: { username: string, password: string }) {
     this.http.post('/api/api-token-auth/', userData)
-        .subscribe((res: any) => {
-          this.isLoggedIn.next(true);
-          localStorage.setItem('access_token', res.token);
-          this.router.navigate(['user-profile']);
-        }, () => {
-          alert('wrong username or password');
-        });
+      .subscribe((res: any) => {
+        this.isLoggedIn.next(true);
+        localStorage.setItem('access_token', res.token);
+        this.router.navigate(['parent-list']);
+      }, () => {
+        alert('wrong username or password');
+      });
   }
 
   logout() {
     localStorage.removeItem(this.accessTokenLocalStorageKey);
     this.isLoggedIn.next(false);
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/login']);
   }
 
   hasPermission(permission) {
@@ -47,4 +47,3 @@ export class UserService {
 
 
 }
-

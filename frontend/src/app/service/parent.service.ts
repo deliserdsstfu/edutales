@@ -8,7 +8,6 @@ export class ParentService {
 
   constructor(private http: HttpClient) { }
 
-
   getParents() {
     return this.http.get('/api/parent/list');
   }
@@ -28,4 +27,5 @@ export class ParentService {
   deleteParent(parent) {
     return this.http.delete('/api/parent/' + parent.id + '/delete', parent);
   }
+
 }

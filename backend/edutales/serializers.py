@@ -145,5 +145,16 @@ class QuizOptionSerializer(serializers.ModelSerializer):
 
 
 
+class RewardListSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Reward
+        fields = '__all__'
+
+
+class RewardFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Reward
+        fields = '__all__'
 
