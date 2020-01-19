@@ -1,78 +1,63 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule } from '@angular/router';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { ComponentsModule } from './components/components.module';
-import { ExamplesModule } from './examples/examples.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
+import { ParentListComponent } from './parent-list/parent-list.component';
 import { ParentFormComponent } from './parent-form/parent-form.component';
-import {AppRoutingModule} from './app-routing.module';
-import { ChildFormComponent } from './child-form/child-form.component';
-import { MapWorldComponent } from './map-world/map-world.component';
-import { MapRegionComponent } from './map-region/map-region.component';
-import { MapDestinationComponent } from './map-destination/map-destination.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatMenuModule, MatNativeDateModule,
+  MatSelectModule, MatSliderModule,
+  MatTableModule,
+  MatToolbarModule
+} from '@angular/material';
+import {DateComponent} from './date/date/date.component';
+import {BarRatingModule} from 'ngx-bar-rating';
 import {JwtModule} from '@auth0/angular-jwt';
-import {LogoutComponent} from './logout/logout.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatButtonModule} from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import { HomeComponent } from './home/home.component';
-import {ChildListComponent} from './child-list/child-list.component';
-
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ChildListComponent } from './child-list/child-list.component';
+import { ChildFormComponent } from './child-form/child-form.component';
+import { AgmCoreModule } from '@agm/core';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import {HttperrorInterceptor} from './httperror.interceptor';
+import { WorldMapComponent } from './world-map/world-map.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    FooterComponent,
+    ParentListComponent,
     ParentFormComponent,
-    ChildFormComponent,
-    MapWorldComponent,
-    MapRegionComponent,
-    MapDestinationComponent,
+    DateComponent,
+    LoginComponent,
     LogoutComponent,
-    AboutUsComponent,
-    HomeComponent,
-    ChildListComponent
+    ChildListComponent,
+    ChildFormComponent,
+    WorldMapComponent,
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot(),
-    FormsModule,
-    RouterModule,
-    ComponentsModule,
-    ExamplesModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    BrowserModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTableModule,
     MatButtonModule,
-    MatMenuModule,
     MatToolbarModule,
+    MatMenuModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBQULObsqi9Ta67z1coKGpT2RqOlmJ42Q8'
+    }),
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
@@ -80,17 +65,22 @@ export function tokenGetter() {
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-
+    BarRatingModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter,
+        tokenGetter,
         whitelistedDomains: ['localhost:4200']
       }
-    })
+    }),
+    MatSliderModule,
+    MatSnackBarModule,
   ],
-  providers: [],
-  exports: [
-    ChildListComponent
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttperrorInterceptor,
+    multi: true,
+    deps: [MatSnackBar]
+  }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,28 +1,40 @@
-<div class="col-lg-4 col-sm-6 mr-auto ml-auto">
-<form [formGroup]="childFormGroup" class="register-form">
+<form [formGroup]="childFormGroup" class="child-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Name" formControlName="user_name" required>
+    <mat-hint align="end">The name of the child</mat-hint>
+    <mat-error *ngIf="childFormGroup.controls.name.hasError('required')">Name is required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Year of Birth" formControlName="year_of_birth" required>
+    <mat-hint align="end">Year of Birth of the child</mat-hint>
+    <mat-error *ngIf="childFormGroup.controls.postcode.hasError('required')">Postcode is required</mat-error>
+    <mat-error *ngIf="childFormGroup.controls.postcode.hasError('max')">Postcode is to long</mat-error>
+    <mat-error *ngIf="childFormGroup.controls.postcode.hasError('min')">Postcode is to short</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Game type" formControlName="game">
+      <mat-option [value]="game.key"
+                  *ngFor="let game of gameService.opNames | keyvalue">{{game.value}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">Animal is spayed?</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Street" formControlName="street" required>
+    <mat-hint align="end">The street of the child</mat-hint>
+    <mat-error *ngIf="childFormGroup.controls.street.hasError('required')">Street is required</mat-error>
+    <mat-error *ngIf="childFormGroup.controls.street.hasError('badWord')">Street contains "bad word"</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="City" formControlName="city" required>
+    <mat-hint align="end">The city of the child</mat-hint>
+    <mat-error *ngIf="childFormGroup.controls.city.hasError('required')">City is required</mat-error>
+  </mat-form-field>
   <br>
-  <br>
-  <br>
-  <label>Username</label>
-  <div class="input-group form-group-no-border">
-    <input type="text" placeholder="Name" class="form-control" formControlName="user_name">
-  </div>
-  <label>Year of Birth</label>
-  <div class="input-group form-group-no-border">
-    <input type="number" class="form-control" placeholder="Year of Birth" formControlName="year_of_birth">
-  </div>
-  <label>Game type</label><br>
-  <select placeholder="game type" formControlName="game">
-    <option [value]="game.key" *ngFor="let game of gameService.opNames | keyvalue">{{game.value}}</option>
-  </select>
-  <br>
-  <div class="row">
-    <div class="col-md-6 ml-auto mr-auto text-center">
-      <button class="btn btn-outline-default btn-round" [disabled]="!childFormGroup.valid" (click)="createChild()"><i class="fa fa-cog"></i>
-        <span *ngIf="!childFormGroup.controls.id.value">Create</span>
-        <span *ngIf="childFormGroup.controls.id.value">Update</span>
-      </button>
-    </div>
-  </div>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!childFormGroup.valid" (click)="createChild()">
+      <span *ngIf="!childFormGroup.controls.id.value">Create</span>
+      <span *ngIf="childFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
 </form>
-</div>
+

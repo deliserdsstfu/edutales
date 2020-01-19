@@ -31,5 +31,4 @@ export class ChildService {
   retrieveChildOptions() {
     return this.http.get <any[]>('api/child/options');
   }
-
 }

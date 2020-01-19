@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ParentFormComponent } from './parent-form.component';
 
-describe('ParentFormComponent', () => {
+describe('AnimalFormComponent', () => {
   let component: ParentFormComponent;
   let fixture: ComponentFixture<ParentFormComponent>;
 

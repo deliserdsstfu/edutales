@@ -1,45 +1,33 @@
-<div class="wrapper">
-  <div class="page-header" style="background-image: url('assets/img/login-image.jpg');">
-    <div class="filter"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
-          <div class="card card-register">
-            <h3 class="title">Register</h3>
-            <form [formGroup]="parentFormGroup" class="register-form">
-              <label>Vorname</label>
-              <div class="input-group form-group-no-border">
-                <input type="text" class="form-control" placeholder="First Name" formControlName="first_name"  >
-              </div>
-              <label>Nachname</label>
-              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
-                <input type="text" class="form-control" placeholder="Last Name" formControlName="last_name" (focus)="focus=true" (blur)="focus=false" >
-              </div>
-              <label>Year of Birth</label>
-              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
-                <input type="number" class="form-control" placeholder="Year of Birth" formControlName="year_of_birth" (focus)="focus=true" (blur)="focus=false" >
-              </div>
-              <label>Region</label>
-              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
-                <input type="text" class="form-control" placeholder="Region" formControlName="region" (focus)="focus=true" (blur)="focus=false" >
-              </div>
-              <label>Password</label>
-              <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <i class="nc-icon nc-key-25"></i>
-                    </span>
-                </div>
-                <input type="text" class="form-control" placeholder="Password" (focus)="focus1=true" (blur)="focus1=false" >
-              </div>
-              <button class="btn btn-danger btn-block btn-round" [disabled]="!parentFormGroup.valid" (click)="createParent()">
-                <span *ngIf="!parentFormGroup.controls.id.value">Register</span>
-               <!-- <span *ngIf="animalFormGroup.controls.id.value">Update</span> -->
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<form [formGroup]="profileFormGroup" class="profile-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="First Name" formControlName="first_name" required>
+    <mat-hint align="end">First Name</mat-hint>
+    <mat-error *ngIf="profileFormGroup.controls.name.hasError('required')">Name is required</mat-error>
+    <!-- <mat-error *ngIf="profileFormGroup.controls.title.hasError('title')">Title already exists</mat-error> -->
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Last Name" formControlName="last_name" required>
+    <mat-hint align="end">Last Name</mat-hint>
+    <mat-error *ngIf="profileFormGroup.controls.name.hasError('required')">Name is required</mat-error>
+    <!-- <mat-error *ngIf="profileFormGroup.controls.title.hasError('title')">Title already exists</mat-error> -->
+  </mat-form-field>
+  <app-date placeholder="Entry date" formControlName="entry_date" hint="The entry date of the profile"
+            [required]="true"></app-date>
+  <mat-form-field>
+    <mat-select placeholder="Region"
+                formControlName="region" required>
+      <mat-option [value]="null">Unknown</mat-option>
+      <mat-option [value]="regionOption.id" *ngFor="let regionOption of regionOption">{{regionOption.name}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">The species of the profile</mat-hint>
+  </mat-form-field>
+
+  <br/>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!profileFormGroup.valid" (click)="createProfile()">
+      <span *ngIf="!profileFormGroup.controls.id.value">Create</span>
+      <span *ngIf="profileFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>
+
