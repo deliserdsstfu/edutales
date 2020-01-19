@@ -28,7 +28,7 @@ export class UserService {
           this.isLoggedIn.next(true);
           localStorage.setItem('access_token', res.token);
           // @ts-ignore
-          this.router.navigate(['/user-profile/' + parentService.getParent()]);
+          this.router.navigate(['/user-profile/']);
         }, () => {
           alert('wrong username or password');
         });
