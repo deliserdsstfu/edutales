@@ -89,8 +89,10 @@ class Child(models.Model):
 
 
 class Parent(models.Model):
+    first_name = models.TextField(null= True)
+    last_name = models.TextField(null= True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null= True)
-    year_of_birth = models.IntegerField(blank=True, null=True)
+    day_of_birth = models.DateField(null=True)
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
     children = models.ForeignKey(Child, on_delete=models.CASCADE, null=True)
 
