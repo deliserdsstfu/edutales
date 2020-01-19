@@ -34,4 +34,16 @@ export class AppComponent {
       return false;
     }
   }
+
+  isTaleQuiz() {
+    let titlee = this.location.prepareExternalUrl(this.location.path());
+    if (titlee.charAt(0) === '#') {
+      titlee = titlee.slice( 1 );
+    }
+    if ( titlee.includes('/tale-quiz/')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -40,7 +40,9 @@ const routes: Routes = [
       tale: TaleResolver
     }},
   { path: 'quiz-list', component: QuizListComponent, canActivate: [AuthGuard] },
-  { path: 'tale-quiz/:id', component: TaleQuizComponent, canActivate: [AuthGuard] },
+  { path: 'tale-quiz/:id', component: TaleQuizComponent, canActivate: [AuthGuard], resolve: {
+      tale: TaleResolver
+    } },
   { path: 'quiz-form', component: QuizFormComponent, canActivate: [AuthGuard] },
   { path: 'quiz-form/:id', component: QuizFormComponent, canActivate: [AuthGuard], resolve: {
       quiz: QuizResolver
