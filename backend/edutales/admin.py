@@ -5,6 +5,7 @@ from .models import *
 class TaleAdmin(admin.ModelAdmin):
     display_list = '_all_'
 
+
 class ParentAdmin(admin.ModelAdmin):
     display_list = '_all_'
 
@@ -21,7 +22,8 @@ class ChildAdmin(admin.ModelAdmin): pass
 class DestinationAdmin(admin.ModelAdmin): pass
 
 
-class ProgressAdmin(admin.ModelAdmin): pass
+class ProgressAdmin(admin.ModelAdmin):
+    display_list = '_all_'
 
 
 class GameTypeAdmin(admin.ModelAdmin): pass

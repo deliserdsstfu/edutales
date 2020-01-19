@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ParentListComponent } from './parent-list.component';
+import { TaleListComponent } from './tale-list.component';
 
-describe('AnimalListComponent', () => {
-  let component: ParentListComponent;
-  let fixture: ComponentFixture<ParentListComponent>;
+describe('TaleListComponent', () => {
+  let component: TaleListComponent;
+  let fixture: ComponentFixture<TaleListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ParentListComponent ]
+      declarations: [ TaleListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ParentListComponent);
+    fixture = TestBed.createComponent(TaleListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

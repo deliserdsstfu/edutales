@@ -12,12 +12,10 @@ class Quiz(models.Model):
             return self.name
 
 
-
-
 class Tale(models.Model):
     CHOICES = (
-        ('a', 'Action'),
-        ('c', 'Comedy')
+        ('w', 'witzig'),
+        ('g', 'gruselig')
     )
 
     title = models.TextField()
@@ -56,8 +54,6 @@ class GameType(models.Model):
 class Progress(models.Model):
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE, null=True)
     points = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
-
-
 
 
 class Reward(models.Model):

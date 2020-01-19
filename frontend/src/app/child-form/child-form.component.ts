@@ -25,7 +25,7 @@ export class ChildFormComponent implements OnInit {
     this.childFormGroup = this.fb.group({
       id: [null],
       user_name: ['', Validators.required],
-      year_of_birth: [null, Validators.required],
+      year_of_birth: [null, [Validators.required, Validators.max(2020), Validators.min(2000)]],
       game: [null],
       progress: [null],
       reward: [null]
