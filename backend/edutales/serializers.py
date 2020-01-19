@@ -45,7 +45,7 @@ class ParentFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Parent
-        fields = ['id', 'user', 'year_of_birth', 'region', 'children']
+        fields = '__all__'
 
 
 
