@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ChildService} from '../service/child.service';
 import {GameService} from '../service/game.service';
 import {RewardService} from '../service/reward.service';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-reward-form',
@@ -14,6 +15,8 @@ import {RewardService} from '../service/reward.service';
 export class RewardFormComponent implements OnInit {
 
   rewardFormGroup;
+  // @ts-ignore
+  @ViewChild('content') content: ElementRef;
 
   // tslint:disable-next-line:max-line-length
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute, public rewardService: RewardService) {
@@ -27,7 +30,7 @@ export class RewardFormComponent implements OnInit {
       name: ['', Validators.required],
       original_file_name: [null],
       content_type: [null],
-      size: [1000, [Validators.max(5000)]], // maybe a real size validator should be implemented at some point
+      size: [null]
     });
 
     if (data.reward) {
@@ -49,5 +52,4 @@ export class RewardFormComponent implements OnInit {
         });
     }
   }
-
 }
