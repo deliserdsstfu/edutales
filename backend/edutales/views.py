@@ -320,6 +320,14 @@ def child_option_list(request):
     serializer = ChildOptionSerializer(children, many=True)
     return Response(serializer.data)
 
+@swagger_auto_schema(method='GET', responses={200: GameOptionSerializer(many=True)})
+@api_view(['GET'])
+def game_option_list(request):
+    game = GameType.objects.all()
+    serializer = ChildOptionSerializer(game, many=True)
+    return Response(serializer.data)
+
+
 
 
 

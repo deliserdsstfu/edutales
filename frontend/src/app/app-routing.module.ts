@@ -15,11 +15,11 @@ const routes: Routes = [
   { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard] },
   { path: 'child-list', component: ChildListComponent, canActivate: [AuthGuard] },
   { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
-    childOptions: ChildOptionsResolver,
+    childrenOptions: ChildOptionsResolver,
     } },
   { path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard] },
   { path: 'parent-form/:id', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
-      childOptions: ChildOptionsResolver,  parent: ParentResolver
+      childrenOptions: ChildOptionsResolver,  parent: ParentResolver
     } },
   { path: 'child-form/:id', component: ChildFormComponent, canActivate: [AuthGuard], resolve: {
     child: ChildResolver

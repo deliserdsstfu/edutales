@@ -17,6 +17,7 @@ class ChildListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
+        fields = '__all__'
 
 
 
@@ -24,6 +25,7 @@ class ChildFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
+        fields = '__all__'
 
 
 
@@ -31,7 +33,7 @@ class ChildOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
-        fields = ['id', 'user_name']
+        fields = '__all__'
 
 
 class ParentListSerializer(serializers.ModelSerializer):
@@ -146,6 +148,12 @@ class QuizOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quiz
         fields = ['id', 'title']
+
+class GameOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
+        fields = '__all__'
 
 
 

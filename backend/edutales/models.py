@@ -84,8 +84,7 @@ class Child(models.Model):
     progress = models.ForeignKey(Progress, on_delete=models.CASCADE, null=True)
     reward = models.ForeignKey(Reward, on_delete=models.CASCADE, null=True)
 
-    def __str__(self):
-        return self.user_name
+
 
 
 class Parent(models.Model):

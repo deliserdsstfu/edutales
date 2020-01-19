@@ -1,30 +1,25 @@
 <table mat-table [dataSource]="children">
-  <ng-container matColumnDef="name">
+
+  <ng-container matColumnDef="user_name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let shelter">{{shelter.name}}</td>
+    <td mat-cell *matCellDef="let child">{{child.user_name}}</td>
   </ng-container>
-  <ng-container matColumnDef="street">
-    <th mat-header-cell *matHeaderCellDef>Street</th>
-    <td mat-cell *matCellDef="let shelter">{{shelter.street}}</td>
+  <ng-container matColumnDef="day_of_birth">
+    <th mat-header-cell *matHeaderCellDef>Year of Birth</th>
+    <td mat-cell *matCellDef="let child">{{child.day_of_birth}}</td>
   </ng-container>
-  <ng-container matColumnDef="city">
-    <th mat-header-cell *matHeaderCellDef>City</th>
-    <td mat-cell *matCellDef="let shelter">{{shelter.city}}</td>
+  <ng-container matColumnDef="game">
+    <th mat-header-cell *matHeaderCellDef>Game Type</th>
+    <td mat-cell *matCellDef="let child">{{child.game}}</td>
   </ng-container>
-  <ng-container matColumnDef="postcode">
-    <th mat-header-cell *matHeaderCellDef>Postcode</th>
-    <td mat-cell *matCellDef="let shelter">{{shelter.postcode}}</td>
-  </ng-container>
-  <ng-container matColumnDef="healthcare">
-    <th mat-header-cell *matHeaderCellDef>Healthcare</th>
-    <td mat-cell *matCellDef="let shelter">{{shelter.healthcare}}</td>
-  </ng-container>
+
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
-    <td mat-cell *matCellDef="let shelter">
-      <button mat-button [routerLink]="'/shelter-form/' + shelter.id">Edit</button>
-      &nbsp;
-      <button mat-button (click)="deleteShelter(shelter)">Delete</button>
+    <td mat-cell *matCellDef="let child">
+      <button mat-button [routerLink]="'/child-form/' + child.id">Edit</button>
+      <button mat-button [routerLink]="'/world-map/' + child.id" color="primary">Play</button>
+      &nbsp;&nbsp;
+      <button mat-button (click)="deleteChild(child)" color="warn">Delete</button>
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

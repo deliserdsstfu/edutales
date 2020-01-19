@@ -24,12 +24,20 @@ export class ChildFormComponent implements OnInit {
 
     this.childFormGroup = this.fb.group({
       id: [null],
-      user_name: ['', Validators.required],
-      year_of_birth: [null, Validators.required],
+      user_name: [null],
+      year_of_birth: [null, [Validators.required, Validators.max(2020), Validators.min(2000)]],
       game: [null],
       progress: [null],
       reward: [null]
     });
+
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.http.get('/api/child/' + id + '/get')
+          .subscribe((response) => {
+            this.childFormGroup.patchValue(response, {emitEvent: false});
+          });
+    }
 
     if (data.child) {
       this.childFormGroup.patchValue(data.child);
