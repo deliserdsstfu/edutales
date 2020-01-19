@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, ValidatorFn, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ChildService} from '../service/child.service';
@@ -27,10 +27,10 @@ export class RewardFormComponent implements OnInit {
 
     this.rewardFormGroup = this.fb.group({
       id: [null],
-      name: ['', Validators.required],
+      name: ['', [Validators.required, this.badWordValidator()]],
       original_file_name: [null],
       content_type: [null],
-      size: [null]
+      size: [1000]
     });
 
     if (data.reward) {
@@ -51,5 +51,12 @@ export class RewardFormComponent implements OnInit {
           this.router.navigate(['/reward-form/' + response.id]);
         });
     }
+  }
+  badWordValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const forbidden = /arsch/.test(control.value);
+      const forbidden2 = /idiot/.test(control.value);
+      return forbidden || forbidden2 ? {badWord: {value: control.value}} : null;
+    };
   }
 }

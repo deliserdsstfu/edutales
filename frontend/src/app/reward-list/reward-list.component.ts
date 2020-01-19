@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ChildService} from '../service/child.service';
 import {RewardService} from '../service/reward.service';
 import * as jsPDF from 'jspdf';
+import {AbstractControl, ValidatorFn} from '@angular/forms';
 
 @Component({
   selector: 'app-reward-list',
