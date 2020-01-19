@@ -58,9 +58,9 @@ npm install -g @angular/cli
 ## Installation for Developers
  - Clone this repository to your local machine
  - Add Python Support in **IntelliJ IDEA**
-  - Configure -> Plugins -> Install Python Community Edition 
+    - Configure -> Plugins -> Install Python Community Edition 
  - Switch to **frontend** directory
-  - ????
+    - ????
 
 ### Import in IDE IntelliJ (Tested with Version 2019.2.4, Version 2019.3)
 - Open IntelligJ
