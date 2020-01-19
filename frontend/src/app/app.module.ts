@@ -56,7 +56,7 @@ export function tokenGetter() {
     MatToolbarModule,
     MatMenuModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBQULObsqi9Ta67z1coKGpT2RqOlmJ42Q8'
+      apiKey: 'AIzaSyCSKOJGEKdNYe_Et8g3CC7rrJnPo6ff9qc'
     }),
     MatFormFieldModule,
     MatSelectModule,
