@@ -99,7 +99,7 @@ class Parent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null= True)
     day_of_birth = models.DateField(null=True)
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
-    children = models.ForeignKey(Child, on_delete=models.CASCADE, null=True)
+    children = models.ManyToManyField('Child', blank = True , related_name= 'parent')
 
 
 @receiver(post_save, sender=User)

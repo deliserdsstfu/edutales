@@ -28,4 +28,8 @@ export class ParentService {
     return this.http.delete('/api/parent/' + parent.id + '/delete', parent);
   }
 
+  getAParent(currId: any) {
+    return this.http.get('/api/parent/' + currId + '/get');
+  }
+
 }
