@@ -411,5 +411,5 @@ $RECYCLE.BIN/
 *.lnk
 
 venv
-
+_pycache_
 # End of https://www.gitignore.io/api/git,macos,django,python,angular,pycharm,windows,intellij
