@@ -14,8 +14,10 @@ import {ChildListComponent} from '../child-list/child-list.component';
 
 export class ParentFormComponent implements OnInit {
 
+
   parentFormGroup;
   childrenOptions;
+
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               private router: Router, private parentService: ParentService) {
@@ -30,7 +32,7 @@ export class ParentFormComponent implements OnInit {
       'first_name': ['', Validators.required],
       'last_name': ['', Validators.required],
       'day_of_birth': [null],
-      'children': [null],
+      'children': [[]],
       'region': [null]
     });
 
