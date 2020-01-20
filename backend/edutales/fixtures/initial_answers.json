@@ -1,0 +1,10 @@
+[
+  {
+    "model": "edutales.answers",
+    "pk": 1,
+    "fields": {
+      "answer": "hallo",
+      "isTrue": true
+    }
+  }
+]

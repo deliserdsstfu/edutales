@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 import {Validators} from '@angular/forms';
 import {QuizService} from '../service/quiz.service';
+import {QuizResolver} from '../resolver/quiz.resolver';
 
 @Component({
   selector: 'app-tale-quiz',
@@ -15,6 +16,7 @@ export class TaleQuizComponent implements OnInit {
 
   tale: any[] = [];
   displayedColumns = ['title', 'text', 'quiz_question', 'quiz_answer'];
+  private quiz: any;
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private taleService: TaleService, public quizService: QuizService) { }
 
@@ -24,9 +26,9 @@ export class TaleQuizComponent implements OnInit {
     const quiz = this.quizService.getQuiz(data.tale.quiz);
 
   }
-/*  isRight() {
-    if (quiz.answer.includes())  {
+  isRight() {
+    if (this.quiz.answer.isTrue)  {
 
     }
-  }*/
+  }
 }

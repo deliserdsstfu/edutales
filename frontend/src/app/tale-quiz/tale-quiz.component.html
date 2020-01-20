@@ -1,5 +1,5 @@
 <table mat-table [dataSource]="tale">
-  <ng-container matColumnDef="title">
+ <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Title</th>
     <td mat-cell *matCellDef="let tale">{{tale.title}}</td>
   </ng-container>
@@ -14,7 +14,7 @@
   <ng-container matColumnDef="quiz_answer">
     <th mat-header-cell *matHeaderCellDef>Answer</th>
     <td mat-cell *matCellDef="let tale"><input type="text"></td>
-   <!-- <td> <button (click)="isRight()"></button></td> -->
+  <td> <button (click)="isRight()"></button></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -6,7 +6,7 @@ import {QuizService} from '../service/quiz.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProgressOptionsResolver implements Resolve<Observable<any>> {
+export class QuizOptionsResolver implements Resolve<Observable<any>> {
   constructor(private quizService: QuizService) {
   }
 

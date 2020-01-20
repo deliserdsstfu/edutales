@@ -134,10 +134,14 @@ class QuizListSerializer(serializers.ModelSerializer):
 
 
 class QuizFormSerializer(serializers.ModelSerializer):
+   # answer_answer = serializers.SerializerMethodField()
 
     class Meta:
         model = Quiz
         fields = '__all__'
+
+  #  def get_answer_answer(self, obj):
+   #     return obj.answer.answer if obj.answer else ''
 
 
 class QuizOptionSerializer(serializers.ModelSerializer):
@@ -145,3 +149,25 @@ class QuizOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quiz
         fields = ['id', 'title']
+
+
+
+class AnswerListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = '__all__'
+
+
+class AnswerFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = '__all__'
+
+
+class AnswerOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
+        fields = ['id', 'answer']

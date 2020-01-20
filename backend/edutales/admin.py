@@ -32,6 +32,9 @@ class GameTypeAdmin(admin.ModelAdmin): pass
 class RewardAdmin(admin.ModelAdmin): pass
 
 
+class AnswerAdmin(admin.ModelAdmin): pass
+
+
 admin.site.register(Tale, TaleAdmin)
 admin.site.register(Parent, ParentAdmin)
 admin.site.register(Region, RegionAdmin)

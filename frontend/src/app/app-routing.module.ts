@@ -17,6 +17,8 @@ import {QuizFormComponent} from './quiz-form/quiz-form.component';
 import {QuizResolver} from './resolver/quiz.resolver';
 import {QuizListComponent} from './quiz-list/quiz-list.component';
 import {TaleQuizComponent} from './tale-quiz/tale-quiz.component';
+import {AnswerOptionsResolver} from './resolver/answer-options.resolver';
+import {QuizOptionsResolver} from './resolver/quiz-options.resolver';
 
 
 const routes: Routes = [
@@ -37,7 +39,7 @@ const routes: Routes = [
   { path: 'tale-list', component: TaleListComponent, canActivate: [AuthGuard] },
   { path: 'tale-form', component: TaleFormComponent, canActivate: [AuthGuard] },
   { path: 'tale-form/:id', component: TaleFormComponent, canActivate: [AuthGuard], resolve: {
-      tale: TaleResolver
+      tale: TaleResolver, quizOptions: QuizOptionsResolver
     }},
   { path: 'quiz-list', component: QuizListComponent, canActivate: [AuthGuard] },
   { path: 'tale-quiz/:id', component: TaleQuizComponent, canActivate: [AuthGuard], resolve: {
@@ -45,7 +47,7 @@ const routes: Routes = [
     } },
   { path: 'quiz-form', component: QuizFormComponent, canActivate: [AuthGuard] },
   { path: 'quiz-form/:id', component: QuizFormComponent, canActivate: [AuthGuard], resolve: {
-      quiz: QuizResolver
+      quiz: QuizResolver, answerOptions: AnswerOptionsResolver
     }},
   {path: 'login', component: LoginComponent},
 ];

@@ -336,7 +336,12 @@ def child_form_get(request, pk):
 
 
 
-
+@swagger_auto_schema(method='GET', responses={200: AnswerOptionSerializer(many=True)})
+@api_view(['GET'])
+def answer_option_list(request):
+    ans = Answer.objects.all()
+    serializer = AnswerOptionSerializer(ans, many=True)
+    return Response(serializer.data)
 
 
 @swagger_auto_schema(method='GET', responses={200: ParentOptionSerializer(many=True)})
@@ -442,3 +447,38 @@ def parent_form_create(request):
         serializer.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
+
+
+
+@swagger_auto_schema(method='GET', responses={200: AnswerListSerializer(many=True)})
+@api_view(['GET'])
+@permission_required('edutales.view_answer', raise_exception=True)
+def answer_list(request):
+    ans = Answer.objects.all()
+    serializer = AnswerListSerializer(ans, many=True)
+    return Response(serializer.data)
+
+
+@swagger_auto_schema(method='POST', request_body=AnswerFormSerializer, responses={200: AnswerFormSerializer()})
+@api_view(['POST'])
+@permission_required('edutales.add_answer', raise_exception=True)
+def answer_form_create(request):
+    serializer = AnswerFormSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
+
+
+@swagger_auto_schema(method='GET', responses={200: AnswerFormSerializer()})
+@api_view(['GET'])
+@permission_required('edutales.view_answer', raise_exception=True)
+def answer_form_get(request, pk):
+    try:
+        ans = Answer.objects.get(pk=pk)
+    except Answer.DoesNotExist:
+        return Response({'error': 'Answer does not exist.'}, status=404)
+
+    serializer = AnswerFormSerializer(ans)
+    return Response(serializer.data)

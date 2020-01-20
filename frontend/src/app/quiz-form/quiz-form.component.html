@@ -14,9 +14,12 @@
     <mat-error *ngIf="quizFormGroup.controls.question.hasError('required')">Question is required</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" placeholder="Answer" formControlName="answer" required>
-    <mat-hint align="end">Answer</mat-hint>
-    <mat-error *ngIf="quizFormGroup.controls.answer.hasError('required')">Answer is required</mat-error>
+    <mat-select placeholder="Answer"
+                formControlName="answer" required>
+      <mat-option [value]="null">Unknown</mat-option>
+      <mat-option [value]="answerOption.id" *ngFor="let answerOption of answerOptions">{{answerOption.answer}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">The answer of the question</mat-hint>
   </mat-form-field>
   <br>
   <mat-card-actions align="center">
