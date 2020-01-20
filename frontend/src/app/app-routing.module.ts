@@ -16,6 +16,9 @@ import {TaleResolver} from './resolver/tale.resolver';
 import {RewardListComponent} from './reward-list/reward-list.component';
 import {RewardFormComponent} from './reward-form/reward-form.component';
 import {RewardResolver} from './resolver/reward.resolver';
+import {HistoryFormComponent} from './history-form/history-form.component';
+import {HistoryResolver} from './resolver/history.resolver';
+import {HistoryListComponent} from './history-list/history-list.component';
 
 
 const routes: Routes = [
@@ -23,10 +26,12 @@ const routes: Routes = [
   { path: 'child-list', component: ChildListComponent, canActivate: [AuthGuard] },
   { path: 'world-map', component: WorldMapComponent, canActivate: [AuthGuard] },
   { path: 'reward-list', component: RewardListComponent, canActivate: [AuthGuard] },
+  { path: 'history-list', component: HistoryListComponent, canActivate: [AuthGuard] },
   { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
     childOptions: ChildOptionsResolver,
     } },
   { path: 'reward-form', component: RewardFormComponent, canActivate: [AuthGuard] },
+  { path: 'history-form', component: HistoryFormComponent, canActivate: [AuthGuard] },
   { path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard] },
   { path: 'parent-form/:id', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
       childOptions: ChildOptionsResolver,  parent: ParentResolver
@@ -36,6 +41,9 @@ const routes: Routes = [
     } },
   { path: 'reward-form/:id', component: RewardFormComponent, canActivate: [AuthGuard], resolve: {
       reward: RewardResolver
+    } },
+  { path: 'history-form/:id', component: HistoryFormComponent, canActivate: [AuthGuard], resolve: {
+      reward: HistoryResolver
     } },
   { path: '', redirectTo: 'parent-list', pathMatch: 'full' },
   { path: 'tale-list', component: TaleListComponent, canActivate: [AuthGuard] },

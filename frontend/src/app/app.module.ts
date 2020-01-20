@@ -32,6 +32,8 @@ import { TaleFormComponent } from './tale-form/tale-form.component';
 import { TaleListComponent } from './tale-list/tale-list.component';
 import { RewardFormComponent } from './reward-form/reward-form.component';
 import { RewardListComponent } from './reward-list/reward-list.component';
+import { HistoryFormComponent } from './history-form/history-form.component';
+import { HistoryListComponent } from './history-list/history-list.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -52,6 +54,8 @@ export function tokenGetter() {
     TaleListComponent,
     RewardFormComponent,
     RewardListComponent,
+    HistoryFormComponent,
+    HistoryListComponent,
   ],
   imports: [
     BrowserModule,

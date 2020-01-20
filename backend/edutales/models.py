@@ -26,6 +26,20 @@ class Tale(models.Model):
     def __str__(self):
         return self.title
 
+class History(models.Model):
+    CHOICES = (
+        ('w', 'witzig'),
+        ('g', 'gruselig')
+    )
+
+    title = models.TextField()
+    type = models.CharField(max_length=1, choices=CHOICES, null=True)
+    text = models.TextField()
+    quiz = models.OneToOneField(Quiz, on_delete=models.CASCADE, primary_key=True)
+
+    def __str__(self):
+        return self.title
+
 
 class Destination(models.Model):
     name = models.TextField()
@@ -91,6 +105,7 @@ class Parent(models.Model):
     day_of_birth = models.DateField(null=True)
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
     children = models.ForeignKey(Child, on_delete=models.CASCADE, null=True)
+    language = models.TextField(null= True)
 
 
 @receiver(post_save, sender=User)

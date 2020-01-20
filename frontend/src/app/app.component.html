@@ -3,7 +3,7 @@
   [matMenuTriggerFor]="parentMenu">Parent</button>
   <mat-menu #parentMenu="matMenu">
     <button mat-menu-item routerLink="parent-list">List</button>
-    <button mat-menu-item routerLink="parent-form">Create</button>
+    <button mat-menu-item routerLink="parent-form">Update</button>
   </mat-menu>
   <button mat-button
           [matMenuTriggerFor]="childMenu">Children</button>
@@ -22,6 +22,12 @@
   <mat-menu #rewardMenu="matMenu">
     <button mat-menu-item routerLink="reward-list">List</button>
     <button mat-menu-item routerLink="reward-form">Create</button>
+  </mat-menu>
+  <button mat-button
+          [matMenuTriggerFor]="historyMenu">History</button>
+  <mat-menu #historyMenu="matMenu">
+    <button mat-menu-item routerLink="history-list">List</button>
+    <button mat-menu-item routerLink="history-form">Create</button>
   </mat-menu>
   <app-logout></app-logout>
 </mat-toolbar>
