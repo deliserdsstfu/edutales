@@ -18,16 +18,16 @@
     <button mat-menu-item routerLink="tale-form">Create</button>
   </mat-menu>
   <button mat-button
-  [matMenuTriggerFor]="rewardMenu">Reward</button>
-  <mat-menu #rewardMenu="matMenu">
-    <button mat-menu-item routerLink="reward-list">List</button>
-    <button mat-menu-item routerLink="reward-form">Create</button>
-  </mat-menu>
-  <button mat-button
           [matMenuTriggerFor]="historyMenu">History</button>
   <mat-menu #historyMenu="matMenu">
     <button mat-menu-item routerLink="history-list">List</button>
     <button mat-menu-item routerLink="history-form">Create</button>
+  </mat-menu>
+  <button mat-button
+  [matMenuTriggerFor]="rewardMenu">Reward</button>
+  <mat-menu #rewardMenu="matMenu">
+    <button mat-menu-item routerLink="reward-list">List</button>
+    <button mat-menu-item routerLink="reward-form">Create</button>
   </mat-menu>
   <app-logout></app-logout>
 </mat-toolbar>

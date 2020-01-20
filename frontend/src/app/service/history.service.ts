@@ -16,7 +16,7 @@ export class HistoryService {
     return this.http.get('/api/rewhistoryard/' + id + '/get');
   }
 
-  createHisotry(history) {
+  createHistory(history) {
     return this.http.post('/api/history/create', history);
   }
 

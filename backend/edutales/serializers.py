@@ -82,19 +82,19 @@ class TaleOptionSerializer(serializers.ModelSerializer):
 class HistoryListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
+        model = History
         fields = '__all__'
 
 class HistoryFormSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
+        model = History
         fields = '__all__'
 
 class HistoryOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
+        model = History
         fields = ['id', 'title']
 
 
