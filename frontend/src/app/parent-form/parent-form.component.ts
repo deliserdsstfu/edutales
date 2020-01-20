@@ -17,6 +17,7 @@ export class ParentFormComponent implements OnInit {
   parentFormGroup;
   childrenOptions;
 
+
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               private router: Router, private parentService: ParentService) {
   }
@@ -33,14 +34,6 @@ export class ParentFormComponent implements OnInit {
       'children': [[]],
       'region': [null]
     });
-
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.http.get('/api/parent/' + id + '/get')
-          .subscribe((response) => {
-            this.parentFormGroup.patchValue(response, {emitEvent: false});
-          });
-    }
 
     if (data.parent) {
       this.parentFormGroup.patchValue(data.parent);

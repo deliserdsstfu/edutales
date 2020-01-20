@@ -27,13 +27,12 @@
 
   <mat-form-field>
     <mat-select placeholder="Children"
-                formControlName="children" required>
+                formControlName="children">
       <mat-option [value]="null">Unknown</mat-option>
-      <mat-option [value]="childOption.id" *ngFor="let childOption of childrenOptions">{{childOption.user_name}}</mat-option>
+      <mat-option [value]="childrenOption.id" *ngFor="let childrenOption of childrenOptions">{{childrenOption.user_name}}</mat-option>
     </mat-select>
     <mat-hint align="end">Your child</mat-hint>
   </mat-form-field>
-
 
 
 

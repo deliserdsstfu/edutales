@@ -17,7 +17,7 @@ class ChildListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
-        fields = '__all__'
+        fields = ['id', 'user_name','year_of_birth','game','progress','reward','parent']
 
 
 
@@ -25,7 +25,7 @@ class ChildFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
-        fields = '__all__'
+        fields = ['id', 'user_name','year_of_birth','game','progress','reward','parent']
 
 
 
@@ -33,14 +33,21 @@ class ChildOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
-        fields = '__all__'
+        fields = ['user_name', 'parent'] #'__all__'
 
+class ChildParentRelation(serializers.ModelSerializer):
+
+    class Meta:
+        model = Child
+        fields = ['id','user_name']
 
 class ParentListSerializer(serializers.ModelSerializer):
 
+    children = ChildParentRelation(many = True)
     class Meta:
         model = Parent
         fields = '__all__'
+
 
 
 class ParentFormSerializer(serializers.ModelSerializer):

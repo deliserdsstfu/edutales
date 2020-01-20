@@ -13,7 +13,7 @@ import {ChildResolver} from './resolver/child.resolver';
 
 const routes: Routes = [
   { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard] },
-  { path: 'child-list', component: ChildListComponent, canActivate: [AuthGuard] },
+  { path: 'child-list/:id', component: ChildListComponent, canActivate: [AuthGuard] },
   { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
     childrenOptions: ChildOptionsResolver,
     } },

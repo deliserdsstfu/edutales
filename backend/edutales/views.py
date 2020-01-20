@@ -259,8 +259,8 @@ def progress_form_get(request, pk):
 @swagger_auto_schema(method='GET', responses={200: ChildListSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('edutales.view_child', raise_exception=True)
-def child_list(request):
-    childs = Child.objects.all()
+def child_list(request, pk):
+    childs = Child.objects.filter(parent__id=pk)
     serializer = ChildListSerializer(childs, many=True)
     return Response(serializer.data)
 
@@ -315,8 +315,8 @@ def child_form_get(request, pk):
 
 @swagger_auto_schema(method='GET', responses={200: ChildOptionSerializer(many=True)})
 @api_view(['GET'])
-def child_option_list(request):
-    children = Child.objects.all()
+def child_option_list(request, pk):
+    children = Child.objects.filter(parent__id=pk)
     serializer = ChildOptionSerializer(children, many=True)
     return Response(serializer.data)
 
@@ -438,3 +438,5 @@ def reward_get(request, pk):
 
     serializer = RewardSerializer(reward)
     return Response(serializer.data)
+
+

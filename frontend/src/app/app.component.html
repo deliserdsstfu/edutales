@@ -8,7 +8,7 @@
   <button mat-button
           [matMenuTriggerFor]="childMenu">Children</button>
   <mat-menu #childMenu="matMenu">
-    <button mat-menu-item routerLink="child-list">List</button>
+    <button mat-menu-item routerLink="child-list/currentParent"  >List</button>
     <button mat-menu-item routerLink="child-form">Create</button>
   </mat-menu>
   <app-logout></app-logout>
