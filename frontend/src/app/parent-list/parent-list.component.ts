@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ParentService} from '../service/parent.service';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-parent-list',
@@ -9,15 +10,17 @@ import {ParentService} from '../service/parent.service';
 })
 export class ParentListComponent implements OnInit {
 
-  parents: any[];
+  parents: any[] = [];
   displayedColumns = ['first_name', 'last_name', 'id'];
 
-  constructor(private http: HttpClient, private parentService: ParentService) { }
+  constructor(private http: HttpClient, private parentService: ParentService, private userService: UserService) { }
 
   ngOnInit() {
-    this.parentService.getParents()
-      .subscribe((response: any[]) => {
-        this.parents = response;
+    const currId = this.userService.getCurrentId();
+    this.parentService.getParent(currId)
+      .subscribe((response: any) => {
+        this.parents.push(response);
+        console.log(this.parents);
       });
   }
 

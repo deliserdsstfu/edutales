@@ -14,7 +14,6 @@ import {ChildListComponent} from '../child-list/child-list.component';
 
 export class ParentFormComponent implements OnInit {
 
-
   parentFormGroup;
   childrenOptions;
 

@@ -41,13 +41,13 @@ class ChildParentRelation(serializers.ModelSerializer):
         model = Child
         fields = ['id','user_name']
 
-
 class ParentListSerializer(serializers.ModelSerializer):
 
     children = ChildParentRelation(many = True)
     class Meta:
         model = Parent
         fields = '__all__'
+
 
 
 class ParentFormSerializer(serializers.ModelSerializer):
@@ -173,6 +173,12 @@ class DestinationFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Destination
+
+class GameOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
+        fields = '__all__'
 
 
 

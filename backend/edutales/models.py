@@ -21,6 +21,7 @@ class Quiz(models.Model):
             return self.question
 
 
+
 class Tale(models.Model):
     CHOICES = (
         ('w', 'witzig'),
@@ -42,7 +43,7 @@ class Destination(models.Model):
     tale = models.ForeignKey(Tale, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-            return self.name
+        return self.name
 
 
 class Region(models.Model):
@@ -89,8 +90,7 @@ class Child(models.Model):
     progress = models.ForeignKey(Progress, on_delete=models.CASCADE, null=True)
     reward = models.ForeignKey(Reward, on_delete=models.CASCADE, null=True)
 
-    def __str__(self):
-        return self.user_name
+
 
 
 class Parent(models.Model):
@@ -111,5 +111,3 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.parent.save()
-
-

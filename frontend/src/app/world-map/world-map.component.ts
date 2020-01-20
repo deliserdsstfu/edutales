@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TaleService} from '../service/tale.service';
 import {Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-world-map',
   templateUrl: './world-map.component.html',
@@ -23,6 +24,7 @@ export class WorldMapComponent implements OnInit {
 
   constructor(private taleService: TaleService, private router: Router) { }
 
+
   ngOnInit() {
   }
 
@@ -32,5 +34,6 @@ export class WorldMapComponent implements OnInit {
         this.router.navigate(['/tale-quiz/' + id ]);
       });
   }
+
 
 }

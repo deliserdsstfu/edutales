@@ -21,16 +21,17 @@ import {AnswerOptionsResolver} from './resolver/answer-options.resolver';
 import {QuizOptionsResolver} from './resolver/quiz-options.resolver';
 
 
+
 const routes: Routes = [
   { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard] },
   { path: 'child-list/:id', component: ChildListComponent, canActivate: [AuthGuard] },
   { path: 'world-map', component: WorldMapComponent, canActivate: [AuthGuard] },
-  { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
-    childOptions: ChildOptionsResolver,
-    } },
   { path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard] },
+  { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
+    childrenOptions: ChildOptionsResolver,
+    } },
   { path: 'parent-form/:id', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
-      childOptions: ChildOptionsResolver,  parent: ParentResolver
+      childrenOptions: ChildOptionsResolver,  parent: ParentResolver
     } },
   { path: 'child-form/:id', component: ChildFormComponent, canActivate: [AuthGuard], resolve: {
     child: ChildResolver
