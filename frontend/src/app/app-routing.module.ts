@@ -33,6 +33,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     resolve: {
     childOptions: ChildOptionsResolver,
+    //parent: ParentResolver
     } },
   { path: 'reward-form', component: RewardFormComponent, canActivate: [AuthGuard] },
   { path: 'history-form',
