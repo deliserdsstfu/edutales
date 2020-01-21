@@ -2,10 +2,9 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidatorFn, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ChildService} from '../service/child.service';
-import {GameService} from '../service/game.service';
 import {RewardService} from '../service/reward.service';
-import * as jsPDF from 'jspdf';
+
+import Filter from 'bad-words';
 
 @Component({
   selector: 'app-reward-form',
@@ -38,6 +37,7 @@ export class RewardFormComponent implements OnInit {
     }
 
   }
+
   createReward() {
     const reward = this.rewardFormGroup.value;
     if (reward.id) {
@@ -52,11 +52,18 @@ export class RewardFormComponent implements OnInit {
         });
     }
   }
-  badWordValidator(): ValidatorFn {
+
+  /*badWordValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const forbidden = /arsch/.test(control.value);
       const forbidden2 = /idiot/.test(control.value);
       return forbidden || forbidden2 ? {badWord: {value: control.value}} : null;
+    };
+  }*/
+  badWordValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const forbidden = new Filter();
+      return forbidden ? {badWord: {value: control.value}} : null;
     };
   }
 }
