@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {TaleService} from '../service/tale.service';
 import {HttpClient} from '@angular/common/http';
-import {ActivatedRoute} from '@angular/router';
-import {Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
 import {QuizService} from '../service/quiz.service';
 import {QuizResolver} from '../resolver/quiz.resolver';
 
@@ -14,21 +14,34 @@ import {QuizResolver} from '../resolver/quiz.resolver';
 })
 export class TaleQuizComponent implements OnInit {
 
-  tale: any[] = [];
-  displayedColumns = ['title', 'text', 'quiz_question', 'quiz_answer'];
+ // tale: any[] = [];
+  displayedColumns = ['id', 'title', 'text', 'quiz_question', 'answer_answer'];
   private quiz: any;
+  taleQuizGroup;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private taleService: TaleService, public quizService: QuizService) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
+              private router: Router, private taleService: TaleService, public quizService: QuizService) { }
 
   ngOnInit() {
     const data = this.route.snapshot.data;
-    this.tale.push(data.tale);
-    const quiz = this.quizService.getQuiz(data.tale.quiz);
+   // this.tale.push(data.tale);
+    // const quiz = this.quizService.getQuiz(data.tale.quiz);
+
+    this.taleQuizGroup = this.fb.group({
+      id: [null],
+      title: [''],
+      text: ['']
+     // quiz_question: [''],
+     // answer_answer: ['']
+    });
+    if (data.tale) {
+      this.taleQuizGroup.patchValue(data.tale);
+    }
 
   }
-  isRight() {
+/*  isRight() {
     if (this.quiz.answer.isTrue)  {
 
     }
-  }
+  }*/
 }

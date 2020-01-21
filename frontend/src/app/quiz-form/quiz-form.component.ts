@@ -16,7 +16,7 @@ export class QuizFormComponent implements OnInit {
   answerOptions;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
-              private router: Router, private quizService: QuizService, public answerService: AnswerService) {
+              private router: Router, private quizService: QuizService) {
   }
 
   ngOnInit() {
@@ -27,9 +27,7 @@ export class QuizFormComponent implements OnInit {
       'id': [null],
       'name': ['', Validators.required],
       'points': [null, Validators.required],
-      'question': ['', Validators.required],
-      'answer': ['', Validators.required],
-
+      'answer': [[]]
     });
 
     if (data.quiz) {

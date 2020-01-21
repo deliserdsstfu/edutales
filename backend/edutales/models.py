@@ -15,7 +15,7 @@ class Answer(models.Model):
 class Quiz(models.Model):
     points = models.PositiveIntegerField()
     question = models.TextField()
-    answer = models.ForeignKey(Answer, on_delete=models.CASCADE, null=True)
+    answer = models.ManyToManyField('Answer', blank = True)
 
     def __str__(self):
             return self.question

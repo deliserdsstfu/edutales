@@ -1,9 +1,9 @@
 <agm-map [latitude]="latitude" [longitude]="longitude">
   <agm-marker [latitude]="47.06667" [longitude]="15.45" (markerClick)="getTale(2 )"></agm-marker>
-  <agm-marker [latitude]="48.210033" [longitude]="16.363449"></agm-marker>
+  <agm-marker [latitude]="48.210033" [longitude]="16.363449" (markerClick)="getTale(3 )"></agm-marker>
   <agm-marker [latitude]="47.811195" [longitude]="13.033229"></agm-marker>
   <agm-marker [latitude]="47.811195" [longitude]="13.033229" (markerClick)="clickedMarker(infowindow)"> <agm-info-window #infowindow>
-    <strong>Tale about...</strong>
+    <strong>Tale coming soon...</strong>
   </agm-info-window></agm-marker>
 
 </agm-map>

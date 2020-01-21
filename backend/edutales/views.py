@@ -19,6 +19,23 @@ def region_option_list(request):
     serializer = RegionOptionSerializer(regions, many=True)
     return Response(serializer.data)
 
+
+@swagger_auto_schema(method='GET', responses={200: QuizOptionSerializer(many=True)})
+@api_view(['GET'])
+def quiz_option_list(request):
+    quizzes = Quiz.objects.all()
+    serializer = QuizOptionSerializer(quizzes, many=True)
+    return Response(serializer.data)
+
+
+@swagger_auto_schema(method='GET', responses={200: AnswerOptionSerializer(many=True)})
+@api_view(['GET'])
+def answer_option_list(request):
+    ans = Answer.objects.all()
+    serializer = AnswerOptionSerializer(ans, many=True)
+    return Response(serializer.data)
+
+
 @swagger_auto_schema(method='GET', responses={200: GameTypeOptionSerializer(many=True)})
 @api_view(['GET'])
 def gametype_option_list(request):
@@ -60,6 +77,7 @@ def quiz_form_update(request, pk):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=400)
+
 
 @api_view(['DELETE'])
 @permission_required('edutales.delete_quiz', raise_exception=True)
@@ -437,4 +455,16 @@ def reward_get(request, pk):
         return Response({'error': 'Reward does not exist.'}, status=404)
 
     serializer = RewardSerializer(reward)
+    return Response(serializer.data)
+
+
+@swagger_auto_schema(method='GET', responses={200: TaleQuizSerializer()})
+@api_view(['GET'])
+def tale_quiz_get(request, pk):
+    try:
+        tale = Tale.objects.get(pk=pk)
+    except Tale.DoesNotExist:
+        return Response({'error': 'Tale does not exist.'}, status=404)
+
+    serializer = TaleQuizSerializer(tale)
     return Response(serializer.data)
