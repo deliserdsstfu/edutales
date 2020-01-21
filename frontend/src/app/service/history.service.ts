@@ -13,7 +13,7 @@ export class HistoryService {
   }
 
   getHistory(id) {
-    return this.http.get('/api/rewhistoryard/' + id + '/get');
+    return this.http.get('/api/history/' + id + '/get');
   }
 
   createHistory(history) {

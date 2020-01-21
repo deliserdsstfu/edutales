@@ -1,14 +1,5 @@
-# Install required Python packages using pip and requirements.txt
-venv\Scripts\pip.exe install -r requirements.txt
-
-# Create database
-venv\Scripts\python.exe manage.py migrate
-
-# Create superuser
-venv\Scripts\python.exe manage.py createsuperuser
-
-# Load initial data to database using Django fixtures 
+# Load initial data to database using Django fixtures
+venv\Scripts\python.exe manage.py loaddata initial_answers
 venv\Scripts\python.exe manage.py loaddata initial_quizzes
-
+venv\Scripts\python.exe manage.py loaddata initial_tales
 venv/bin/python manage.py loaddata initial_quizzes
-

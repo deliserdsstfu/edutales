@@ -16,14 +16,16 @@ class RegionAdmin(admin.ModelAdmin): pass
 class QuizAdmin(admin.ModelAdmin): pass
 
 
+class AnswerAdmin(admin.ModelAdmin): pass
+
+
 class ChildAdmin(admin.ModelAdmin): pass
 
 
 class DestinationAdmin(admin.ModelAdmin): pass
 
 
-class ProgressAdmin(admin.ModelAdmin):
-    display_list = '_all_'
+class ProgressAdmin(admin.ModelAdmin): pass
 
 
 class GameTypeAdmin(admin.ModelAdmin): pass
@@ -44,3 +46,4 @@ admin.site.register(Destination, DestinationAdmin)
 admin.site.register(Child, ChildAdmin)
 admin.site.register(History, HistoryAdmin)
 admin.site.register(Quiz, QuizAdmin)
+admin.site.register(Answer, AnswerAdmin)

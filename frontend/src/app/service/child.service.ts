@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChildService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
-  getChildren() {
-    return this.http.get('/api/child/list');
+
+  getChildren(currid = this.userService.getCurrentId()) {
+    return this.http.get('/api/child/list/' + currid);
   }
 
   getChild(id) {
@@ -28,7 +30,8 @@ export class ChildService {
     return this.http.delete('/api/child/' + child.id + '/delete', child);
   }
 
-  retrieveChildOptions() {
-    return this.http.get <any[]>('api/child/options');
+  retrieveChildOptions(currid = this.userService.getCurrentId()) {
+    return this.http.get <any[]>('api/child/options/' + currid);
   }
+
 }

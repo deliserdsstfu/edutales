@@ -1,0 +1,26 @@
+[
+  {
+    "model": "edutales.answer",
+    "pk": 1,
+    "fields": {
+      "answer": "test",
+      "isTrue": true
+    }
+  },
+  {
+    "model": "edutales.answer",
+    "pk": 2,
+    "fields": {
+      "answer": "kiki",
+      "isTrue": true
+    }
+  },
+  {
+    "model": "edutales.answer",
+    "pk": 3,
+    "fields": {
+      "answer": "halo",
+      "isTrue": false
+    }
+  }
+]
