@@ -23,6 +23,12 @@
     <button mat-menu-item routerLink="quiz-list">List</button>
     <button mat-menu-item routerLink="quiz-form">Create</button>
   </mat-menu>
+  <button mat-button
+          [matMenuTriggerFor]="answerMenu">Answer</button>
+  <mat-menu #answerMenu="matMenu">
+    <button mat-menu-item routerLink="answer-list">List</button>
+    <button mat-menu-item routerLink="answer-form">Create</button>
+  </mat-menu>
   <app-logout></app-logout>
 </mat-toolbar>
 <mat-toolbar *ngIf="isWorldMap()">

@@ -33,6 +33,8 @@ import { TaleListComponent } from './tale-list/tale-list.component';
 import { QuizFormComponent } from './quiz-form/quiz-form.component';
 import { QuizListComponent } from './quiz-list/quiz-list.component';
 import {TaleQuizComponent} from './tale-quiz/tale-quiz.component';
+import { AnswerFormComponent } from './answer-form/answer-form.component';
+import { AnswerListComponent } from './answer-list/answer-list.component';
 
 
 export function tokenGetter() {
@@ -54,7 +56,9 @@ export function tokenGetter() {
     TaleListComponent,
     QuizFormComponent,
     QuizListComponent,
-    TaleQuizComponent
+    TaleQuizComponent,
+    AnswerFormComponent,
+    AnswerListComponent
   ],
   imports: [
     BrowserModule,
