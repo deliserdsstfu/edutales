@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
-import {TaleService} from '../service/tale.service';
 import {TypeService} from '../service/type.service';
 import {HistoryService} from '../service/history.service';
 
@@ -32,8 +31,8 @@ export class HistoryFormComponent implements OnInit {
       quiz: [null]
     });
 
-    if (data.tale) {
-      this.historyFormGroup.patchValue(data.tale);
+    if (data.history) {
+      this.historyFormGroup.patchValue(data.history);
     }
   }
 
