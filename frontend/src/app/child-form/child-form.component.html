@@ -1,8 +1,9 @@
 <form [formGroup]="childFormGroup" class="child-form">
   <mat-form-field>
-    <input matInput type="text" placeholder="Name" formControlName="user_name">
-    <mat-hint align="end">The name of the child</mat-hint>
+    <input matInput type="text" placeholder="Nick-Name" formControlName="user_name">
+    <mat-hint align="end">The nick-name of the child</mat-hint>
     <mat-error *ngIf="childFormGroup.controls.user_name.hasError('required')">Name is required</mat-error>
+    <mat-error *ngIf="childFormGroup.controls.user_name.hasError('childAlreadyExists')"> User Name already exists</mat-error>
   </mat-form-field>
   <mat-form-field>
     <input matInput type="number" placeholder="Year of birth" formControlName="year_of_birth">

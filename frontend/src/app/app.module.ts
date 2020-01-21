@@ -52,13 +52,10 @@ export function tokenGetter() {
     WorldMapComponent,
     TaleFormComponent,
     TaleListComponent,
-<<<<<<< HEAD
     RewardFormComponent,
     RewardListComponent,
-=======
     QuizFormComponent,
     QuizListComponent,
->>>>>>> origin/claudia
   ],
   imports: [
     BrowserModule,
