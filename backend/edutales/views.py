@@ -460,7 +460,6 @@ def parent_form_get(request, pk):
     serializer = ParentFormSerializer(parent)
     return Response(serializer.data)
 
-""""
 class FileUploadView(views.APIView):
     parser_classes = [MultiPartParser]
 
@@ -471,23 +470,34 @@ class FileUploadView(views.APIView):
             'content_type': file.content_type,
             'size': file.size,
         }
-        serializer = RewardSerializer(data=file_input)
+        serializer = MediaSerializer(data=file_input)
         if serializer.is_valid():
             serializer.save()
-            default_storage.save('reward/' + str(serializer.data['id']), ContentFile(file.read()))
+            default_storage.save('media/' + str(serializer.data['id']), ContentFile(file.read()))
             return Response(serializer.data)
         return Response(serializer.errors, status=400)
 
 
-    def reward_download(request, pk):
-    reward = Reward.objects.get(pk=pk)
-    data = default_storage.open('reward/' + str(pk)).read()
-    content_type = reward.content_type
+def media_download(request, pk):
+    media = Media.objects.get(pk=pk)
+    data = default_storage.open('media/' + str(pk)).read()
+    content_type = media.content_type
     response = HttpResponse(data, content_type=content_type)
-    original_file_name =reward.original_file_name
+    original_file_name =media.original_file_name
     response['Content-Disposition'] = 'inline; filename=' + original_file_name
     return response
-"""
+
+
+@swagger_auto_schema(method='GET', responses={200: MediaSerializer()})
+@api_view(['GET'])
+def media_get(request, pk):
+    try:
+        tale = Media.objects.get(pk=pk)
+    except Tale.DoesNotExist:
+        return Response({'error': 'Tale does not exist.'}, status=404)
+
+    serializer = MediaSerializer(tale)
+    return Response(serializer.data)
 
 @swagger_auto_schema(method='GET', responses={200: RewardListSerializer(many=True)})
 @api_view(['GET'])

@@ -25,7 +25,7 @@ export class ChildFormComponent implements OnInit {
     const data = this.route.snapshot.data;
     this.childFormGroup = this.fb.group({
       id: [null],
-      user_name: [null],
+      user_name: [null, [Validators.required]],
       year_of_birth: [null, [Validators.required, Validators.max(2020), Validators.min(2000)]],
       game: [null],
       progress: [null],

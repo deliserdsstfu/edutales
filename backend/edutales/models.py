@@ -31,8 +31,10 @@ class Tale(models.Model):
     type = models.CharField(max_length=1, choices=CHOICES, null=True)
     text = models.TextField()
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+    pictures = models.ManyToManyField('Media', blank=True)
 
-    def __str__(self):
+
+def __str__(self):
         return self.title
 
 class History(models.Model):
@@ -81,9 +83,6 @@ class Progress(models.Model):
 
 class Reward(models.Model):
     name = models.TextField()
-    original_file_name = models.TextField()
-    content_type = models.TextField()
-    size = models.PositiveIntegerField()
 
     def __str__(self):
         return self.name
@@ -115,6 +114,10 @@ class Parent(models.Model):
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
     children = models.ManyToManyField('Child', blank = True , related_name= 'parent')
 
+class Media(models.Model):
+    original_file_name = models.TextField()
+    content_type = models.TextField()
+    size = models.PositiveIntegerField()
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

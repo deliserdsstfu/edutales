@@ -39,6 +39,8 @@ import { QuizListComponent } from './quiz-list/quiz-list.component';
 import {TaleQuizComponent} from './tale-quiz/tale-quiz.component';
 import { AnswerFormComponent } from './answer-form/answer-form.component';
 import { AnswerListComponent } from './answer-list/answer-list.component';
+import {MediainputComponent} from './mediainput/mediainput.component';
+import {FileUploadModule} from 'ng2-file-upload';
 
 
 export function tokenGetter() {
@@ -66,12 +68,14 @@ export function tokenGetter() {
     QuizListComponent,
     TaleQuizComponent,
     AnswerFormComponent,
-    AnswerListComponent
+    AnswerListComponent,
+    MediainputComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FileUploadModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTableModule,

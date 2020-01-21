@@ -25,6 +25,9 @@
     <mat-hint align="end">The quiz of the tale</mat-hint>
   </mat-form-field>
   <br/>
+  <div>
+    <app-mediainput formControlName="pictures"></app-mediainput>
+  </div>
   <mat-card-actions align="center">
     <button mat-raised-button color="primary" [disabled]="!taleFormGroup.valid" (click)="createTale()">
       <span *ngIf="!taleFormGroup.controls.id.value">Create</span>

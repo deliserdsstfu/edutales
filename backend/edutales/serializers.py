@@ -232,3 +232,8 @@ class RewardFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reward
         fields = '__all__'
+
+class MediaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Media
+        fields = '__all__'

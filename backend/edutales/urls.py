@@ -5,6 +5,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework_jwt.views import obtain_jwt_token
 from . import views
+from .views import FileUploadView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -67,11 +68,10 @@ urlpatterns = [
     path('parent/options', views.parent_option_list),
     #path('reward/<int:pk>/get', views.reward_get),
     path ('tale-quiz/<int:pk>/detail', views.tale_quiz_get),
-
-
+    url(r'^media$', FileUploadView.as_view()),
+    path('media/<int:pk>', views.media_download),
+    path('media/<int:pk>/get', views.media_get),
     url(r'^api-token-auth/', obtain_jwt_token),
-    #url(r'^reward$', FileUploadView.as_view()),
-    #path('reward/<int:pk>', views.reward_download),
     path('reward/list', views.reward_list),
     path('reward/create', views.reward_form_create),
     path('reward/<int:pk>/get', views.reward_form_get),
