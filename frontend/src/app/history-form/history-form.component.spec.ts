@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ParentListComponent } from './parent-list.component';
+import { HistoryFormComponent } from './history-form.component';
 
-describe('AnimalListComponent', () => {
-  let component: ParentListComponent;
-  let fixture: ComponentFixture<ParentListComponent>;
+describe('HistoryFormComponent', () => {
+  let component: HistoryFormComponent;
+  let fixture: ComponentFixture<HistoryFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ParentListComponent ]
+      declarations: [ HistoryFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ParentListComponent);
+    fixture = TestBed.createComponent(HistoryFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

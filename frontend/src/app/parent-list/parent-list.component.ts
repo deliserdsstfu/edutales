@@ -10,7 +10,7 @@ import {ParentService} from '../service/parent.service';
 export class ParentListComponent implements OnInit {
 
   parents: any[];
-  displayedColumns = ['first_name', 'last_name', 'id'];
+  displayedColumns = ['first_name', 'last_name', 'language', 'day_of_birth', 'id'];
 
   constructor(private http: HttpClient, private parentService: ParentService) { }
 

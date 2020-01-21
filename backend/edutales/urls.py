@@ -4,8 +4,6 @@ from django.urls import path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework_jwt.views import obtain_jwt_token
-
-from edutales.views import FileUploadView
 from . import views
 
 schema_view = get_schema_view(
@@ -23,6 +21,12 @@ urlpatterns = [
     path('tale/<int:pk>/get', views.tale_form_get),
     path('tale/<int:pk>/update', views.tale_form_update),
     path('tale/<int:pk>/delete', views.tale_delete),
+    path('history/list', views.history_list),
+    path('history/create', views.history_form_create),
+    path('history/options', views.history_option_list),
+    path('history/<int:pk>/get', views.history_form_get),
+    path('history/<int:pk>/update', views.history_form_update),
+    path('history/<int:pk>/delete', views.history_delete),
     path('quiz/list', views.quiz_list),
     path('quiz/create', views.quiz_form_create),
     path('quiz/options', views.quiz_option_list),
@@ -62,7 +66,7 @@ urlpatterns = [
 
 
     url(r'^api-token-auth/', obtain_jwt_token),
-    url(r'^reward$', FileUploadView.as_view()),
+    #url(r'^reward$', FileUploadView.as_view()),
     #path('reward/<int:pk>', views.reward_download),
     path('reward/list', views.reward_list),
     path('reward/create', views.reward_form_create),

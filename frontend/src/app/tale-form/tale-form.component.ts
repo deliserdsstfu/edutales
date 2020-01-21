@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
+import {FormBuilder, Validators, ValidatorFn, AbstractControl} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TaleService} from '../service/tale.service';
@@ -18,7 +19,7 @@ export class TaleFormComponent implements OnInit {
   quizOptions;
 
 
-
+  // tslint:disable-next-line:max-line-length
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute, public taleService: TaleService, public typeService: TypeService) { }
 
   ngOnInit() {

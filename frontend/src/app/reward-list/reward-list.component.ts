@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ChildService} from '../service/child.service';
 import {RewardService} from '../service/reward.service';
+import * as jsPDF from 'jspdf';
+import {AbstractControl, ValidatorFn} from '@angular/forms';
 
 @Component({
   selector: 'app-reward-list',
@@ -10,8 +12,10 @@ import {RewardService} from '../service/reward.service';
 })
 export class RewardListComponent implements OnInit {
 
+  // @ts-ignore
+  @ViewChild('content') content: ElementRef;
   rewards: any[];
-  displayedColumns = ['name', 'original_file_name', 'content_type', 'id', 'size'];
+  displayedColumns = ['name', 'original_file_name', 'content_type', 'size', 'id'];
 
   constructor(private http: HttpClient, private rewardService: RewardService) { }
 
@@ -28,5 +32,23 @@ export class RewardListComponent implements OnInit {
         this.ngOnInit();
       });
   }
+  downloadPdf() {
+    const doc = new jsPDF();
 
+    const specialElementHandlers = {
+      '#editor'(element, renderer) {
+        return true;
+      }
+    };
+
+    const content = this.content.nativeElement;
+
+    doc.fromHTML(content.innerHTML, 15, 15, {
+      width: 190,
+      elementHandlers: specialElementHandlers
+    });
+
+    doc.save('test.pdf');
+
+  }
 }
