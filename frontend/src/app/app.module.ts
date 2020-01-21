@@ -37,6 +37,10 @@ import { HistoryListComponent } from './history-list/history-list.component';
 import { QuizFormComponent } from './quiz-form/quiz-form.component';
 import { QuizListComponent } from './quiz-list/quiz-list.component';
 import {TaleQuizComponent} from './tale-quiz/tale-quiz.component';
+import { AnswerFormComponent } from './answer-form/answer-form.component';
+import { AnswerListComponent } from './answer-list/answer-list.component';
+
+
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
@@ -60,7 +64,9 @@ export function tokenGetter() {
     HistoryListComponent,
     QuizFormComponent,
     QuizListComponent,
-    TaleQuizComponent
+    TaleQuizComponent,
+    AnswerFormComponent,
+    AnswerListComponent
   ],
   imports: [
     BrowserModule,

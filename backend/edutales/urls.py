@@ -35,6 +35,13 @@ urlpatterns = [
     path('game/list', views.gametype_option_list),
     path('game/options', views.gametype_option_list),
     path('answer/options', views.answer_option_list),
+    path('answer/list', views.answer_list),
+    path('answer/create', views.answer_form_create),
+    path('answer/<int:pk>/get', views.answer_form_get),
+
+   # path('answer/<int:pk>/update', views.tale_form_update),
+   # path('answer/<int:pk>/delete', views.tale_delete),
+
     path('region/list', views.region_option_list),
     path('destination/list', views.destination_list),
     path('destination/create', views.destination_form_create),

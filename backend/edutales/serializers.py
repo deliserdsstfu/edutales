@@ -79,11 +79,27 @@ class TaleListSerializer(serializers.ModelSerializer):
         model = Tale
         fields = '__all__'
 
+class AnswerListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = '__all__'
+
+
+
 class TaleFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tale
         fields = '__all__'
+
+
+class AnswerFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = '__all__'
+
 
 class TaleOptionSerializer(serializers.ModelSerializer):
 
@@ -203,7 +219,7 @@ class TaleQuizSerializer(serializers.ModelSerializer):
 
     def get_answer_answer(self, obj):
         return obj.answer.answer if obj.answer else ''
-        
+
 class RewardListSerializer(serializers.ModelSerializer):
 
     class Meta:
