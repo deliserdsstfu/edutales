@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+
 class Quiz(models.Model):
     name = models.TextField()
     points = models.PositiveIntegerField()
@@ -21,7 +22,7 @@ class Tale(models.Model):
     title = models.TextField()
     type = models.CharField(max_length=1, choices=CHOICES, null=True)
     text = models.TextField()
-    quiz = models.OneToOneField(Quiz, on_delete=models.CASCADE, primary_key=True)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
