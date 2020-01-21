@@ -110,27 +110,6 @@ class RewardSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class DestinationListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Destination
-        fields = '__all__'
-
-
-class DestinationFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Destination
-        fields = '__all__'
-
-
-class DestinationOptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Destination
-        fields = ['id', 'title']
-
-
 class ProgressListSerializer(serializers.ModelSerializer):
 
     class Meta:

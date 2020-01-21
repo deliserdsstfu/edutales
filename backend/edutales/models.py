@@ -36,18 +36,8 @@ class Tale(models.Model):
         return self.title
 
 
-class Destination(models.Model):
-    name = models.TextField()
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
-    tale = models.ForeignKey(Tale, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-            return self.name
-
-
 class Region(models.Model):
     name = models.TextField()
-    destination = models.ForeignKey(Destination, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
@@ -61,7 +51,7 @@ class GameType(models.Model):
 
 
 class Progress(models.Model):
-    destination = models.ForeignKey(Destination, on_delete=models.CASCADE, null=True)
+    tale = models.ManyToManyField('Tale', blank = True)
     points = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 
 

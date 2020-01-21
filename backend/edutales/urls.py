@@ -38,12 +38,7 @@ urlpatterns = [
    # path('answer/<int:pk>/update', views.tale_form_update),
    # path('answer/<int:pk>/delete', views.tale_delete),
 
-    path('region/list', views.region_option_list),
-    path('destination/list', views.destination_list),
-    path('destination/create', views.destination_form_create),
-    path('destination/<int:pk>/get', views.destination_form_get),
-    path('destination/<int:pk>/update', views.destination_form_update),
-    path('destination/<int:pk>/delete', views.destination_delete),
+    path('region/options', views.region_option_list),
     path('progress/list', views.progress_list),
     path('progress/create', views.progress_form_create),
     path('progress/<int:pk>/get', views.progress_form_get),
