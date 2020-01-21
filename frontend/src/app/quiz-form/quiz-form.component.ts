@@ -25,7 +25,7 @@ export class QuizFormComponent implements OnInit {
 
     this.quizFormGroup = this.fb.group({
       'id': [null],
-      'name': ['', Validators.required],
+      'question': ['', Validators.required],
       'points': [null, Validators.required],
       'answer': [[]]
     });

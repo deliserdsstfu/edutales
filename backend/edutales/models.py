@@ -30,7 +30,7 @@ class Tale(models.Model):
     title = models.TextField()
     type = models.CharField(max_length=1, choices=CHOICES, null=True)
     text = models.TextField()
-    quiz = models.OneToOneField(Quiz, on_delete=models.CASCADE, primary_key=True)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title

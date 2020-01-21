@@ -37,7 +37,9 @@ const routes: Routes = [
     child: ChildResolver
     } },
   { path: 'tale-list', component: TaleListComponent, canActivate: [AuthGuard] },
-  { path: 'tale-form', component: TaleFormComponent, canActivate: [AuthGuard] },
+  { path: 'tale-form', component: TaleFormComponent, canActivate: [AuthGuard] , resolve: {
+      quizOptions: QuizOptionsResolver
+    }},
   { path: 'tale-form/:id', component: TaleFormComponent, canActivate: [AuthGuard], resolve: {
       tale: TaleResolver, quizOptions: QuizOptionsResolver
     }},
@@ -45,7 +47,9 @@ const routes: Routes = [
   { path: 'tale-quiz/:id', component: TaleQuizComponent, canActivate: [AuthGuard], resolve: {
       quizOptions: QuizOptionsResolver
     } },
-  { path: 'quiz-form', component: QuizFormComponent, canActivate: [AuthGuard] },
+  { path: 'quiz-form', component: QuizFormComponent, canActivate: [AuthGuard], resolve: {
+      answerOptions: AnswerOptionsResolver
+    } },
   { path: 'quiz-form/:id', component: QuizFormComponent, canActivate: [AuthGuard], resolve: {
       quiz: QuizResolver, answerOptions: AnswerOptionsResolver
     }},

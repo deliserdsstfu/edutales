@@ -156,14 +156,14 @@ class QuizOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = ['id', 'question']
+        fields = '__all__'
 
 
 class AnswerOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ['id', 'answer']
+        fields = '__all__'
 
 
 class GameOptionSerializer(serializers.ModelSerializer):
