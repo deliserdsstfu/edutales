@@ -22,28 +22,37 @@ class ChildListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
-        fields = '__all__'
+        fields = ['id', 'user_name','year_of_birth','game','progress','reward','parent']
 
 
 class ChildFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
-        fields = '__all__'
+        fields = ['id', 'user_name','year_of_birth','game','progress','reward','parent']
 
 
 class ChildOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Child
-        fields = ['id', 'user_name']
+        fields = ['user_name', 'parent'] #'__all__'
+
+
+class ChildParentRelation(serializers.ModelSerializer):
+
+    class Meta:
+        model = Child
+        fields = ['id','user_name']
 
 
 class ParentListSerializer(serializers.ModelSerializer):
 
+    children = ChildParentRelation(many = True)
     class Meta:
         model = Parent
         fields = '__all__'
+
 
 
 class ParentFormSerializer(serializers.ModelSerializer):
@@ -58,7 +67,10 @@ class ParentOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Parent
-        fields = '__all__'
+        fields = ['id', 'name']
+
+    def get_name(self, obj):
+        return ' '.join(filter(None, (obj.first_name, obj.last_name)))
 
 
 class TaleListSerializer(serializers.ModelSerializer):
@@ -163,7 +175,35 @@ class QuizOptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class AnswerOptionSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Answer
+        fields = '__all__'
+
+
+class GameOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
+        fields = '__all__'
+
+
+class TaleQuizSerializer(serializers.ModelSerializer):
+
+    quiz_question = serializers.SerializerMethodField()
+    answer_answer = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Tale
+        fields = ['id','title', 'text','quiz_question', 'answer_answer']
+
+    def get_quiz_question(self, obj):
+        return obj.quiz.question if obj.quiz else ''
+
+    def get_answer_answer(self, obj):
+        return obj.answer.answer if obj.answer else ''
+        
 class RewardListSerializer(serializers.ModelSerializer):
 
     class Meta:

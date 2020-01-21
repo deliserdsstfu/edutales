@@ -3,18 +3,27 @@
     "model": "edutales.quiz",
     "pk": 1,
     "fields": {
-      "name": "quiz1",
       "points": 10,
-      "question": "w"
+      "question": "w",
+      "answer": 1
     }
   },
   {
     "model": "edutales.quiz",
     "pk": 2,
     "fields": {
-      "name": "quiz2",
       "points": 10,
-      "question": "w"
+      "question": "w",
+      "answer": 1
+    }
+  },
+  {
+    "model": "edutales.quiz",
+    "pk": 3,
+    "fields": {
+      "points": 10,
+      "question": "w",
+      "answer": 2
     }
   }
 ]

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ChildService} from '../service/child.service';
+import {UserService} from '../service/user.service';
+import {ParentService} from '../service/parent.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-child-list',
@@ -12,7 +15,8 @@ export class ChildListComponent implements OnInit {
   children: any[];
   displayedColumns = ['user_name', 'year_of_birth', 'game', 'id']
 
-  constructor(private http: HttpClient, private childService: ChildService) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private childService: ChildService, private userService: UserService, private parentService: ParentService) { }
+
 
   ngOnInit() {
     this.childService.getChildren()

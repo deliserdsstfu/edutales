@@ -15,6 +15,8 @@ import {ChildListComponent} from '../child-list/child-list.component';
 export class ParentFormComponent implements OnInit {
 
   parentFormGroup;
+  childrenOptions;
+
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               private router: Router, private parentService: ParentService) {
@@ -22,6 +24,7 @@ export class ParentFormComponent implements OnInit {
 
   ngOnInit() {
     const data = this.route.snapshot.data;
+    this.childrenOptions = data.childrenOptions;
 
     this.parentFormGroup = this.fb.group({
       'id': [null],

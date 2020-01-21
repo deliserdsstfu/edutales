@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {TaleService} from '../service/tale.service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-world-map',
@@ -7,12 +10,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorldMapComponent implements OnInit {
 
-  latitude = 51.678418;
-  longitude = 7.809007;
+  latitude = 47.06667;
+  longitude = 15.45;
+  locationChosen = false;
+  previous;
 
-  constructor() { }
+  clickedMarker(infowindow) {
+    if (this.previous) {
+      this.previous.close();
+    }
+    this.previous = infowindow;
+  }
+
+  onChoseLocation(event) {
+    this.latitude = event.coords.lat;
+    this.longitude = event.coords.lng;
+    this.locationChosen = true;
+  }
+
+  constructor(private taleService: TaleService, private router: Router) { }
+
 
   ngOnInit() {
   }
 
+  getTale(id) {
+    this.taleService.getTale(id)
+      .subscribe(() => {
+        this.router.navigate(['/tale-quiz/' + id ]);
+      });
+  }
+
+
 }
+

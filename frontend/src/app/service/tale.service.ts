@@ -8,6 +8,13 @@ export class TaleService {
 
   constructor(private http: HttpClient) { }
 
+
+  opNames = {
+    w: 'witzig',
+    g: 'gruselig'
+  };
+
+
   getTales() {
     return this.http.get('/api/tale/list');
   }

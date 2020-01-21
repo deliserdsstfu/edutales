@@ -32,6 +32,7 @@ export class UserService {
       });
   }
 
+
   logout() {
     localStorage.removeItem(this.accessTokenLocalStorageKey);
     this.isLoggedIn.next(false);
@@ -45,5 +46,10 @@ export class UserService {
     return permission in permissions;
   }
 
+  getCurrentId() {
+    const token = localStorage.getItem(this.accessTokenLocalStorageKey);
+    const decodedToken = this.jwtHelperService.decodeToken(token);
+    return decodedToken.user_id;
+  }
 
 }

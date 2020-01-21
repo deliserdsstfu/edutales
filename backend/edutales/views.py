@@ -19,26 +19,20 @@ def region_option_list(request):
     serializer = RegionOptionSerializer(regions, many=True)
     return Response(serializer.data)
 
-@swagger_auto_schema(method='GET', responses={200: GameTypeOptionSerializer(many=True)})
-@api_view(['GET'])
-def gametype_option_list(request):
-    gametypes = GameType.objects.all()
-    serializer = GameTypeOptionSerializer(gametypes, many=True)
-    return Response(serializer.data)
 
-@swagger_auto_schema(method='GET', responses={200: ChildOptionSerializer(many=True)})
+@swagger_auto_schema(method='GET', responses={200: QuizOptionSerializer(many=True)})
 @api_view(['GET'])
-def child_option_list(request):
-    children = Child.objects.all()
-    serializer = ChildOptionSerializer(children, many=True)
+def quiz_option_list(request):
+    quizzes = Quiz.objects.all()
+    serializer = QuizOptionSerializer(quizzes, many=True)
     return Response(serializer.data)
 
 
-@swagger_auto_schema(method='GET', responses={200: TaleOptionSerializer(many=True)})
+@swagger_auto_schema(method='GET', responses={200: AnswerOptionSerializer(many=True)})
 @api_view(['GET'])
-def tale_option_list(request):
-    tales = Tale.objects.all()
-    serializer = TaleOptionSerializer(tales, many=True)
+def answer_option_list(request):
+    ans = Answer.objects.all()
+    serializer = AnswerOptionSerializer(ans, many=True)
     return Response(serializer.data)
 
 @swagger_auto_schema(method='GET', responses={200: HistoryOptionSerializer(many=True)})
@@ -49,12 +43,13 @@ def history_option_list(request):
     return Response(serializer.data)
 
 
-@swagger_auto_schema(method='GET', responses={200: QuizOptionSerializer(many=True)})
+@swagger_auto_schema(method='GET', responses={200: GameTypeOptionSerializer(many=True)})
 @api_view(['GET'])
-def quiz_option_list(request):
-    quizzes = Quiz.objects.all()
-    serializer = QuizOptionSerializer(quizzes, many=True)
+def gametype_option_list(request):
+    gametypes = GameType.objects.all()
+    serializer = GameTypeOptionSerializer(gametypes, many=True)
     return Response(serializer.data)
+
 
 @swagger_auto_schema(method='GET', responses={200: QuizListSerializer(many=True)})
 @api_view(['GET'])
@@ -89,6 +84,7 @@ def quiz_form_update(request, pk):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=400)
+
 
 @api_view(['DELETE'])
 @permission_required('edutales.delete_quiz', raise_exception=True)
@@ -287,9 +283,10 @@ def progress_form_get(request, pk):
 
 @swagger_auto_schema(method='GET', responses={200: ChildListSerializer(many=True)})
 @api_view(['GET'])
-def child_list(request):
-    children = Child.objects.all()
-    serializer = ChildListSerializer(children, many=True)
+@permission_required('edutales.view_child', raise_exception=True)
+def child_list(request, pk):
+    childs = Child.objects.filter(parent__id=pk)
+    serializer = ChildListSerializer(childs, many=True)
     return Response(serializer.data)
 
 @swagger_auto_schema(method='POST', request_body=ChildFormSerializer, responses={200: ChildFormSerializer()})
@@ -343,12 +340,34 @@ def child_form_get(request, pk):
     serializer = ChildFormSerializer(child)
     return Response(serializer.data)
 
+@swagger_auto_schema(method='GET', responses={200: ChildOptionSerializer(many=True)})
+@api_view(['GET'])
+def child_option_list(request, pk):
+    children = Child.objects.filter(parent__id=pk)
+    serializer = ChildOptionSerializer(children, many=True)
+    return Response(serializer.data)
+
+@swagger_auto_schema(method='GET', responses={200: GameOptionSerializer(many=True)})
+@api_view(['GET'])
+def game_option_list(request):
+    game = GameType.objects.all()
+    serializer = ChildOptionSerializer(game, many=True)
+    return Response(serializer.data)
+
+
+
+
+
+
+
 @swagger_auto_schema(method='GET', responses={200: ParentOptionSerializer(many=True)})
 @api_view(['GET'])
 def parent_option_list(request):
     parents = Parent.objects.all()
     serializer = ParentOptionSerializer(parents, many=True)
     return Response(serializer.data)
+
+
 
 @swagger_auto_schema(method='GET', responses={200: ParentListSerializer(many=True)})
 @api_view(['GET'])
@@ -357,6 +376,16 @@ def parent_list(request):
     parents = Parent.objects.all()
     serializer = ParentListSerializer(parents, many=True)
     return Response(serializer.data)
+
+@swagger_auto_schema(method='POST', request_body=ParentFormSerializer, responses={200: ParentFormSerializer()})
+@api_view(['POST'])
+@permission_required('edutales.add_parent', raise_exception=True)
+def parent_form_create(request):
+    serializer = ParentFormSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
 
 
 @swagger_auto_schema(method='PUT', request_body=ParentFormSerializer, responses={200: ParentFormSerializer()})
@@ -387,6 +416,7 @@ def parent_delete(request, pk):
 
 @swagger_auto_schema(method='GET', responses={200: ParentFormSerializer()})
 @api_view(['GET'])
+@permission_required('edutales.view_parent', raise_exception=True)
 def parent_form_get(request, pk):
     try:
         parent = Parent.objects.get(pk=pk)
@@ -550,4 +580,15 @@ def history_form_get(request, pk):
         return Response({'error': 'History does not exist.'}, status=404)
 
     serializer = HistoryFormSerializer(history)
+        return Response(serializer.data)
+
+@swagger_auto_schema(method='GET', responses={200: TaleQuizSerializer()})
+@api_view(['GET'])
+def tale_quiz_get(request, pk):
+    try:
+        tale = Tale.objects.get(pk=pk)
+    except Tale.DoesNotExist:
+        return Response({'error': 'Tale does not exist.'}, status=404)
+
+    serializer = TaleQuizSerializer(tale)
     return Response(serializer.data)
