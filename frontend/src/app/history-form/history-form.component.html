@@ -21,7 +21,7 @@
                 formControlName="quiz">
       <mat-option [value]="null">Quiz</mat-option>
       <mat-option [value]="quizOption.id"
-                  *ngFor="let quizOption of quizOptions">{{quizOption.name}}</mat-option>
+                  *ngFor="let quizOption of quizOptions">{{quizOption.question}}</mat-option>
     </mat-select>
     <mat-hint align="end">The quiz of the history</mat-hint>
   </mat-form-field>
