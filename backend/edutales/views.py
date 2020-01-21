@@ -200,63 +200,6 @@ def tale_form_get(request, pk):
     serializer = TaleFormSerializer(tale)
     return Response(serializer.data)
 
-@swagger_auto_schema(method='GET', responses={200: DestinationListSerializer(many=True)})
-@api_view(['GET'])
-@permission_required('edutales.view_destination', raise_exception=True)
-def destination_list(request):
-    destinations = Destination.objects.all()
-    serializer = DestinationListSerializer(destinations, many=True)
-    return Response(serializer.data)
-
-@swagger_auto_schema(method='POST', request_body=DestinationFormSerializer, responses={200: DestinationFormSerializer()})
-@api_view(['POST'])
-@permission_required('edutales.add_destination', raise_exception=True)
-def destination_form_create(request):
-    serializer = DestinationFormSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=201)
-    return Response(serializer.errors, status=400)
-
-
-@swagger_auto_schema(method='PUT', request_body=DestinationFormSerializer, responses={200: DestinationFormSerializer()})
-@api_view(['PUT'])
-@permission_required('edutales.change_destination', raise_exception=True)
-def destination_form_update(request, pk):
-    try:
-        destination = Destination.objects.get(pk=pk)
-    except Destination.DoesNotExist:
-        return Response({'error': 'Destination does not exist.'}, status=404)
-
-    serializer = DestinationFormSerializer(destination, data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors, status=400)
-
-@api_view(['DELETE'])
-@permission_required('edutales.delete_destination', raise_exception=True)
-def destination_delete(request, pk):
-    try:
-        destination = Destination.objects.get(pk=pk)
-    except Destination.DoesNotExist:
-        return Response({'error': 'Destination does not exist.'}, status=404)
-    destination.delete()
-    return Response(status=204)
-
-
-@swagger_auto_schema(method='GET', responses={200: DestinationFormSerializer()})
-@api_view(['GET'])
-@permission_required('edutales.view_destination', raise_exception=True)
-def destination_form_get(request, pk):
-    try:
-        destination = Destination.objects.get(pk=pk)
-    except Destination.DoesNotExist:
-        return Response({'error': 'Destination does not exist.'}, status=404)
-
-    serializer = DestinationFormSerializer(destination)
-    return Response(serializer.data)
-
 
 @swagger_auto_schema(method='GET', responses={200: ProgressListSerializer(many=True)})
 @api_view(['GET'])

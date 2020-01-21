@@ -72,9 +72,22 @@ class ParentOptionSerializer(serializers.ModelSerializer):
     def get_name(self, obj):
         return ' '.join(filter(None, (obj.first_name, obj.last_name)))
 
+class QuizAnswerRelation(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = ['id','answer', 'isTrue']
+
+class TaleQuizRelation(serializers.ModelSerializer):
+
+    answer = QuizAnswerRelation(many=True)
+    class Meta:
+        model = Quiz
+        fields = '__all__'
 
 class TaleListSerializer(serializers.ModelSerializer):
 
+    quiz = TaleQuizRelation()
     class Meta:
         model = Tale
         fields = '__all__'
@@ -131,25 +144,6 @@ class RewardSerializer(serializers.ModelSerializer):
         model = Reward
         fields = '__all__'
 
-class DestinationListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Destination
-        fields = '__all__'
-
-
-class DestinationFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Destination
-        fields = '__all__'
-
-class DestinationOptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Destination
-        fields = ['id', 'title']
-
 
 class ProgressListSerializer(serializers.ModelSerializer):
 
@@ -172,6 +166,7 @@ class ProgressOptionSerializer(serializers.ModelSerializer):
 
 class QuizListSerializer(serializers.ModelSerializer):
 
+    answer = QuizAnswerRelation(many=True)
     class Meta:
         model = Quiz
         fields = '__all__'
