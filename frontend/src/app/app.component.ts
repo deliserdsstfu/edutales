@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import {UserService} from './service/user.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';

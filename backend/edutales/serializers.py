@@ -41,6 +41,7 @@ class ChildParentRelation(serializers.ModelSerializer):
         model = Child
         fields = ['id','user_name']
 
+
 class ParentListSerializer(serializers.ModelSerializer):
 
     children = ChildParentRelation(many = True)
@@ -72,14 +73,14 @@ class TaleListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tale
-        fields = ['title', 'type', 'text', 'quiz']
+        fields = '__all__'
 
 
 class TaleFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tale
-        fields = ['title', 'type', 'text', 'quiz']
+        fields = '__all__'
 
 
 class TaleOptionSerializer(serializers.ModelSerializer):
@@ -93,6 +94,27 @@ class RewardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reward
         fields = '__all__'
+
+
+class DestinationListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Destination
+        fields = '__all__'
+
+
+class DestinationFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Destination
+        fields = '__all__'
+
+
+class DestinationOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Destination
+        fields = ['id', 'title']
 
 
 class ProgressListSerializer(serializers.ModelSerializer):
@@ -117,73 +139,28 @@ class ProgressOptionSerializer(serializers.ModelSerializer):
 
 
 class QuizListSerializer(serializers.ModelSerializer):
-    answer_answer = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Quiz
-        fields = ['points', 'question', 'answer_answer']
-
-    def get_answer_answer(self, obj):
-        return obj.answer.answer if obj.answer else ''
-
-
-class QuizFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Quiz
-        fields = '_all_'
-
-
-class QuizOptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Quiz
-        fields = ['id', 'question']
-
-
-class AnswerListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Answer
-        fields = ['answer', 'isTrue']
-
-
-class AnswerFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Answer
-        fields = ['answer', 'isTrue']
-
-
-class AnswerOptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Quiz
-        fields = ['id', 'answer']
-
-
-class DestinationListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Destination
-
-
-
-class DestinationFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Destination
-
-class GameOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
         fields = '__all__'
 
 
-
-class DestinationOptionSerializer(serializers.ModelSerializer):
+class QuizFormSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Destination
+        model = Quiz
+        fields = '__all__'
+
+
+class QuizOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
         fields = ['id', 'title']
+
+
+class GameOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
+        fields = '__all__'

@@ -13,8 +13,14 @@ export class WorldMapComponent implements OnInit {
   latitude = 47.06667;
   longitude = 15.45;
   locationChosen = false;
+  previous;
 
-
+  clickedMarker(infowindow) {
+    if (this.previous) {
+      this.previous.close();
+    }
+    this.previous = infowindow;
+  }
 
   onChoseLocation(event) {
     this.latitude = event.coords.lat;
@@ -37,3 +43,4 @@ export class WorldMapComponent implements OnInit {
 
 
 }
+
