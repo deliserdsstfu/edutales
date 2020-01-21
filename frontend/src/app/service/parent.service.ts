@@ -31,4 +31,5 @@ export class ParentService {
   getAParent(currId: any) {
     return this.http.get('/api/parent/' + currId + '/get');
   }
+
 }

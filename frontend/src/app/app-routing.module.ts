@@ -9,21 +9,102 @@ import {ChildFormComponent} from './child-form/child-form.component';
 import {ChildOptionsResolver} from './resolver/child-options.resolver';
 import {ParentResolver} from './resolver/parent.resolver';
 import {ChildResolver} from './resolver/child.resolver';
-
+import {WorldMapComponent} from './world-map/world-map.component';
+import {TaleFormComponent} from './tale-form/tale-form.component';
+import {TaleListComponent} from './tale-list/tale-list.component';
+import {TaleResolver} from './resolver/tale.resolver';
+import {RewardListComponent} from './reward-list/reward-list.component';
+import {RewardFormComponent} from './reward-form/reward-form.component';
+import {RewardResolver} from './resolver/reward.resolver';
+import {HistoryFormComponent} from './history-form/history-form.component';
+import {HistoryResolver} from './resolver/history.resolver';
+import {HistoryListComponent} from './history-list/history-list.component';
+import {QuizFormComponent} from './quiz-form/quiz-form.component';
+import {QuizResolver} from './resolver/quiz.resolver';
+import {QuizListComponent} from './quiz-list/quiz-list.component';
+import {TaleQuizComponent} from './tale-quiz/tale-quiz.component';
+import {AnswerOptionsResolver} from './resolver/answer-options.resolver';
+import {QuizOptionsResolver} from './resolver/quiz-options.resolver';
+import {AnswerFormComponent} from './answer-form/answer-form.component';
+import {AnswerResolver} from './resolver/answer.resolver';
+import {AnswerListComponent} from './answer-list/answer-list.component';
 
 const routes: Routes = [
   { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard] },
   { path: 'child-list/:id', component: ChildListComponent, canActivate: [AuthGuard] },
-  { path: 'parent-form', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
+  { path: 'world-map', component: WorldMapComponent, canActivate: [AuthGuard] },
+  { path: 'reward-list', component: RewardListComponent, canActivate: [AuthGuard] },
+  { path: 'history-list', component: HistoryListComponent, canActivate: [AuthGuard] },
+  { path: 'parent-form',
+    component: ParentFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
     childrenOptions: ChildOptionsResolver,
     } },
-  { path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard] },
-  { path: 'parent-form/:id', component: ParentFormComponent, canActivate: [AuthGuard], resolve: {
-      childrenOptions: ChildOptionsResolver,  parent: ParentResolver
+  { path: 'reward-form', component: RewardFormComponent, canActivate: [AuthGuard] },
+  { path: 'answer-form', component: AnswerFormComponent, canActivate: [AuthGuard] },
+  { path: 'answer-list', component: AnswerListComponent, canActivate: [AuthGuard] },
+  { path: 'answer-form/:id', component: AnswerFormComponent, canActivate: [AuthGuard], resolve: {
+    answer: AnswerResolver
     } },
-  { path: 'child-form/:id', component: ChildFormComponent, canActivate: [AuthGuard], resolve: {
+  { path: 'history-form',
+    component: HistoryFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      quizOptions: QuizOptionsResolver
+    } },
+  { path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard] },
+  { path: 'parent-form/:id',
+    component: ParentFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      childrenOptions: ChildOptionsResolver,
+      parent: ParentResolver
+    } },
+  { path: 'child-form/:id',
+    component: ChildFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
     child: ChildResolver
     } },
+  { path: 'reward-form/:id',
+    component: RewardFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      reward: RewardResolver
+    } },
+  { path: 'history-form/:id',
+    component: HistoryFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      history: HistoryResolver,
+      quizOptions: QuizOptionsResolver
+    } },
+  { path: '', redirectTo: 'parent-list', pathMatch: 'full' },
+  { path: 'tale-list', component: TaleListComponent, canActivate: [AuthGuard] },
+  { path: 'tale-form',
+    component: TaleFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      quizOptions: QuizOptionsResolver
+    } },
+  { path: 'tale-form/:id',
+    component: TaleFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      tale: TaleResolver,
+      quizOptions: QuizOptionsResolver
+    }},
+  { path: 'quiz-list', component: QuizListComponent, canActivate: [AuthGuard] },
+  { path: 'tale-quiz/:id', component: TaleQuizComponent, canActivate: [AuthGuard], resolve: {
+      quizOptions: QuizOptionsResolver
+    } },
+  { path: 'quiz-form', component: QuizFormComponent, canActivate: [AuthGuard], resolve: {
+      answerOptions: AnswerOptionsResolver
+    } },
+  { path: 'quiz-form/:id', component: QuizFormComponent, canActivate: [AuthGuard], resolve: {
+      quiz: QuizResolver, answerOptions: AnswerOptionsResolver
+    }},
   { path: '', redirectTo: 'parent-list', pathMatch: 'full' },
   {path: 'login', component: LoginComponent},
 ];

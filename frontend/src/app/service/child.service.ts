@@ -33,4 +33,5 @@ export class ChildService {
   retrieveChildOptions(currid = this.userService.getCurrentId()) {
     return this.http.get <any[]>('api/child/options/' + currid);
   }
+
 }

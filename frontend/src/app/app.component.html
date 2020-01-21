@@ -1,16 +1,51 @@
-<mat-toolbar *ngIf="isLoggedIn">
+<mat-toolbar *ngIf="isLoggedIn && !isWorldMap() && !isTaleQuiz()">
   <button mat-button
-          [matMenuTriggerFor]="parentMenu">Parent</button>
+  [matMenuTriggerFor]="parentMenu">Parent</button>
   <mat-menu #parentMenu="matMenu">
     <button mat-menu-item routerLink="parent-list">List</button>
-    <button mat-menu-item routerLink="parent-form">Create</button>
   </mat-menu>
   <button mat-button
           [matMenuTriggerFor]="childMenu">Children</button>
   <mat-menu #childMenu="matMenu">
-    <button mat-menu-item routerLink="child-list/currentParent"  >List</button>
+    <button mat-menu-item routerLink="child-list/currentParent">List</button>
     <button mat-menu-item routerLink="child-form">Create</button>
   </mat-menu>
+  <button mat-button
+          [matMenuTriggerFor]="taleMenu">Tale</button>
+  <mat-menu #taleMenu="matMenu">
+    <button mat-menu-item routerLink="tale-list">List</button>
+    <button mat-menu-item routerLink="tale-form">Create</button>
+  </mat-menu>
+  <button mat-button
+  [matMenuTriggerFor]="historyMenu">History</button>
+<mat-menu #historyMenu="matMenu">
+<button mat-menu-item routerLink="history-list">List</button>
+<button mat-menu-item routerLink="history-form">Create</button>
+</mat-menu>
+<button mat-button
+[matMenuTriggerFor]="rewardMenu">Reward</button>
+<mat-menu #rewardMenu="matMenu">
+<button mat-menu-item routerLink="reward-list">List</button>
+<button mat-menu-item routerLink="reward-form">Create</button>
+</mat-menu>
+<button mat-button
+          [matMenuTriggerFor]="quizMenu">Quiz</button>
+  <mat-menu #quizMenu="matMenu">
+    <button mat-menu-item routerLink="quiz-list">List</button>
+    <button mat-menu-item routerLink="quiz-form">Create</button>
+  </mat-menu>
+  <button mat-button
+          [matMenuTriggerFor]="answerMenu">Answer</button>
+  <mat-menu #answerMenu="matMenu">
+    <button mat-menu-item routerLink="answer-list">List</button>
+    <button mat-menu-item routerLink="answer-form">Create</button>
+  </mat-menu>
+  <app-logout></app-logout>
+</mat-toolbar>
+<mat-toolbar *ngIf="isWorldMap()">
+  <app-logout></app-logout>
+</mat-toolbar>
+<mat-toolbar *ngIf="isTaleQuiz()">
   <app-logout></app-logout>
 </mat-toolbar>
 <router-outlet></router-outlet>

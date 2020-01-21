@@ -13,10 +13,10 @@ import {ActivatedRoute} from '@angular/router';
 export class ChildListComponent implements OnInit {
 
   children: any[];
-  parent;
-  displayedColumns = ['user_name', 'day_of_birth', 'game', 'id']
+  displayedColumns = ['user_name', 'year_of_birth', 'game', 'id']
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private childService: ChildService, private userService: UserService, private parentService: ParentService) { }
+
 
   ngOnInit() {
     this.childService.getChildren()
@@ -31,7 +31,5 @@ export class ChildListComponent implements OnInit {
         this.ngOnInit();
       });
   }
-
-
 
 }

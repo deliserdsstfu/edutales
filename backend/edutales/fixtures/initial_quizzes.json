@@ -1,0 +1,29 @@
+[
+  {
+    "model": "edutales.quiz",
+    "pk": 1,
+    "fields": {
+      "points": 10,
+      "question": "w",
+      "answer": 1
+    }
+  },
+  {
+    "model": "edutales.quiz",
+    "pk": 2,
+    "fields": {
+      "points": 10,
+      "question": "w",
+      "answer": 1
+    }
+  },
+  {
+    "model": "edutales.quiz",
+    "pk": 3,
+    "fields": {
+      "points": 10,
+      "question": "w",
+      "answer": 2
+    }
+  }
+]

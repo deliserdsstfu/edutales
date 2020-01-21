@@ -1,0 +1,15 @@
+<form [formGroup]="answerFormGroup" class="answer-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Answer" formControlName="answer">
+    <mat-hint align="end">The answer</mat-hint>
+    <mat-error *ngIf="answerFormGroup.controls.answer.hasError('required')">Answer is required</mat-error>
+  </mat-form-field>
+  <mat-checkbox formControlName="isTrue">Answer is true?</mat-checkbox>
+  <br/>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!answerFormGroup.valid" (click)="createAnswer()">
+      <span *ngIf="!answerFormGroup.controls.id.value">Create</span>
+      <span *ngIf="answerFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>

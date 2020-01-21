@@ -12,16 +12,12 @@
     <mat-error *ngIf="parentFormGroup.controls.last_name.hasError('required')">Name is required</mat-error>
     <!-- <mat-error *ngIf="profileFormGroup.controls.title.hasError('title')">Title already exists</mat-error> -->
   </mat-form-field>
-<!--
   <mat-form-field>
-    <mat-select placeholder="Region"
-                formControlName="region" required>
-      <mat-option [value]="null">Unknown</mat-option>
-      <mat-option [value]="regionOption.id" *ngFor="let regionOption of regionOption">{{regionOption.name}}</mat-option>
-    </mat-select>
-    <mat-hint align="end">The species of the profile</mat-hint>
+    <input matInput type="text" placeholder="language" formControlName="language" required>
+    <mat-hint align="end">Language</mat-hint>
+    <mat-error *ngIf="parentFormGroup.controls.language.hasError('required')">Language is required</mat-error>
+    <!-- <mat-error *ngIf="profileFormGroup.controls.title.hasError('title')">Title already exists</mat-error> -->
   </mat-form-field>
--->
   <app-date placeholder="Entry date" formControlName="day_of_birth" hint="The entry date of the profile"
             [required]="true"></app-date>
 
@@ -43,4 +39,3 @@
     </button>
   </mat-card-actions>
 </form>
-
