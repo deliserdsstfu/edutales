@@ -66,7 +66,7 @@ const routes: Routes = [
     component: HistoryFormComponent,
     canActivate: [AuthGuard],
     resolve: {
-      reward: HistoryResolver,
+      history: HistoryResolver,
       quizOptions: QuizOptionsResolver
     } },
   { path: '', redirectTo: 'parent-list', pathMatch: 'full' },

@@ -17,7 +17,12 @@
     <mat-error *ngIf="historyFormGroup.controls.text.hasError('required')">Text is required</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <textarea matInput type="text" placeholder="Quiz" formControlName="quiz"></textarea>
+    <mat-select placeholder="Quiz"
+                formControlName="quiz">
+      <mat-option [value]="null">Quiz</mat-option>
+      <mat-option [value]="quizOption.id"
+                  *ngFor="let quizOption of quizOptions">{{quizOption.name}}</mat-option>
+    </mat-select>
     <mat-hint align="end">The quiz of the history</mat-hint>
   </mat-form-field>
 
