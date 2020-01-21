@@ -1,0 +1,20 @@
+[
+  {
+    "model": "edutales.quiz",
+    "pk": 1,
+    "fields": {
+      "name": "quiz1",
+      "points": 10,
+      "question": "w"
+    }
+  },
+  {
+    "model": "edutales.quiz",
+    "pk": 2,
+    "fields": {
+      "name": "quiz2",
+      "points": 10,
+      "question": "w"
+    }
+  }
+]

@@ -20,8 +20,9 @@
     <mat-select placeholder="Quiz"
                 formControlName="quiz">
       <mat-option [value]="null">Unknown</mat-option>
-      <mat-option [value]="quizOption.id" *ngFor="let quizOption of quizOptions">{{quizOption.name}}</mat-option>
+    <mat-option [value]="quizOption.id" *ngFor="let quizOption of quizOptions">{{quizOption.name}}</mat-option>
     </mat-select>
+    <mat-hint align="end">The quiz of the tale</mat-hint>
   </mat-form-field>
   <br/>
   <mat-card-actions align="center">

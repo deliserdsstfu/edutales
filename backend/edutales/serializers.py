@@ -95,7 +95,7 @@ class HistoryOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = History
-        fields = ['id', 'title']
+        fields = '__all__'
 
 
 class RewardSerializer(serializers.ModelSerializer):
@@ -160,7 +160,7 @@ class QuizOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = ['id', 'title']
+        fields = '__all__'
 
 
 
