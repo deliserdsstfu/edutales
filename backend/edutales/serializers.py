@@ -80,7 +80,7 @@ class QuizAnswerRelation(serializers.ModelSerializer):
 
 class TaleQuizRelation(serializers.ModelSerializer):
 
-    answer = QuizAnswerRelation(many=True)
+
     class Meta:
         model = Quiz
         fields = '__all__'
