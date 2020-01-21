@@ -19,7 +19,6 @@ import {RewardResolver} from './resolver/reward.resolver';
 import {HistoryFormComponent} from './history-form/history-form.component';
 import {HistoryResolver} from './resolver/history.resolver';
 import {HistoryListComponent} from './history-list/history-list.component';
-import {QuizOptionsResolver} from './resolver/quiz-options.resolver';
 import {QuizFormComponent} from './quiz-form/quiz-form.component';
 import {QuizResolver} from './resolver/quiz.resolver';
 import {QuizListComponent} from './quiz-list/quiz-list.component';
@@ -37,8 +36,7 @@ const routes: Routes = [
     component: ParentFormComponent,
     canActivate: [AuthGuard],
     resolve: {
-    childOptions: ChildOptionsResolver,
-    //parent: ParentResolver
+    childrenOptions: ChildOptionsResolver,
     } },
   { path: 'reward-form', component: RewardFormComponent, canActivate: [AuthGuard] },
   { path: 'history-form',
@@ -52,7 +50,7 @@ const routes: Routes = [
     component: ParentFormComponent,
     canActivate: [AuthGuard],
     resolve: {
-      childOptions: ChildOptionsResolver,
+      childrenOptions: ChildOptionsResolver,
       parent: ParentResolver
     } },
   { path: 'child-form/:id',

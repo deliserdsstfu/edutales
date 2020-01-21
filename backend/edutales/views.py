@@ -578,9 +578,8 @@ def history_form_get(request, pk):
         history = History.objects.get(pk=pk)
     except History.DoesNotExist:
         return Response({'error': 'History does not exist.'}, status=404)
-
     serializer = HistoryFormSerializer(history)
-        return Response(serializer.data)
+    return Response(serializer.data)
 
 @swagger_auto_schema(method='GET', responses={200: TaleQuizSerializer()})
 @api_view(['GET'])

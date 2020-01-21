@@ -58,8 +58,7 @@ urlpatterns = [
     path('parent/<int:pk>/update', views.parent_form_update),
     path('parent/<int:pk>/delete', views.parent_delete),
     path('parent/options', views.parent_option_list),
-    path('reward/<int:pk>', views.reward_download),
-    path('reward/<int:pk>/get', views.reward_get),
+    #path('reward/<int:pk>/get', views.reward_get),
     path ('tale-quiz/<int:pk>/detail', views.tale_quiz_get),
 
     url(r'^api-token-auth/', obtain_jwt_token),
