@@ -1,33 +1,38 @@
-<mat-card align="center" *ngIf="finished">
+<mat-card align="center" *ngIf="finished" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
   <mat-card-title>{{tale.title}}</mat-card-title>
     <br>
   <mat-card-content>{{tale.text}}</mat-card-content>
   <br>
-  <mat-card-content>{{data.quiz_question}}</mat-card-content>
-
+  <mat-card-title>{{data.quiz_question}}</mat-card-title>
 </mat-card>
+<br><br>
+<!--<form [formGroup]="taleQuizGroup" class="tale-quiz" align="center" (ngSubmit)="onSubmit()">
+  <mat-radio-group>
+    <mat-radio-button type="radio" formControlName="isTrue" value="true">Wahr?</mat-radio-button><br><br>
+    <mat-radio-button type="radio"  formControlName="isTrue" value="false">Falsch?</mat-radio-button>
+  </mat-radio-group>
+  <br><br>
+  <div *ngIf="isSubmitted && myForm.errors?.required">
+    <p>Please select either value</p>
+  </div>
+  <button type="submit">Submit</button>
+</form>-->
+<form [formGroup]="taleQuizGroup" (ngSubmit)="onSubmit()">
+  <!-- Gender -->
+  <div>
+    <input id="false" type="radio" class="custom-control-input" value="false" name="isTrue" formControlName="isTrue">
+    <label class="custom-control-label" for="false">Falsch</label>
+  </div>
 
-<!-- <table mat-table [dataSource]="tale">
- <ng-container matColumnDef="title">
-    <th mat-header-cell
-    *matHeaderCellDef>Title</th>
-    <td mat-cell *matCellDef="let tale">{{tale.title}}</td>
-  </ng-container>
-  <ng-container matColumnDef="text">
-    <th mat-header-cell *matHeaderCellDef>Story</th>
-    <td mat-cell *matCellDef="let tale">{{tale.text}}</td>
-  </ng-container>
-  <ng-container matColumnDef="quiz_question">
-    <th mat-header-cell *matHeaderCellDef>Question</th>
-    <td mat-cell *matCellDef="let tale">{{tale.quiz_question}}</td>
-  </ng-container>
-  <ng-container matColumnDef="quiz_answer">
-    <th mat-header-cell *matHeaderCellDef>Answer</th>
-    <td mat-cell *matCellDef="let tale"><input type="text"></td>
-  <td> <button (click)="isRight()"></button></td>
-  </ng-container>
+  <div>
+    <input id="true" type="radio" class="custom-control-input" value="true" name="isTrue" formControlName="isTrue">
+    <label class="custom-control-label" for="true">Wahr</label>
+  </div>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table> -->
+  <div *ngIf="isSubmitted && myForm.invalid">
+    <p>Please select either value</p>
+  </div>
 
+  <!-- Submit Button -->
+  <button type="submit">Submit</button>
+</form>

@@ -8,6 +8,13 @@ export class HistoryService {
 
   constructor(private http: HttpClient) { }
 
+
+
+  opNames = {
+    w: 'witzig',
+    g: 'gruselig'
+  };
+
   getHistories() {
     return this.http.get('/api/history/list');
   }

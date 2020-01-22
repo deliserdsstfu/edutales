@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TaleService} from '../service/tale.service';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -13,12 +13,14 @@ import {TaleQuizService} from '../service/tale-quiz.service';
   styleUrls: ['./tale-quiz.component.scss'],
 
 })
+
 export class TaleQuizComponent implements OnInit {
 
   tale: any;
   finished =  false;
- // question;
+  taleQuizGroup;
   data: any;
+  isSubmitted = false;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               // tslint:disable-next-line:max-line-length
@@ -33,18 +35,22 @@ export class TaleQuizComponent implements OnInit {
        // this.question = this.quizService.getQuiz(response.quiz);
       });
     this.data = this.route.snapshot.data.taleQuizResolver;
-   // console.log(this.data.taleQuizResolver.quiz_question);
-   // console.log(this.question);
 
-   // const q = this.quizService.getQuiz(this.tale.quiz);
-   // this.question = this.route.snapshot.paramMap.get('quiz_question');
-
-
-    // console.log(data);
-    // this.tales.push(data);
-    // const quiz = this.quizService.getQuiz(data.tale.quiz);
-
-
+    this.taleQuizGroup = this.fb.group({
+    isTrue: ['', [Validators.required]]
+    });
+  }
+  get myForm() {
+    return this.taleQuizGroup.get('isTrue');
+  }
+  onSubmit() {
+    this.isSubmitted = true;
+    if (!this.taleQuizGroup.valid) {
+      return false;
+    } else {
+      alert(JSON.stringify(this.taleQuizGroup.value));
+      console.log(this.taleQuizGroup.isTrue);
+    }
   }
 
 /*  isRight() {

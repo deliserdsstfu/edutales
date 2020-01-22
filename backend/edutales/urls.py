@@ -34,10 +34,7 @@ urlpatterns = [
     path('quiz/<int:pk>/delete', views.quiz_delete),
     path('game/list', views.gametype_option_list),
     path('game/options', views.gametype_option_list),
-    path('answer/options', views.answer_option_list),
-    path('answer/list', views.answer_list),
-    path('answer/create', views.answer_form_create),
-    path('answer/<int:pk>/get', views.answer_form_get),
+
 
    # path('answer/<int:pk>/update', views.tale_form_update),
    # path('answer/<int:pk>/delete', views.tale_delete),
@@ -62,6 +59,9 @@ urlpatterns = [
     path('parent/options', views.parent_option_list),
     #path('reward/<int:pk>/get', views.reward_get),
     path ('tale-quiz/<int:pk>/get', views.tale_quiz_get),
+
+
+    url(r'^api-token-auth/', obtain_jwt_token),
     #url(r'^reward$', FileUploadView.as_view()),
     #path('reward/<int:pk>', views.reward_download),
     path('reward/list', views.reward_list),
@@ -70,7 +70,6 @@ urlpatterns = [
     path('reward/<int:pk>/update', views.reward_form_update),
     path('reward/<int:pk>/delete', views.reward_delete),
 
-    url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),

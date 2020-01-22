@@ -6,15 +6,14 @@ class TaleAdmin(admin.ModelAdmin):
     display_list = '_all_'
 
 
-class ParentAdmin(admin.ModelAdmin): pass
+class ParentAdmin(admin.ModelAdmin):
+    display_list = '_all_'
+
 
 class RegionAdmin(admin.ModelAdmin): pass
 
 
 class QuizAdmin(admin.ModelAdmin): pass
-
-
-class AnswerAdmin(admin.ModelAdmin): pass
 
 
 class ChildAdmin(admin.ModelAdmin): pass
@@ -41,4 +40,4 @@ admin.site.register(Progress, ProgressAdmin)
 admin.site.register(Child, ChildAdmin)
 admin.site.register(History, HistoryAdmin)
 admin.site.register(Quiz, QuizAdmin)
-admin.site.register(Answer, AnswerAdmin)
+

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TaleService} from '../service/tale.service';
 import {Router} from '@angular/router';
+import {HistoryService} from '../service/history.service';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class WorldMapComponent implements OnInit {
     this.locationChosen = true;
   }
 
-  constructor(private taleService: TaleService, private router: Router) { }
+  constructor(private taleService: TaleService, private router: Router, private historyService: HistoryService) { }
 
 
   ngOnInit() {
@@ -41,6 +42,12 @@ export class WorldMapComponent implements OnInit {
       });
   }
 
+  getHistory(id) {
+    this.historyService.getHistory(id)
+      .subscribe( () => {
+        this.router.navigate(['history-quiz/' + id]);
+      });
+  }
 
 }
 

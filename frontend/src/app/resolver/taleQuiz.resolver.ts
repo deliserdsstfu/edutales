@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 import {Observable} from 'rxjs';
-import {AnswerService} from '../service/answer.service';
 import {TaleQuizService} from '../service/tale-quiz.service';
 
 @Injectable({
