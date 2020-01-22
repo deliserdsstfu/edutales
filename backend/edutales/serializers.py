@@ -150,12 +150,6 @@ class DestinationOptionSerializer(serializers.ModelSerializer):
         model = Destination
         fields = ['id', 'title']
 
-class LanguageOptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Language
-        fields = '__all__'
-
 
 class ProgressListSerializer(serializers.ModelSerializer):
 

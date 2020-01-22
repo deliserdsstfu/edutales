@@ -16,7 +16,6 @@ export class ParentFormComponent implements OnInit {
 
   parentFormGroup;
   childrenOptions;
-  languageOptions;
 
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
@@ -26,13 +25,13 @@ export class ParentFormComponent implements OnInit {
   ngOnInit() {
     const data = this.route.snapshot.data;
     this.childrenOptions = data.childrenOptions;
-    this.languageOptions = data.languageOptions;
 
     this.parentFormGroup = this.fb.group({
       'id': [null],
       'first_name': ['', Validators.required],
       'last_name': ['', Validators.required],
       'day_of_birth': [null],
+      'children': [null],
       'region': [null],
       'language': [null]
     });
