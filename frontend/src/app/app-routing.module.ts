@@ -30,6 +30,7 @@ import {AnswerResolver} from './resolver/answer.resolver';
 import {AnswerListComponent} from './answer-list/answer-list.component';
 import {TaleOptionsResolver} from './resolver/tale-options.resolver';
 import {HistoryOptionsResolver} from './resolver/history-options.resolver';
+import {LanguageOptionsResolver} from './resolver/language-options.resolver';
 
 const routes: Routes = [
   { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard] },
@@ -42,6 +43,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     resolve: {
     childrenOptions: ChildOptionsResolver,
+    languageOptions: LanguageOptionsResolver,
+
     } },
   {
     path: 'reward-form',
@@ -69,6 +72,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     resolve: {
       childrenOptions: ChildOptionsResolver,
+      languageOptions: LanguageOptionsResolver,
       parent: ParentResolver
     } },
   { path: 'child-form/:id',

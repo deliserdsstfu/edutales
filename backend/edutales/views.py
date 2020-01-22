@@ -57,6 +57,13 @@ def gametype_option_list(request):
     serializer = GameTypeOptionSerializer(gametypes, many=True)
     return Response(serializer.data)
 
+@swagger_auto_schema(method='GET', responses={200: LanguageOptionSerializer(many=True)})
+@api_view(['GET'])
+def language_option_list(request):
+    languages = Language.objects.all()
+    serializer = LanguageOptionSerializer(languages, many=True)
+    return Response(serializer.data)
+
 
 @swagger_auto_schema(method='GET', responses={200: QuizListSerializer(many=True)})
 @api_view(['GET'])
