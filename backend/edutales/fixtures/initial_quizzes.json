@@ -5,7 +5,7 @@
     "fields": {
       "points": 10,
       "question": "w",
-      "answer": 1
+      "answer": [1]
     }
   },
   {
@@ -14,7 +14,7 @@
     "fields": {
       "points": 10,
       "question": "w",
-      "answer": 1
+      "answer": [1]
     }
   },
   {
@@ -23,7 +23,7 @@
     "fields": {
       "points": 10,
       "question": "w",
-      "answer": 2
+      "answer": [2,1]
     }
   }
 ]

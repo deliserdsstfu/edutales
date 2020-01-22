@@ -17,6 +17,8 @@ export class TaleQuizComponent implements OnInit {
 
   tale: any;
   finished =  false;
+ // question;
+  data: any;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               // tslint:disable-next-line:max-line-length
@@ -24,10 +26,21 @@ export class TaleQuizComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.taleService.getTale(id).subscribe((response: any) => {this.tale = response; this.finished = true;});
-    // const q = this.quizService.getQuiz(this.tale.quiz.value);
-   // console.log(q);
-    // const data = this.route.snapshot.data;
+    this.taleService.getTale(id).subscribe(
+      (response: any) => {
+        this.tale = response;
+        this.finished = true;
+       // this.question = this.quizService.getQuiz(response.quiz);
+      });
+    this.data = this.route.snapshot.data.taleQuizResolver;
+   // console.log(this.data.taleQuizResolver.quiz_question);
+   // console.log(this.question);
+
+   // const q = this.quizService.getQuiz(this.tale.quiz);
+   // this.question = this.route.snapshot.paramMap.get('quiz_question');
+
+
+    // console.log(data);
     // this.tales.push(data);
     // const quiz = this.quizService.getQuiz(data.tale.quiz);
 
