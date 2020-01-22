@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 
 from .models import *
+from .models import Reward, Media
 
 
 class RegionOptionSerializer(serializers.ModelSerializer):
@@ -220,10 +221,23 @@ class TaleQuizSerializer(serializers.ModelSerializer):
         return obj.answer.answer if obj.answer else ''
 
 class RewardListSerializer(serializers.ModelSerializer):
+    history_title = serializers.SerializerMethodField()
+    tale_title = serializers.SerializerMethodField()
+    #tale_pictures = serializers.SerializerMethodField()
 
     class Meta:
         model = Reward
-        fields = '__all__'
+        fields = ['id', 'name', 'history_title', 'tale_title']#, 'tale_pictures']
+
+    def get_history_title(self, obj):
+        return obj.history.title if obj.history else ''
+
+    def get_tale_title(self, obj):
+        return obj.tale.title if obj.tale else ''
+
+
+    #def get_tale_pictures(self, obj):
+        #return obj.tale.pictures if obj.tale else ''
 
 
 class RewardFormSerializer(serializers.ModelSerializer):

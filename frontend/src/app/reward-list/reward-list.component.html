@@ -3,6 +3,20 @@
     <th mat-header-cell *matHeaderCellDef>Name</th>
     <td mat-cell *matCellDef="let reward" id="content" #content>{{reward.name}}</td>
   </ng-container>
+  <ng-container matColumnDef="tale_title">
+    <th mat-header-cell *matHeaderCellDef>Title of the tale</th>
+    <td mat-cell *matCellDef="let tale">{{tale.tale_title}}</td>
+  </ng-container>
+  <!--
+  <ng-container matColumnDef="tale_pictures">
+    <th mat-header-cell *matHeaderCellDef>Picture of the tale</th>
+    <td mat-cell *matCellDef="let tale">{{tale.tale_pictures}}</td>
+  </ng-container>
+  -->
+  <ng-container matColumnDef="history_title">
+    <th mat-header-cell *matHeaderCellDef>Title of the history</th>
+    <td mat-cell *matCellDef="let history">{{history.history_title}}</td>
+  </ng-container>
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let reward">
