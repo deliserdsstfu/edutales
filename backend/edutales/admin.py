@@ -30,6 +30,7 @@ class ProgressAdmin(admin.ModelAdmin): pass
 
 class GameTypeAdmin(admin.ModelAdmin): pass
 
+class LanguageAdmin(admin.ModelAdmin): pass
 
 class RewardAdmin(admin.ModelAdmin): pass
 
@@ -47,3 +48,4 @@ admin.site.register(Child, ChildAdmin)
 admin.site.register(History, HistoryAdmin)
 admin.site.register(Quiz, QuizAdmin)
 admin.site.register(Answer, AnswerAdmin)
+admin.site.register(Language, LanguageAdmin)

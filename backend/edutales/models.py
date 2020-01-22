@@ -37,6 +37,12 @@ class Tale(models.Model):
 def __str__(self):
         return self.title
 
+class Language(models.Model):
+    german = models.TextField()
+
+    def __str__(self):
+        return self.german
+
 class History(models.Model):
     CHOICES = (
         ('w', 'witzig'),
@@ -116,6 +122,7 @@ class Parent(models.Model):
     day_of_birth = models.DateField(null=True)
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
     children = models.ManyToManyField('Child', blank = True , related_name= 'parent')
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, null= True)
 
 class Media(models.Model):
     original_file_name = models.TextField()

@@ -78,6 +78,8 @@ urlpatterns = [
     path('reward/<int:pk>/get', views.reward_form_get),
     path('reward/<int:pk>/update', views.reward_form_update),
     path('reward/<int:pk>/delete', views.reward_delete),
+    path('language/options', views.language_option_list),
+
 
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
