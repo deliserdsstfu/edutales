@@ -1,9 +1,16 @@
-<h1>{{taleQuizGroup.controls.title.value}}</h1>
-<p>{{taleQuizGroup.controls.text.value}}</p>
+<mat-card align="center" *ngIf="finished">
+  <mat-card-title>{{tale.title}}</mat-card-title>
+    <br>
+  <mat-card-content>{{tale.text}}</mat-card-content>
+  <br>
+  <mat-card-content>{{tale.quiz}}</mat-card-content>
+
+</mat-card>
 
 <!-- <table mat-table [dataSource]="tale">
  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef>Title</th>
+    <th mat-header-cell
+    *matHeaderCellDef>Title</th>
     <td mat-cell *matCellDef="let tale">{{tale.title}}</td>
   </ng-container>
   <ng-container matColumnDef="text">

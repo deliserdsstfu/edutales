@@ -65,6 +65,16 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='History',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('title', models.TextField()),
+                ('type', models.CharField(choices=[('w', 'witzig'), ('g', 'gruselig')], max_length=1, null=True)),
+                ('text', models.TextField()),
+                ('quiz', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Quiz')),
+            ],
+        ),
+        migrations.CreateModel(
             name='Tale',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),

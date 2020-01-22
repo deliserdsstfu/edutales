@@ -22,6 +22,7 @@
       <mat-option [value]="null">Unknown</mat-option>
       <mat-option [value]="quizOption.id" *ngFor="let quizOption of quizOptions">{{quizOption.question}}</mat-option>
     </mat-select>
+    <mat-hint align="end">The quiz of the tale</mat-hint>
   </mat-form-field>
   <br/>
   <mat-card-actions align="center">
@@ -31,4 +32,3 @@
     </button>
   </mat-card-actions>
 </form>
-

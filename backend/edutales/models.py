@@ -13,8 +13,8 @@ class Answer(models.Model):
 
 
 class Quiz(models.Model):
-    points = models.PositiveIntegerField()
     question = models.TextField()
+    points = models.PositiveIntegerField()
     answer = models.ManyToManyField('Answer', blank = True)
 
     def __str__(self):
@@ -22,6 +22,20 @@ class Quiz(models.Model):
 
 
 class Tale(models.Model):
+    CHOICES = (
+        ('w', 'witzig'),
+        ('g', 'gruselig')
+    )
+
+    title = models.TextField()
+    type = models.CharField(max_length=1, choices=CHOICES, null=True)
+    text = models.TextField()
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+class History(models.Model):
     CHOICES = (
         ('w', 'witzig'),
         ('g', 'gruselig')
@@ -50,11 +64,6 @@ class GameType(models.Model):
         return self.name
 
 
-class Progress(models.Model):
-    tale = models.ManyToManyField('Tale', blank = True)
-    points = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
-
-
 class Reward(models.Model):
     name = models.TextField()
     original_file_name = models.TextField()
@@ -63,6 +72,13 @@ class Reward(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Progress(models.Model):
+    points = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.points
 
 
 class Child(models.Model):
@@ -91,6 +107,8 @@ class Parent(models.Model):
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
     children = models.ManyToManyField('Child', blank = True , related_name= 'parent')
 
+    def __str__(self):
+        return self.first_name+" "+self.last_name
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -101,5 +119,3 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.parent.save()
-
-

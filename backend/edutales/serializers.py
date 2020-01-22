@@ -1,4 +1,8 @@
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import serializers
+from rest_framework.decorators import api_view
+from rest_framework.parsers import JSONParser
+
 from .models import *
 
 
@@ -43,12 +47,11 @@ class ChildParentRelation(serializers.ModelSerializer):
 
 
 class ParentListSerializer(serializers.ModelSerializer):
-
     children = ChildParentRelation(many = True)
+
     class Meta:
         model = Parent
-        fields = '__all__'
-
+        fields = ['first_name', 'last_name', 'user', 'day_of_birth', 'region', 'children']
 
 
 class ParentFormSerializer(serializers.ModelSerializer):
@@ -69,18 +72,33 @@ class ParentOptionSerializer(serializers.ModelSerializer):
         return ' '.join(filter(None, (obj.first_name, obj.last_name)))
 
 
+class QuizAnswerRelation(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = ['id','answer', 'isTrue']
+
+
+class TaleQuizRelation(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
+        fields = '__all__'
+
+
 class TaleListSerializer(serializers.ModelSerializer):
 
+    quiz = TaleQuizRelation()
     class Meta:
         model = Tale
         fields = '__all__'
+
 
 class AnswerListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
         fields = '__all__'
-
 
 
 class TaleFormSerializer(serializers.ModelSerializer):
@@ -104,6 +122,26 @@ class TaleOptionSerializer(serializers.ModelSerializer):
         fields = ['id', 'title']
 
 
+class HistoryListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = History
+        fields = '__all__'
+
+
+class HistoryFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = History
+        fields = '__all__'
+
+class HistoryOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = History
+        fields = ['title','id']
+
+
 class RewardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reward
@@ -116,13 +154,11 @@ class ProgressListSerializer(serializers.ModelSerializer):
         model = Progress
         fields = '__all__'
 
-
 class ProgressFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Progress
         fields = '__all__'
-
 
 class ProgressOptionSerializer(serializers.ModelSerializer):
 
@@ -133,6 +169,7 @@ class ProgressOptionSerializer(serializers.ModelSerializer):
 
 class QuizListSerializer(serializers.ModelSerializer):
 
+    answer = QuizAnswerRelation(many=True)
     class Meta:
         model = Quiz
         fields = '__all__'
@@ -169,14 +206,24 @@ class GameOptionSerializer(serializers.ModelSerializer):
 class TaleQuizSerializer(serializers.ModelSerializer):
 
     quiz_question = serializers.SerializerMethodField()
-    answer_answer = serializers.SerializerMethodField()
 
     class Meta:
         model = Tale
-        fields = ['id','title', 'text','quiz_question', 'answer_answer']
+        fields = ['id','title', 'text','quiz_question']
 
     def get_quiz_question(self, obj):
         return obj.quiz.question if obj.quiz else ''
 
-    def get_answer_answer(self, obj):
-        return obj.answer.answer if obj.answer else ''
+
+class RewardListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Reward
+        fields = '__all__'
+
+
+class RewardFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Reward
+        fields = '__all__'
