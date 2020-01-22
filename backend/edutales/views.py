@@ -42,6 +42,13 @@ def history_option_list(request):
     serializer = HistoryOptionSerializer(histories, many=True)
     return Response(serializer.data)
 
+@swagger_auto_schema(method='GET', responses={200: TaleOptionSerializer(many=True)})
+@api_view(['GET'])
+def tale_option_list(request):
+    tales = Tale.objects.all()
+    serializer = TaleOptionSerializer(tales, many=True)
+    return Response(serializer.data)
+
 
 @swagger_auto_schema(method='GET', responses={200: GameTypeOptionSerializer(many=True)})
 @api_view(['GET'])

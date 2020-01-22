@@ -21,6 +21,7 @@ urlpatterns = [
     path('tale/<int:pk>/get', views.tale_form_get),
     path('tale/<int:pk>/update', views.tale_form_update),
     path('tale/<int:pk>/delete', views.tale_delete),
+    path('tale/options', views.tale_option_list),
     path('history/list', views.history_list),
     path('history/create', views.history_form_create),
     path('history/options', views.history_option_list),

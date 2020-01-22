@@ -15,6 +15,9 @@ import * as jsPDF from 'jspdf';
 export class RewardFormComponent implements OnInit {
 
   rewardFormGroup;
+  historyOptions;
+  taleOptions;
+
   // @ts-ignore
   @ViewChild('content') content: ElementRef;
 
@@ -24,13 +27,16 @@ export class RewardFormComponent implements OnInit {
 
   ngOnInit() {
     const data = this.route.snapshot.data;
+    this.historyOptions = data.historyOptions;
+    this.taleOptions = data.taleOptions;
+
 
     this.rewardFormGroup = this.fb.group({
       id: [null],
       name: ['', [Validators.required, this.badWordValidator()]],
-      original_file_name: [null],
-      content_type: [null],
-      size: [1000]
+      history: [null],
+      tale: [null]
+
     });
 
     if (data.reward) {

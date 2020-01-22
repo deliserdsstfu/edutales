@@ -79,12 +79,6 @@ class TaleListSerializer(serializers.ModelSerializer):
         model = Tale
         fields = '__all__'
 
-class AnswerListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Answer
-        fields = '__all__'
-
 
 
 class TaleFormSerializer(serializers.ModelSerializer):
@@ -93,6 +87,11 @@ class TaleFormSerializer(serializers.ModelSerializer):
         model = Tale
         fields = '__all__'
 
+class TaleOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tale
+        fields = '__all__'
 
 class AnswerFormSerializer(serializers.ModelSerializer):
 
@@ -100,12 +99,12 @@ class AnswerFormSerializer(serializers.ModelSerializer):
         model = Answer
         fields = '__all__'
 
-
-class TaleOptionSerializer(serializers.ModelSerializer):
+class AnswerListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Tale
-        fields = ['id', 'title']
+        model = Answer
+        fields = '__all__'
+
 
 class HistoryListSerializer(serializers.ModelSerializer):
 
