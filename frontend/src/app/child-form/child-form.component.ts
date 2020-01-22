@@ -89,22 +89,4 @@ export class ChildFormComponent implements OnInit {
         );
     };
   }
-
-  /*userNameValidator(control: AbstractControl): any {
-    this.childService.getChildren().subscribe((res: any[]) => {
-      if (res.indexOf(control.value) !== -1) {
-        control.get('user_name').setErrors({childAlreadyExists: true});
-      }
-    });
-  }*/
-
-  /*passwordMatchValidator(control: AbstractControl) {
-    const password: string = control.get('password').value; // get password from our password form control
-    const confirmPassword: string = control.get('password_check').value; // get password from our confirmPassword form control
-    // compare is the password math
-    if (password !== confirmPassword) {
-      // if they don't match, set an error in our confirmPassword form control
-      control.get('password_check').setErrors({pw_check: true});
-    }
-  }*/
 }

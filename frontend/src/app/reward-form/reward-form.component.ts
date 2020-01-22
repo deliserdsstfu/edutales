@@ -1,10 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AbstractControl, FormBuilder, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RewardService} from '../service/reward.service';
 
 import * as Filter from 'bad-words';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-reward-form',
@@ -17,8 +19,8 @@ export class RewardFormComponent implements OnInit {
   // @ts-ignore
   @ViewChild('content') content: ElementRef;
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute, public rewardService: RewardService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router,
+              private route: ActivatedRoute, public rewardService: RewardService) {
   }
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class RewardFormComponent implements OnInit {
 
     this.rewardFormGroup = this.fb.group({
       id: [null],
-      name: ['', [Validators.required, this.badWordValidator()]],
+      name: ['', [Validators.required, this.badWordValidator()], [this.rewardNameValidator()]],
       original_file_name: [null],
       content_type: [null],
       size: [1000]
@@ -57,6 +59,28 @@ export class RewardFormComponent implements OnInit {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const forbidden = new Filter();
       return forbidden.isProfane(control.value) ? {badWord: {value: control.value}} : null;
+    };
+  }
+
+  rewardNameValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+      return this.rewardService.getRewards()
+        .pipe(
+          map((reward: any[]) => {
+            const currentId = this.rewardFormGroup.controls.id.value;
+            const currentName = control.value;
+            const rewardWithSameName = reward.find((r) => {
+              return r.id !== currentId && r.name === currentName;
+            });
+            if (rewardWithSameName) {
+              return {
+                rewardAlreadyExists: true
+              };
+            } else {
+              return null;
+            }
+          })
+        );
     };
   }
 }
