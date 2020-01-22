@@ -47,7 +47,7 @@ export class TaleListComponent implements OnInit {
   }
 
   private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+    const filterValue = value.toString().toLowerCase();
 
     return this.tales.filter(option => option.title.toLowerCase().includes(filterValue));
   }
