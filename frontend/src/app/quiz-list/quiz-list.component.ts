@@ -15,11 +15,11 @@ export class QuizListComponent implements OnInit {
   quizzes: any[];
   displayedColumns = ['question', 'answer', 'points', 'id']
 
-  constructor(private http: HttpClient, private quizService: QuizService, answerService: AnswerService) { }
+  constructor(private http: HttpClient, private quizService: QuizService, private answerService: AnswerService) { }
 
   ngOnInit() {
     this.quizService.getQuizzes()
-      .subscribe((response: any[]) => {
+      .subscribe((response: any) => {
         this.quizzes = response;
       });
   }
