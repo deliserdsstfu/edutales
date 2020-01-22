@@ -69,8 +69,8 @@ export class TaleFormComponent implements OnInit {
           map((tale: any[]) => {
             const currentId = this.taleFormGroup.controls.id.value;
             const currentTitle = control.value;
-            const taleWithSameTitle = tale.find((c) => {
-              return c.id !== currentId && c.title === currentTitle;
+            const taleWithSameTitle = tale.find((t) => {
+              return t.id !== currentId && t.title === currentTitle;
             });
             if (taleWithSameTitle) {
               return {
