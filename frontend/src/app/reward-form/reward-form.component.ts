@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RewardService} from '../service/reward.service';
 
-import Filter from 'bad-words';
+import * as Filter from 'bad-words';
 
 @Component({
   selector: 'app-reward-form',
@@ -53,17 +53,10 @@ export class RewardFormComponent implements OnInit {
     }
   }
 
-  /*badWordValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const forbidden = /arsch/.test(control.value);
-      const forbidden2 = /idiot/.test(control.value);
-      return forbidden || forbidden2 ? {badWord: {value: control.value}} : null;
-    };
-  }*/
   badWordValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const forbidden = new Filter();
-      return forbidden ? {badWord: {value: control.value}} : null;
+      return forbidden.isProfane(control.value) ? {badWord: {value: control.value}} : null;
     };
   }
 }
