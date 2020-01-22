@@ -9,6 +9,7 @@ import { ParentListComponent } from './parent-list/parent-list.component';
 import { ParentFormComponent } from './parent-form/parent-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  MatAutocompleteModule,
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule,
@@ -39,7 +40,6 @@ import { QuizListComponent } from './quiz-list/quiz-list.component';
 import {TaleQuizComponent} from './tale-quiz/tale-quiz.component';
 import { AnswerFormComponent } from './answer-form/answer-form.component';
 import { AnswerListComponent } from './answer-list/answer-list.component';
-
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -97,6 +97,7 @@ export function tokenGetter() {
     }),
     MatSliderModule,
     MatSnackBarModule,
+    MatAutocompleteModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

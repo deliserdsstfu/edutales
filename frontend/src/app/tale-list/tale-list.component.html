@@ -1,3 +1,11 @@
+<mat-form-field class="example-full-width">
+  <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getTale($event)">
+    <mat-option *ngFor="let tale of filteredOptions | async" [value]="tale.id">
+      {{tale.title}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
 <table mat-table [dataSource]="tales">
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Title</th>
