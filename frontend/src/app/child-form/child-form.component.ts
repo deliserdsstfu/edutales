@@ -1,11 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ChildService} from '../service/child.service';
 import {GameService} from '../service/game.service';
 import {ParentService} from '../service/parent.service';
 import {UserService} from '../service/user.service';
+
+import * as Filter from 'bad-words';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-child-form',
@@ -16,8 +20,9 @@ export class ChildFormComponent implements OnInit {
 
   childFormGroup;
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute, public childService: ChildService, public gameService: GameService, private parentService: ParentService, private userService: UserService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute,
+              public childService: ChildService, public gameService: GameService, private parentService: ParentService,
+              private userService: UserService) {
   }
 
 
@@ -25,7 +30,7 @@ export class ChildFormComponent implements OnInit {
     const data = this.route.snapshot.data;
     this.childFormGroup = this.fb.group({
       id: [null],
-      user_name: [null, [Validators.required]],
+      user_name: [null, [Validators.required, this.badWordValidator()], [this.userNameValidator()]],
       year_of_birth: [null, [Validators.required, Validators.max(2020), Validators.min(2000)]],
       game: [null],
       progress: [null],
@@ -55,4 +60,51 @@ export class ChildFormComponent implements OnInit {
 
     }
   }
+
+  badWordValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const forbidden = new Filter();
+      return forbidden.isProfane(control.value) ? {badWord: {value: control.value}} : null;
+    };
+  }
+
+  userNameValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+      return this.childService.getChildren()
+        .pipe(
+          map((child: any[]) => {
+            const currentId = this.childFormGroup.controls.id.value;
+            const currentUserName = control.value;
+            const childWithSameUserName = child.find((c) => {
+              return c.id !== currentId && c.user_name === currentUserName;
+            });
+            if (childWithSameUserName) {
+              return {
+                childAlreadyExists: true
+              };
+            } else {
+              return null;
+            }
+          })
+        );
+    };
+  }
+
+  /*userNameValidator(control: AbstractControl): any {
+    this.childService.getChildren().subscribe((res: any[]) => {
+      if (res.indexOf(control.value) !== -1) {
+        control.get('user_name').setErrors({childAlreadyExists: true});
+      }
+    });
+  }*/
+
+  /*passwordMatchValidator(control: AbstractControl) {
+    const password: string = control.get('password').value; // get password from our password form control
+    const confirmPassword: string = control.get('password_check').value; // get password from our confirmPassword form control
+    // compare is the password math
+    if (password !== confirmPassword) {
+      // if they don't match, set an error in our confirmPassword form control
+      control.get('password_check').setErrors({pw_check: true});
+    }
+  }*/
 }

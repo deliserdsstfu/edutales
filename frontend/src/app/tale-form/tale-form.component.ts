@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TaleService} from '../service/tale.service';
 import {TypeService} from '../service/type.service';
 
+import * as Filter from 'bad-words';
+
 @Component({
   selector: 'app-tale-form',
   templateUrl: './tale-form.component.html',
@@ -25,9 +27,9 @@ export class TaleFormComponent implements OnInit {
 
     this.taleFormGroup = this.fb.group({
       id: [null],
-      title: ['', Validators.required],
+      title: ['', [Validators.required, this.badWordValidator()]],
       type: [null],
-      text: ['', Validators.required],
+      text: ['', [Validators.required, this.badWordValidator()]],
       quiz: [null]
     });
 
@@ -49,5 +51,12 @@ export class TaleFormComponent implements OnInit {
           this.router.navigate(['/tale-form/' + response.id]);
         });
     }
+  }
+
+  badWordValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const forbidden = new Filter();
+      return forbidden.isProfane(control.value) ? {badWord: {value: control.value}} : null;
+    };
   }
 }
