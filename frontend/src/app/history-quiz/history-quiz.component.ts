@@ -36,10 +36,4 @@ export class HistoryQuizComponent implements OnInit {
     this.data = this.route.snapshot.data.taleQuizResolver;
 
   }
-
-  /*  isRight() {
-      if (this.quiz.answer.isTrue)  {
-
-      }
-    }*/
 }
