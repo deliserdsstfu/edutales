@@ -96,13 +96,6 @@ class TaleFormSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AnswerFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Answer
-        fields = '__all__'
-
-
 class TaleOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -196,13 +189,6 @@ class QuizOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = '__all__'
-
-
-class AnswerOptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Answer
         fields = '__all__'
 
 

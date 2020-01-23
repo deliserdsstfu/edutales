@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {QuizService} from '../service/quiz.service';
-import {AnswerService} from '../service/answer.service';
 
 @Component({
   selector: 'app-quiz-form',
@@ -27,7 +26,7 @@ export class QuizFormComponent implements OnInit {
       'id': [null],
       'question': ['', Validators.required],
       'points': [null, Validators.required],
-      'answer': [[]]
+      'answer': [[]],
       'isTrue': false
     });
 
