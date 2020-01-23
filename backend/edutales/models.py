@@ -12,13 +12,12 @@ class Quiz(models.Model):
     answer = models.TextField()
     isTrue = models.BooleanField()
 
+    class Meta:
+        verbose_name = 'Quiz'
+        verbose_name_plural = 'Quizzes'
+
     def __str__(self):
             return self.question
-
-   # def get_quiz_answers(self):
-        #quiz_answers =  Quiz.objects.filter(answer=self)
-        #return quiz_answers
-
 
 
 class Tale(models.Model):
@@ -31,6 +30,32 @@ class Tale(models.Model):
     type = models.CharField(max_length=1, choices=CHOICES, null=True)
     text = models.TextField()
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+    pictures = models.ManyToManyField('Media', blank=True)
+
+
+def __str__(self):
+        return self.title
+
+class Language(models.Model):
+    german = models.TextField()
+
+    def __str__(self):
+        return self.german
+
+class History(models.Model):
+    CHOICES = (
+        ('w', 'witzig'),
+        ('g', 'gruselig')
+    )
+
+    title = models.TextField()
+    type = models.CharField(max_length=1, choices=CHOICES, null=True)
+    text = models.TextField()
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        verbose_name = 'History'
+        verbose_name_plural = 'Histories'
 
     def __str__(self):
         return self.title
@@ -49,8 +74,6 @@ class History(models.Model):
 
     def __str__(self):
         return self.title
-
-
 
 
 class Region(models.Model):
@@ -75,9 +98,9 @@ class Progress(models.Model):
 
 class Reward(models.Model):
     name = models.TextField()
-    original_file_name = models.TextField()
-    content_type = models.TextField()
-    size = models.PositiveIntegerField()
+    history = models.ForeignKey(History, on_delete=models.CASCADE, null=True)
+    tale = models.ForeignKey(Tale, on_delete=models.CASCADE, null=True)
+
 
     def __str__(self):
         return self.name
@@ -97,6 +120,10 @@ class Child(models.Model):
     progress = models.ForeignKey(Progress, on_delete=models.CASCADE, null=True)
     reward = models.ForeignKey(Reward, on_delete=models.CASCADE, null=True)
 
+    class Meta:
+        verbose_name = 'Child'
+        verbose_name_plural = 'Children'
+
     def __str__(self):
         return self.user_name
 
@@ -108,7 +135,12 @@ class Parent(models.Model):
     day_of_birth = models.DateField(null=True)
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
     children = models.ManyToManyField('Child', blank = True , related_name= 'parent')
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, null= True)
 
+class Media(models.Model):
+    original_file_name = models.TextField()
+    content_type = models.TextField()
+    size = models.PositiveIntegerField()
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

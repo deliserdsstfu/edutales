@@ -8,13 +8,7 @@
     <input matInput type="number" placeholder="Points" formControlName="points">
     <mat-hint align="end">The points for the question</mat-hint>
   </mat-form-field>
-  <mat-form-field>
-    <input matInput type="text" placeholder="Answer" formControlName="answer">
-    <mat-hint align="end">The  answer</mat-hint>
-  </mat-form-field>
-  <mat-checkbox formControlName="isTrue">
-
-  </mat-checkbox>
+  <mat-checkbox formControlName="isTrue">Is True?</mat-checkbox>
   <br>
   <mat-card-actions align="center">
     <button mat-raised-button color="primary" [disabled]="!quizFormGroup.valid" (click)="createQuiz()">

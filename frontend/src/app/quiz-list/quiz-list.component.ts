@@ -3,8 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {ChildService} from '../service/child.service';
 import {QuizService} from '../service/quiz.service';
 
-
-
 @Component({
   selector: 'app-quiz-list',
   templateUrl: './quiz-list.component.html',
@@ -19,7 +17,7 @@ export class QuizListComponent implements OnInit {
 
   ngOnInit() {
     this.quizService.getQuizzes()
-      .subscribe((response: any) => {
+      .subscribe((response: any[]) => {
         this.quizzes = response;
       });
   }

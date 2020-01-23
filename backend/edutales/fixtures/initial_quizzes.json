@@ -5,7 +5,8 @@
     "fields": {
       "points": 10,
       "question": "w",
-      "answer": 1
+      "answer": "test",
+      "isTrue": false
     }
   },
   {
@@ -14,7 +15,8 @@
     "fields": {
       "points": 10,
       "question": "w",
-      "answer": 1
+      "answer": "test",
+      "isTrue": false
     }
   },
   {
@@ -23,7 +25,8 @@
     "fields": {
       "points": 10,
       "question": "w",
-      "answer": 2
+      "answer": "test",
+      "isTrue": true
     }
   }
 ]
