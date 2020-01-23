@@ -12,7 +12,7 @@ import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule,
-  MatMenuModule, MatNativeDateModule, MatRadioModule,
+  MatMenuModule, MatNativeDateModule, MatProgressBarModule, MatRadioModule,
   MatSelectModule, MatSliderModule,
   MatTableModule,
   MatToolbarModule
@@ -99,6 +99,7 @@ export function tokenGetter() {
     MatSliderModule,
     MatSnackBarModule,
     MatRadioModule,
+    MatProgressBarModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

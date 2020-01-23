@@ -4,6 +4,8 @@ from django.urls import path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework_jwt.views import obtain_jwt_token
+
+from edutales.views import FileUploadView
 from . import views
 
 schema_view = get_schema_view(
@@ -53,17 +55,9 @@ urlpatterns = [
     path('parent/<int:pk>/update', views.parent_form_update),
     path('parent/<int:pk>/delete', views.parent_delete),
     path('parent/options', views.parent_option_list),
-    #path('reward/<int:pk>/get', views.reward_get),
-    #url(r'^media$', FileUploadView.as_view()),
     path('media/<int:pk>', views.media_download),
     path('media/<int:pk>/get', views.media_get),
-    url(r'^api-token-auth/', obtain_jwt_token),
-    path ('tale-quiz/<int:pk>/get', views.tale_quiz_get),
-
-
-    url(r'^api-token-auth/', obtain_jwt_token),
-        #url(r'^reward$', FileUploadView.as_view()),
-        #path('reward/<int:pk>', views.reward_download),
+    path('tale-quiz/<int:pk>/get', views.tale_quiz_get),
     path('reward/list', views.reward_list),
     path('reward/create', views.reward_form_create),
     path('reward/<int:pk>/get', views.reward_form_get),
@@ -71,7 +65,8 @@ urlpatterns = [
     path('reward/<int:pk>/delete', views.reward_delete),
     path('language/options', views.language_option_list),
 
-
+    url(r'^media$', FileUploadView.as_view()),
+    url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),

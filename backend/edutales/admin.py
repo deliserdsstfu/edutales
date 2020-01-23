@@ -24,9 +24,12 @@ class ProgressAdmin(admin.ModelAdmin): pass
 
 class GameTypeAdmin(admin.ModelAdmin): pass
 
+
 class LanguageAdmin(admin.ModelAdmin): pass
 
+
 class RewardAdmin(admin.ModelAdmin): pass
+
 
 class HistoryAdmin(admin.ModelAdmin): pass
 

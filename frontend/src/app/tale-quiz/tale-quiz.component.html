@@ -4,7 +4,6 @@
   <mat-card-content>{{tale.text}}</mat-card-content>
   <br>
   <mat-card-title>{{data.quiz_question}}</mat-card-title>
-</mat-card>
 <br>
 <form [formGroup]="taleQuizGroup" (ngSubmit)="onSubmit()" align="center">
   <div>
@@ -23,3 +22,7 @@
 <br>
   <button type="submit">Submit</button>
 </form>
+</mat-card>
+
+<button *ngIf="isSubmitted" mat-button [routerLink]="'/world-map/' + childId" color="accent">Zurück zur Karte</button>
+

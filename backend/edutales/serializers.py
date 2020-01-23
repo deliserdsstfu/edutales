@@ -194,8 +194,6 @@ class QuizOptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
 class GameOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -203,21 +201,22 @@ class GameOptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class TaleQuizSerializer(serializers.ModelSerializer):
 
     quiz_question = serializers.SerializerMethodField()
     quiz_true = serializers.SerializerMethodField()
+    quiz_points = serializers.SerializerMethodField()
 
     class Meta:
         model = Tale
-        fields = ['id','title', 'text','quiz_question', 'quiz_true']
+        fields = ['id', 'title', 'text', 'quiz_question', 'quiz_true', 'quiz_points']
 
     def get_quiz_question(self, obj):
         return obj.quiz.question if obj.quiz else ''
     def get_quiz_true(self, obj):
         return obj.quiz.isTrue if obj.quiz else ''
-
+    def get_quiz_points(self, obj):
+        return obj.quiz.points if obj.quiz else ''
 
 
 class RewardListSerializer(serializers.ModelSerializer):
@@ -240,12 +239,12 @@ class RewardListSerializer(serializers.ModelSerializer):
         #return obj.tale.pictures if obj.tale else ''
 
 
-
 class RewardFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reward
         fields = '__all__'
+
 
 class MediaSerializer(serializers.ModelSerializer):
     class Meta:

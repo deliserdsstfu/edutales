@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ParentService} from '../service/parent.service';
 import {UserService} from '../service/user.service';
+import {ChildService} from '../service/child.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-parent-list',
@@ -13,7 +15,7 @@ export class ParentListComponent implements OnInit {
   parents: any[] = [];
   displayedColumns = ['first_name', 'last_name', 'language', 'day_of_birth', 'id'];
 
-  constructor(private http: HttpClient, private parentService: ParentService, private userService: UserService) { }
+  constructor(private http: HttpClient, private router: Router, private parentService: ParentService, private userService: UserService, private childService: ChildService) { }
 
   ngOnInit() {
     const currId = this.userService.getCurrentId();
@@ -24,11 +26,16 @@ export class ParentListComponent implements OnInit {
       });
   }
 
+/*
   deleteParent(parent) {
+    const currId = this.userService.getCurrentId();
+    // tslint:disable-next-line:no-unused-expression
     this.parentService.deleteParent(parent)
       .subscribe(() => {
-        this.ngOnInit();
+            this.router.navigate(['/login']);
       });
   }
+*/
+
 
 }

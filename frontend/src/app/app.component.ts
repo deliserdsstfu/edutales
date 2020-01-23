@@ -12,7 +12,6 @@ export class AppComponent {
   isLoggedIn = false;
   title = 'frontend';
 
-
   constructor(private userService: UserService, public location: Location) {
   }
 
@@ -28,7 +27,7 @@ export class AppComponent {
     if (titlee.charAt(0) === '#') {
       titlee = titlee.slice( 1 );
     }
-    if ( titlee === '/world-map' ) {
+    if ( titlee.includes('/world-map/')) {
       return true;
     } else {
       return false;
@@ -41,6 +40,20 @@ export class AppComponent {
       titlee = titlee.slice( 1 );
     }
     if ( titlee.includes('/tale-quiz/')) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+
+  isLogin() {
+    let titlee = this.location.prepareExternalUrl(this.location.path());
+    if (titlee.charAt(0) === '#') {
+      titlee = titlee.slice( 1 );
+    }
+    if ( titlee.includes('login')) {
       return true;
     } else {
       return false;

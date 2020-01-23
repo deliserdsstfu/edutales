@@ -51,7 +51,6 @@ export class ChildFormComponent implements OnInit {
         .subscribe((response: any) => {
           this.router.navigate(['/child-form/' + response.id]);
         });
-
     }
   }
 

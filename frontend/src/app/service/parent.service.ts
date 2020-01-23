@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ParentService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   getParents() {
     return this.http.get('/api/parent/list');

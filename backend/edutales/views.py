@@ -472,6 +472,33 @@ def history_list(request):
     return Response(serializer.data)
 
 
+class FileUploadView(views.APIView):
+    parser_classes = [MultiPartParser]
+
+    def post(self, request, format=None):
+        file = request.FILES['file']
+        file_input = {
+            'original_file_name': file.name,
+            'content_type': file.content_type,
+            'size': file.size,
+        }
+        serializer = MediaSerializer(data=file_input)
+        if serializer.is_valid():
+            serializer.save()
+            default_storage.save('media/' + str(serializer.data['id']), ContentFile(file.read()))
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+
+def media_download(request, pk):
+    media = Media.objects.get(pk=pk)
+    data = default_storage.open('media/' + str(pk)).read()
+    content_type = media.content_type
+    response = HttpResponse(data, content_type=content_type)
+    original_file_name =media.original_file_name
+    response['Content-Disposition'] = 'inline; filename=' + original_file_name
+    return response
+
+
 @swagger_auto_schema(method='GET', responses={200: MediaSerializer()})
 @api_view(['GET'])
 def media_get(request, pk):
@@ -483,14 +510,6 @@ def media_get(request, pk):
     serializer = MediaSerializer(tale)
     return Response(serializer.data)
 
-def media_download(request, pk):
-    media = Media.objects.get(pk=pk)
-    data = default_storage.open('media/' + str(pk)).read()
-    content_type = media.content_type
-    response = HttpResponse(data, content_type=content_type)
-    original_file_name =media.original_file_name
-    response['Content-Disposition'] = 'inline; filename=' + original_file_name
-    return response
 
 @swagger_auto_schema(method='POST', request_body=HistoryFormSerializer, responses={200: HistoryFormSerializer()})
 @api_view(['POST'])
