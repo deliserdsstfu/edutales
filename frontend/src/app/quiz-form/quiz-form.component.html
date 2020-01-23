@@ -9,13 +9,12 @@
     <mat-hint align="end">The points for the question</mat-hint>
   </mat-form-field>
   <mat-form-field>
-    <mat-select placeholder="Answer"
-                formControlName="answer" multiple>
-      <mat-option [value]="null">Unknown</mat-option>
-      <mat-option [value]="answerOption.id" *ngFor="let answerOption of answerOptions">{{answerOption.answer}}</mat-option>
-    </mat-select>
-    <mat-hint align="end">The caregivers of the animal</mat-hint>
+    <input matInput type="text" placeholder="Answer" formControlName="answer">
+    <mat-hint align="end">The  answer</mat-hint>
   </mat-form-field>
+  <mat-checkbox formControlName="isTrue">
+
+  </mat-checkbox>
   <br>
   <mat-card-actions align="center">
     <button mat-raised-button color="primary" [disabled]="!quizFormGroup.valid" (click)="createQuiz()">

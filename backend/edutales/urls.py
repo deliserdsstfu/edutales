@@ -34,10 +34,7 @@ urlpatterns = [
     path('quiz/<int:pk>/delete', views.quiz_delete),
     path('game/list', views.gametype_option_list),
     path('game/options', views.gametype_option_list),
-    path('answer/options', views.answer_option_list),
-    path('answer/list', views.answer_list),
-    path('answer/create', views.answer_form_create),
-    path('answer/<int:pk>/get', views.answer_form_get),
+
 
    # path('answer/<int:pk>/update', views.tale_form_update),
    # path('answer/<int:pk>/delete', views.tale_delete),
@@ -61,7 +58,7 @@ urlpatterns = [
     path('parent/<int:pk>/delete', views.parent_delete),
     path('parent/options', views.parent_option_list),
     #path('reward/<int:pk>/get', views.reward_get),
-    path ('tale-quiz/<int:pk>/detail', views.tale_quiz_get),
+    path ('tale-quiz/<int:pk>/get', views.tale_quiz_get),
 
 
     url(r'^api-token-auth/', obtain_jwt_token),

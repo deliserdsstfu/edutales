@@ -21,14 +21,6 @@
   <app-date placeholder="Entry date" formControlName="day_of_birth" hint="The entry date of the profile"
             [required]="true"></app-date>
 
-  <mat-form-field>
-    <mat-select placeholder="Children"
-                formControlName="children">
-      <mat-option [value]="null">Unknown</mat-option>
-      <mat-option [value]="childrenOption.id" *ngFor="let childrenOption of childrenOptions">{{childrenOption.user_name}}</mat-option>
-    </mat-select>
-    <mat-hint align="end">Your child</mat-hint>
-  </mat-form-field>
 
 
 

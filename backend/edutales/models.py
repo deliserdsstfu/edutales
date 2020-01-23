@@ -4,21 +4,21 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-class Answer(models.Model):
-    answer = models.TextField()
-    isTrue = models.BooleanField()
-
-    def __str__(self):
-        return self.answer
 
 
 class Quiz(models.Model):
     points = models.PositiveIntegerField()
     question = models.TextField()
-    answer = models.ManyToManyField('Answer', blank = True)
+    answer = models.TextField()
+    isTrue = models.BooleanField()
 
     def __str__(self):
             return self.question
+
+   # def get_quiz_answers(self):
+        #quiz_answers =  Quiz.objects.filter(answer=self)
+        #return quiz_answers
+
 
 
 class Tale(models.Model):
@@ -34,6 +34,7 @@ class Tale(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class History(models.Model):
     CHOICES = (
