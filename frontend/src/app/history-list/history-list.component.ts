@@ -28,6 +28,4 @@ export class HistoryListComponent implements OnInit {
         this.ngOnInit();
       });
   }
-
-
 }

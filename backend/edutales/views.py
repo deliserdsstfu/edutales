@@ -28,11 +28,12 @@ def quiz_option_list(request):
     return Response(serializer.data)
 
 
-@swagger_auto_schema(method='GET', responses={200: AnswerOptionSerializer(many=True)})
+
+@swagger_auto_schema(method='GET', responses={200: HistoryOptionSerializer(many=True)})
 @api_view(['GET'])
-def answer_option_list(request):
-    ans = Answer.objects.all()
-    serializer = AnswerOptionSerializer(ans, many=True)
+def history_option_list(request):
+    histories = History.objects.all()
+    serializer = HistoryOptionSerializer(histories, many=True)
     return Response(serializer.data)
 
 @swagger_auto_schema(method='GET', responses={200: HistoryOptionSerializer(many=True)})
@@ -73,13 +74,7 @@ def quiz_list(request):
     serializer = QuizListSerializer(quizs, many=True)
     return Response(serializer.data)
 
-@swagger_auto_schema(method='GET', responses={200: AnswerListSerializer(many=True)})
-@api_view(['GET'])
-@permission_required('edutales.view_answer', raise_exception=True)
-def answer_list(request):
-    ans = Answer.objects.all()
-    serializer = AnswerListSerializer(ans, many=True)
-    return Response(serializer.data)
+
 
 
 @swagger_auto_schema(method='POST', request_body=QuizFormSerializer, responses={200: QuizFormSerializer()})
@@ -93,15 +88,6 @@ def quiz_form_create(request):
     return Response(serializer.errors, status=400)
 
 
-@swagger_auto_schema(method='POST', request_body=AnswerFormSerializer, responses={200: AnswerFormSerializer()})
-@api_view(['POST'])
-@permission_required('edutales.add_answer', raise_exception=True)
-def answer_form_create(request):
-    serializer = AnswerFormSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=201)
-    return Response(serializer.errors, status=400)
 
 
 @swagger_auto_schema(method='PUT', request_body=QuizFormSerializer, responses={200: QuizFormSerializer()})
@@ -144,17 +130,7 @@ def quiz_form_get(request, pk):
     return Response(serializer.data)
 
 
-@swagger_auto_schema(method='GET', responses={200: AnswerFormSerializer()})
-@api_view(['GET'])
-@permission_required('edutales.view_answer', raise_exception=True)
-def answer_form_get(request, pk):
-    try:
-        ans = Answer.objects.get(pk=pk)
-    except Answer.DoesNotExist:
-        return Response({'error': 'Answer does not exist.'}, status=404)
 
-    serializer = AnswerFormSerializer(ans)
-    return Response(serializer.data)
 
 
 @swagger_auto_schema(method='GET', responses={200: TaleListSerializer(many=True)})
@@ -212,63 +188,6 @@ def tale_form_get(request, pk):
         return Response({'error': 'Tale does not exist.'}, status=404)
 
     serializer = TaleFormSerializer(tale)
-    return Response(serializer.data)
-
-@swagger_auto_schema(method='GET', responses={200: DestinationListSerializer(many=True)})
-@api_view(['GET'])
-@permission_required('edutales.view_destination', raise_exception=True)
-def destination_list(request):
-    destinations = Destination.objects.all()
-    serializer = DestinationListSerializer(destinations, many=True)
-    return Response(serializer.data)
-
-@swagger_auto_schema(method='POST', request_body=DestinationFormSerializer, responses={200: DestinationFormSerializer()})
-@api_view(['POST'])
-@permission_required('edutales.add_destination', raise_exception=True)
-def destination_form_create(request):
-    serializer = DestinationFormSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=201)
-    return Response(serializer.errors, status=400)
-
-
-@swagger_auto_schema(method='PUT', request_body=DestinationFormSerializer, responses={200: DestinationFormSerializer()})
-@api_view(['PUT'])
-@permission_required('edutales.change_destination', raise_exception=True)
-def destination_form_update(request, pk):
-    try:
-        destination = Destination.objects.get(pk=pk)
-    except Destination.DoesNotExist:
-        return Response({'error': 'Destination does not exist.'}, status=404)
-
-    serializer = DestinationFormSerializer(destination, data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors, status=400)
-
-@api_view(['DELETE'])
-@permission_required('edutales.delete_destination', raise_exception=True)
-def destination_delete(request, pk):
-    try:
-        destination = Destination.objects.get(pk=pk)
-    except Destination.DoesNotExist:
-        return Response({'error': 'Destination does not exist.'}, status=404)
-    destination.delete()
-    return Response(status=204)
-
-
-@swagger_auto_schema(method='GET', responses={200: DestinationFormSerializer()})
-@api_view(['GET'])
-@permission_required('edutales.view_destination', raise_exception=True)
-def destination_form_get(request, pk):
-    try:
-        destination = Destination.objects.get(pk=pk)
-    except Destination.DoesNotExist:
-        return Response({'error': 'Destination does not exist.'}, status=404)
-
-    serializer = DestinationFormSerializer(destination)
     return Response(serializer.data)
 
 
@@ -474,44 +393,6 @@ def parent_form_get(request, pk):
     serializer = ParentFormSerializer(parent)
     return Response(serializer.data)
 
-class FileUploadView(views.APIView):
-    parser_classes = [MultiPartParser]
-
-    def post(self, request, format=None):
-        file = request.FILES['file']
-        file_input = {
-            'original_file_name': file.name,
-            'content_type': file.content_type,
-            'size': file.size,
-        }
-        serializer = MediaSerializer(data=file_input)
-        if serializer.is_valid():
-            serializer.save()
-            default_storage.save('media/' + str(serializer.data['id']), ContentFile(file.read()))
-            return Response(serializer.data)
-        return Response(serializer.errors, status=400)
-
-
-def media_download(request, pk):
-    media = Media.objects.get(pk=pk)
-    data = default_storage.open('media/' + str(pk)).read()
-    content_type = media.content_type
-    response = HttpResponse(data, content_type=content_type)
-    original_file_name =media.original_file_name
-    response['Content-Disposition'] = 'inline; filename=' + original_file_name
-    return response
-
-
-@swagger_auto_schema(method='GET', responses={200: MediaSerializer()})
-@api_view(['GET'])
-def media_get(request, pk):
-    try:
-        tale = Media.objects.get(pk=pk)
-    except Tale.DoesNotExist:
-        return Response({'error': 'Tale does not exist.'}, status=404)
-
-    serializer = MediaSerializer(tale)
-    return Response(serializer.data)
 
 @swagger_auto_schema(method='GET', responses={200: RewardListSerializer(many=True)})
 @api_view(['GET'])
@@ -568,10 +449,96 @@ def reward_form_get(request, pk):
         reward = Reward.objects.get(pk=pk)
     except Reward.DoesNotExist:
         return Response({'error': 'Reward does not exist.'}, status=404)
-
     serializer = RewardFormSerializer(reward)
     return Response(serializer.data)
 
+
+@swagger_auto_schema(method='POST', request_body=ParentFormSerializer, responses={200: ParentFormSerializer()})
+@api_view(['POST'])
+@permission_required('edutales.add_parent', raise_exception=True)
+def parent_form_create(request):
+    serializer = ParentFormSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
+@swagger_auto_schema(method='GET', responses={200: HistoryListSerializer(many=True)})
+@api_view(['GET'])
+@permission_required('edutales.view_history', raise_exception=True)
+def history_list(request):
+    histories = History.objects.all()
+    serializer = HistoryListSerializer(histories, many=True)
+    return Response(serializer.data)
+
+
+@swagger_auto_schema(method='GET', responses={200: MediaSerializer()})
+@api_view(['GET'])
+def media_get(request, pk):
+    try:
+        tale = Media.objects.get(pk=pk)
+    except Tale.DoesNotExist:
+        return Response({'error': 'Tale does not exist.'}, status=404)
+
+    serializer = MediaSerializer(tale)
+    return Response(serializer.data)
+
+def media_download(request, pk):
+    media = Media.objects.get(pk=pk)
+    data = default_storage.open('media/' + str(pk)).read()
+    content_type = media.content_type
+    response = HttpResponse(data, content_type=content_type)
+    original_file_name =media.original_file_name
+    response['Content-Disposition'] = 'inline; filename=' + original_file_name
+    return response
+
+@swagger_auto_schema(method='POST', request_body=HistoryFormSerializer, responses={200: HistoryFormSerializer()})
+@api_view(['POST'])
+@permission_required('edutales.add_history', raise_exception=True)
+def history_form_create(request):
+    serializer = HistoryFormSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
+
+@swagger_auto_schema(method='PUT', request_body=HistoryFormSerializer, responses={200: HistoryFormSerializer()})
+@api_view(['PUT'])
+@permission_required('edutales.change_history', raise_exception=True)
+def history_form_update(request, pk):
+    try:
+        history = History.objects.get(pk=pk)
+    except History.DoesNotExist:
+        return Response({'error': 'History does not exist.'}, status=404)
+
+    serializer = HistoryFormSerializer(history, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
+
+@api_view(['DELETE'])
+@permission_required('edutales.delete_history', raise_exception=True)
+def history_delete(request, pk):
+    try:
+        history = History.objects.get(pk=pk)
+    except History.DoesNotExist:
+        return Response({'error': 'History does not exist.'}, status=404)
+    history.delete()
+    return Response(status=204)
+
+
+@swagger_auto_schema(method='GET', responses={200: HistoryFormSerializer()})
+@api_view(['GET'])
+@permission_required('edutales.view_history', raise_exception=True)
+def history_form_get(request, pk):
+    try:
+        history = History.objects.get(pk=pk)
+    except History.DoesNotExist:
+        return Response({'error': 'History does not exist.'}, status=404)
+    serializer = HistoryFormSerializer(history)
+    return Response(serializer.data)
 
 @swagger_auto_schema(method='POST', request_body=ParentFormSerializer, responses={200: ParentFormSerializer()})
 @api_view(['POST'])

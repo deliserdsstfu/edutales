@@ -3,7 +3,6 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {QuizService} from '../service/quiz.service';
-import {AnswerService} from '../service/answer.service';
 
 @Component({
   selector: 'app-quiz-form',
@@ -13,7 +12,6 @@ import {AnswerService} from '../service/answer.service';
 export class QuizFormComponent implements OnInit {
 
   quizFormGroup;
-  answerOptions;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               private router: Router, private quizService: QuizService) {
@@ -21,13 +19,13 @@ export class QuizFormComponent implements OnInit {
 
   ngOnInit() {
     const data = this.route.snapshot.data;
-    this.answerOptions = data.answerOptions;
 
     this.quizFormGroup = this.fb.group({
       'id': [null],
       'question': ['', Validators.required],
       'points': [null, Validators.required],
-      'answer': [[]]
+      'answer': ['', Validators.required],
+      'isTrue': false
     });
 
     if (data.quiz) {

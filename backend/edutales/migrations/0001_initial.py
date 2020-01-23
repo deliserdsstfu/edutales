@@ -15,14 +15,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Answer',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('answer', models.TextField()),
-                ('isTrue', models.BooleanField()),
-            ],
-        ),
-        migrations.CreateModel(
             name='Child',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -32,17 +24,20 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Destination',
+            name='GameType',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='GameType',
+            name='Quiz',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField()),
+                ('points', models.PositiveIntegerField()),
+                ('question', models.TextField()),
+                ('answer', models.TextField()),
+                ('isTrue', models.BooleanField()),
             ],
         ),
         migrations.CreateModel(
@@ -111,8 +106,8 @@ class Migration(migrations.Migration):
             name='Progress',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('destination', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Destination')),
                 ('points', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Quiz')),
+                ('tale', models.ManyToManyField(blank=True, to='edutales.Tale')),
             ],
         ),
         migrations.CreateModel(
