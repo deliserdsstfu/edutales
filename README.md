@@ -26,7 +26,7 @@ German is used a s the language for the contend, so the target group is initiall
 
 > Get [HERE](https://www.wikihow.com/Install-Python-on-Windows) for Windows
 
-**Django 2.2.7 (or higher)**
+**Django 2.2.7**
 ```bash
 pip install django
 ```
@@ -67,6 +67,7 @@ npm install -g @angular/cli
 - Switch to **backend**
   - Select Python interpreter in File -> Preferences -> Project: backend -> Project Interpreter
   - Install requirements from **requirements.txt** in backend/
+  - Install bad-words ```npm install bad-words```
 - Switch to **frontend**
   - use ```npm install``` to install all required libraries
   
