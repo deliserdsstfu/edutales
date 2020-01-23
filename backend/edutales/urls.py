@@ -34,11 +34,6 @@ urlpatterns = [
     path('quiz/<int:pk>/delete', views.quiz_delete),
     path('game/list', views.gametype_option_list),
     path('game/options', views.gametype_option_list),
-
-
-   # path('answer/<int:pk>/update', views.tale_form_update),
-   # path('answer/<int:pk>/delete', views.tale_delete),
-
     path('region/list', views.region_option_list),
     path('progress/list', views.progress_list),
     path('progress/create', views.progress_form_create),

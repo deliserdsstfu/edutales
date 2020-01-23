@@ -6,17 +6,6 @@
   <mat-card-title>{{data.quiz_question}}</mat-card-title>
 </mat-card>
 <br>
-<!--<form [formGroup]="taleQuizGroup" class="tale-quiz" align="center" (ngSubmit)="onSubmit()">
-  <mat-radio-group>
-    <mat-radio-button type="radio" formControlName="isTrue" value="true">Wahr?</mat-radio-button><br><br>
-    <mat-radio-button type="radio"  formControlName="isTrue" value="false">Falsch?</mat-radio-button>
-  </mat-radio-group>
-  <br><br>
-  <div *ngIf="isSubmitted && myForm.errors?.required">
-    <p>Please select either value</p>
-  </div>
-  <button type="submit">Submit</button>
-</form>-->
 <form [formGroup]="taleQuizGroup" (ngSubmit)="onSubmit()" align="center">
   <div>
     <input id="false" type="radio" class="custom-control-input" value="false" name="isTrue" formControlName="isTrue">

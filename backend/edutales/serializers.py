@@ -184,27 +184,16 @@ class GameOptionSerializer(serializers.ModelSerializer):
 class TaleQuizSerializer(serializers.ModelSerializer):
 
     quiz_question = serializers.SerializerMethodField()
-    quiz_answer = serializers.SerializerMethodField()
     quiz_true = serializers.SerializerMethodField()
-
 
     class Meta:
         model = Tale
-        fields = ['id','title', 'text','quiz_question','quiz_answer', 'quiz_true']
+        fields = ['id','title', 'text','quiz_question', 'quiz_true']
 
     def get_quiz_question(self, obj):
         return obj.quiz.question if obj.quiz else ''
-    def get_quiz_answer(self, obj):
-        return obj.quiz.answer if obj.quiz else ''
     def get_quiz_true(self, obj):
         return obj.quiz.isTrue if obj.quiz else ''
-
-
-
-
-
-
-
 
 
 class RewardListSerializer(serializers.ModelSerializer):

@@ -9,7 +9,6 @@ from django.dispatch import receiver
 class Quiz(models.Model):
     points = models.PositiveIntegerField()
     question = models.TextField()
-    answer = models.TextField()
     isTrue = models.BooleanField()
 
     def __str__(self):
