@@ -35,6 +35,15 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+            name='Quiz',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('points', models.PositiveIntegerField()),
+                ('question', models.TextField()),
+                ('isTrue', models.BooleanField()),
+            ],
+        ),
+        migrations.CreateModel(
             name='History',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),

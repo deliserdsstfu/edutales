@@ -10,7 +10,6 @@ from django.dispatch import receiver
 class Quiz(models.Model):
     points = models.PositiveIntegerField()
     question = models.TextField()
-    answer = models.TextField()
     isTrue = models.BooleanField()
 
     class Meta:
@@ -60,22 +59,6 @@ class History(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class History(models.Model):
-    CHOICES = (
-        ('w', 'witzig'),
-        ('g', 'gruselig')
-    )
-
-    title = models.TextField()
-    type = models.CharField(max_length=1, choices=CHOICES, null=True)
-    text = models.TextField()
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.title
-
 
 class Region(models.Model):
     name = models.TextField()

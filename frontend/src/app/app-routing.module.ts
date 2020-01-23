@@ -43,11 +43,15 @@ const routes: Routes = [
     resolve: {
       childrenOptions: ChildOptionsResolver,
       languageOptions: LanguageOptionsResolver,
-    }
-  },
-  {path: 'reward-form', component: RewardFormComponent, canActivate: [AuthGuard]},
-  {
-    path: 'history-form',
+    } },
+  { path: 'reward-form',
+    component: RewardFormComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      historyOptions: HistoryOptionsResolver,
+      taleOptions: TaleOptionsResolver,
+    }},
+  { path: 'history-form',
     component: HistoryFormComponent,
     canActivate: [AuthGuard],
     resolve: {
