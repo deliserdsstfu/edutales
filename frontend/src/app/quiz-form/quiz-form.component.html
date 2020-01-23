@@ -1,6 +1,6 @@
 <form [formGroup]="quizFormGroup" class="quiz-form">
   <mat-form-field>
-    <input matInput type="text" placeholder="Question" formControlName="question" required>
+    <input matInput type="text" placeholder="Aussage" formControlName="question" required>
     <mat-hint align="end">Aussage</mat-hint>
     <mat-error *ngIf="quizFormGroup.controls.question.hasError('required')">Question is required</mat-error>
   </mat-form-field>

@@ -51,5 +51,3 @@ export class HistoryListComponent implements OnInit {
     return this.histories.filter(option => option.title.toLowerCase().includes(filterValue));
   }
 }
-
-
