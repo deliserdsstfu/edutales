@@ -36,7 +36,8 @@ export class RewardFormComponent implements OnInit {
       id: [null],
       name: ['', [Validators.required, this.badWordValidator()], [this.rewardNameValidator()]],
       history: [null],
-      tale: [null]
+      tale: [null],
+      pictures: [[]]
     });
 
     if (data.reward) {

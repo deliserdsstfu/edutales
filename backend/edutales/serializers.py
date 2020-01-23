@@ -246,7 +246,7 @@ class RewardListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reward
-        fields = ['id', 'name', 'history_title', 'tale_title']#, 'tale_pictures']
+        fields = ['id', 'name', 'history_title', 'tale_title', 'pictures']#, 'tale_pictures']
 
     def get_history_title(self, obj):
         return obj.history.title if obj.history else ''

@@ -84,6 +84,7 @@ class Reward(models.Model):
     name = models.TextField()
     history = models.ForeignKey(History, on_delete=models.CASCADE, null=True)
     tale = models.ForeignKey(Tale, on_delete=models.CASCADE, null=True)
+    pictures = models.ManyToManyField('Media', blank=True)
 
 
     def __str__(self):
