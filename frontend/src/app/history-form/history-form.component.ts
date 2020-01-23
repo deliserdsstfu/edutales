@@ -31,7 +31,7 @@ export class HistoryFormComponent implements OnInit {
       id: [null],
       title: ['', [Validators.required, this.badWordValidator()], [this.historyNameValidator()]],
       type: [null],
-      text: ['', Validators.required],
+      text: ['', [Validators.required, this.badWordValidator()]],
       quiz: [null]
     });
 

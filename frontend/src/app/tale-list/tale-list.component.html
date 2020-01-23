@@ -1,5 +1,5 @@
 <mat-form-field class="example-full-width">
-  <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+  <input type="text" placeholder="Pick a tale" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getTale($event)">
     <mat-option *ngFor="let tale of filteredOptions | async" [value]="tale.id">
       {{tale.title}}
