@@ -102,7 +102,7 @@ class GameType(models.Model):
 
 class Progress(models.Model):
     tale = models.ManyToManyField('Tale', blank= True)
-    points = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+    points = models.ForeignKey(Quiz, on_delete= models.CASCADE, null=True)
 
 
 class Reward(models.Model):

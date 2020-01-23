@@ -64,8 +64,6 @@ urlpatterns = [
     url(r'^api-token-auth/', obtain_jwt_token),
     path('tale-quiz/<int:pk>/get', views.tale_quiz_get),
     url(r'^media$', FileUploadView.as_view()),
-    path('media/<int:pk>', views.media_download),
-    path('media/<int:pk>/get', views.media_get),
 
     url(r'^api-token-auth/', obtain_jwt_token),
     # url(r'^reward$', FileUploadView.as_view()),

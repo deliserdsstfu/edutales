@@ -130,6 +130,7 @@ class RewardSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class LanguageOptionSerializer(serializers.ModelSerializer):
+    class Meta:
         model = Language
         fields = '__all__'
 

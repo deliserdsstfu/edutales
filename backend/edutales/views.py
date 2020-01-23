@@ -65,12 +65,7 @@ def language_option_list(request):
     return Response(serializer.data)
 
 
-@swagger_auto_schema(method='GET', responses={200: LanguageOptionSerializer(many=True)})
-@api_view(['GET'])
-def language_option_list(request):
-    languages = Language.objects.all()
-    serializer = LanguageOptionSerializer(languages, many=True)
-    return Response(serializer.data)
+
 
 
 @swagger_auto_schema(method='GET', responses={200: QuizListSerializer(many=True)})
@@ -512,6 +507,17 @@ def media_download(request, pk):
     original_file_name =media.original_file_name
     response['Content-Disposition'] = 'inline; filename=' + original_file_name
     return response
+
+@swagger_auto_schema(method='GET', responses={200: MediaSerializer()})
+@api_view(['GET'])
+def media_get(request, pk):
+    try:
+        tale = Media.objects.get(pk=pk)
+    except Tale.DoesNotExist:
+        return Response({'error': 'Tale does not exist.'}, status=404)
+
+    serializer = MediaSerializer(tale)
+    return Response(serializer.data)
 
 @swagger_auto_schema(method='POST', request_body=HistoryFormSerializer, responses={200: HistoryFormSerializer()})
 @api_view(['POST'])
