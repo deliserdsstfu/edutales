@@ -32,7 +32,6 @@ export class TaleQuizComponent implements OnInit {
       (response: any) => {
         this.tale = response;
         this.finished = true;
-       // this.question = this.quizService.getQuiz(response.quiz);
       });
     this.data = this.route.snapshot.data.taleQuizResolver;
 
@@ -45,17 +44,16 @@ export class TaleQuizComponent implements OnInit {
   }
   onSubmit() {
     this.isSubmitted = true;
+    const isT = this.route.snapshot.data.taleQuizResolver.quiz_true;
+    console.log(isT);
     if (!this.taleQuizGroup.valid) {
       return false;
-    } else {
-      alert(JSON.stringify(this.taleQuizGroup.value));
-      console.log(this.taleQuizGroup.isTrue);
+    } else if (JSON.stringify(this.taleQuizGroup.value) === '{"isTrue":"' + isT + '"}') {
+      alert('Richtige Antwort!');
+      console.log('yes');
+    }  else {
+      alert('Die Antwort ist leider falsch!');
+      console.log('ney');
     }
   }
-
-/*  isRight() {
-    if (this.quiz.answer.isTrue)  {
-
-    }
-  }*/
 }

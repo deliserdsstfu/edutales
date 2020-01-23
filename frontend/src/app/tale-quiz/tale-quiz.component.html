@@ -5,7 +5,7 @@
   <br>
   <mat-card-title>{{data.quiz_question}}</mat-card-title>
 </mat-card>
-<br><br>
+<br>
 <!--<form [formGroup]="taleQuizGroup" class="tale-quiz" align="center" (ngSubmit)="onSubmit()">
   <mat-radio-group>
     <mat-radio-button type="radio" formControlName="isTrue" value="true">Wahr?</mat-radio-button><br><br>
@@ -17,22 +17,20 @@
   </div>
   <button type="submit">Submit</button>
 </form>-->
-<form [formGroup]="taleQuizGroup" (ngSubmit)="onSubmit()">
-  <!-- Gender -->
+<form [formGroup]="taleQuizGroup" (ngSubmit)="onSubmit()" align="center">
   <div>
     <input id="false" type="radio" class="custom-control-input" value="false" name="isTrue" formControlName="isTrue">
     <label class="custom-control-label" for="false">Falsch</label>
   </div>
-
+<br>
   <div>
     <input id="true" type="radio" class="custom-control-input" value="true" name="isTrue" formControlName="isTrue">
     <label class="custom-control-label" for="true">Wahr</label>
   </div>
 
   <div *ngIf="isSubmitted && myForm.invalid">
-    <p>Please select either value</p>
+    <p>Wähle wahr oder falsch aus um die Frage zu beantworten!</p>
   </div>
-
-  <!-- Submit Button -->
+<br>
   <button type="submit">Submit</button>
 </form>
