@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -6,17 +6,17 @@ import {ChildService} from '../service/child.service';
 import {GameService} from '../service/game.service';
 import {ParentService} from '../service/parent.service';
 import {UserService} from '../service/user.service';
+import {TaleQuizComponent} from '../tale-quiz/tale-quiz.component';
 
 @Component({
   selector: 'app-child-form',
   templateUrl: './child-form.component.html',
-  styleUrls: ['./child-form.component.scss']
+  styleUrls: ['./child-form.component.scss'],
+
 })
 export class ChildFormComponent implements OnInit {
 
   childFormGroup;
-
-  // tslint:disable-next-line:max-line-length
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute, public childService: ChildService, public gameService: GameService, private parentService: ParentService, private userService: UserService) {
   }
 
@@ -37,6 +37,10 @@ export class ChildFormComponent implements OnInit {
       this.childFormGroup.patchValue(data.child);
     }
   }
+
+  // tslint:disable-next-line:use-lifecycle-interface
+
+
   createChild() {
     const child = this.childFormGroup.value;
     const currId = this.userService.getCurrentId();

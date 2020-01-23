@@ -25,10 +25,13 @@ export class ParentListComponent implements OnInit {
   }
 
   deleteParent(parent) {
-    this.parentService.deleteParent(parent)
-      .subscribe(() => {
-        this.ngOnInit();
-      });
+    if (confirm("Sie sind dabei Ihren Account zu löschen. Diese Aktion kann nicht rückgängig gemacht werden, möchten Sie dennoch fortfahren?")) {
+      this.parentService.deleteParent(parent)
+        .subscribe(() => {
+          this.ngOnInit();
+        });
+      this.userService.logout();
+    }
   }
 
 }

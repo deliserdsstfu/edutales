@@ -33,7 +33,7 @@ import {LanguageOptionsResolver} from './resolver/language-options.resolver';
 const routes: Routes = [
   { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard] },
   { path: 'child-list/:id', component: ChildListComponent, canActivate: [AuthGuard] },
-  { path: 'world-map', component: WorldMapComponent, canActivate: [AuthGuard] },
+  { path: 'world-map/:id', component: WorldMapComponent, canActivate: [AuthGuard] },
   { path: 'reward-list', component: RewardListComponent, canActivate: [AuthGuard] },
   { path: 'history-list', component: HistoryListComponent, canActivate: [AuthGuard] },
   { path: 'parent-form',

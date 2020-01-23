@@ -209,11 +209,12 @@ class TaleQuizSerializer(serializers.ModelSerializer):
     quiz_question = serializers.SerializerMethodField()
     quiz_answer = serializers.SerializerMethodField()
     quiz_true = serializers.SerializerMethodField()
+    quiz_points = serializers.SerializerMethodField()
 
 
     class Meta:
         model = Tale
-        fields = ['id','title', 'text','quiz_question','quiz_answer', 'quiz_true']
+        fields = ['id','title', 'text','quiz_question','quiz_answer', 'quiz_true','quiz_points']
 
     def get_quiz_question(self, obj):
         return obj.quiz.question if obj.quiz else ''
@@ -221,6 +222,8 @@ class TaleQuizSerializer(serializers.ModelSerializer):
         return obj.quiz.answer if obj.quiz else ''
     def get_quiz_true(self, obj):
         return obj.quiz.isTrue if obj.quiz else ''
+    def get_quiz_points(self, obj):
+        return obj.quiz.points if obj.quiz else ''
 
 
 

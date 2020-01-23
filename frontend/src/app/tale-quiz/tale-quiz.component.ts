@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {TaleService} from '../service/tale.service';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -6,6 +6,9 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {QuizService} from '../service/quiz.service';
 import {QuizResolver} from '../resolver/quiz.resolver';
 import {TaleQuizService} from '../service/tale-quiz.service';
+import {ChildService} from '../service/child.service';
+import {ChildFormComponent} from '../child-form/child-form.component';
+
 
 @Component({
   selector: 'app-tale-quiz',
@@ -16,15 +19,18 @@ import {TaleQuizService} from '../service/tale-quiz.service';
 
 export class TaleQuizComponent implements OnInit {
 
+
+  pointsForQuizz: number;
   tale: any;
   finished =  false;
   taleQuizGroup;
   data: any;
   isSubmitted = false;
 
+
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               // tslint:disable-next-line:max-line-length
-              private router: Router, private taleService: TaleService, private taleQuizService: TaleQuizService, public quizService: QuizService) { }
+              private router: Router, private taleService: TaleService, private taleQuizService: TaleQuizService, public quizService: QuizService, private childService: ChildService) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -34,11 +40,14 @@ export class TaleQuizComponent implements OnInit {
         this.finished = true;
       });
     this.data = this.route.snapshot.data.taleQuizResolver;
-
     this.taleQuizGroup = this.fb.group({
     isTrue: ['', [Validators.required]]
     });
+
   }
+
+
+
   get myForm() {
     return this.taleQuizGroup.get('isTrue');
   }
@@ -56,4 +65,6 @@ export class TaleQuizComponent implements OnInit {
       console.log('ney');
     }
   }
+
+
 }
