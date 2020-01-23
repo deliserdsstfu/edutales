@@ -8,6 +8,13 @@ export class HistoryService {
 
   constructor(private http: HttpClient) { }
 
+
+
+  opNames = {
+    w: 'witzig',
+    g: 'gruselig'
+  };
+
   getHistories() {
     return this.http.get('/api/history/list');
   }
@@ -26,6 +33,9 @@ export class HistoryService {
 
   deleteHistory(history) {
     return this.http.delete('/api/history/' + history.id + '/delete', history);
+  }
+  retrieveHistoryOptions() {
+    return this.http.get <any[]>('api/history/options');
   }
 
 }

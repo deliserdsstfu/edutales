@@ -19,9 +19,9 @@ export class TaleListComponent implements OnInit {
   myControl = new FormControl();
   filteredOptions: Observable<any[]>;
 
-
   constructor(private http: HttpClient, private taleService: TaleService, public typeService: TypeService, public router: Router) {
   }
+
 
   ngOnInit() {
     this.taleService.getTales()

@@ -13,7 +13,7 @@ import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule,
-  MatMenuModule, MatNativeDateModule,
+  MatMenuModule, MatNativeDateModule, MatRadioModule,
   MatSelectModule, MatSliderModule,
   MatTableModule,
   MatToolbarModule
@@ -38,8 +38,9 @@ import { HistoryListComponent } from './history-list/history-list.component';
 import { QuizFormComponent } from './quiz-form/quiz-form.component';
 import { QuizListComponent } from './quiz-list/quiz-list.component';
 import {TaleQuizComponent} from './tale-quiz/tale-quiz.component';
-import { AnswerFormComponent } from './answer-form/answer-form.component';
-import { AnswerListComponent } from './answer-list/answer-list.component';
+import { HistoryQuizComponent } from './history-quiz/history-quiz.component';
+import {MediainputComponent} from './mediainput/mediainput.component';
+import {FileUploadModule} from 'ng2-file-upload';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -65,13 +66,14 @@ export function tokenGetter() {
     QuizFormComponent,
     QuizListComponent,
     TaleQuizComponent,
-    AnswerFormComponent,
-    AnswerListComponent
+    HistoryQuizComponent,
+    MediainputComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FileUploadModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTableModule,
@@ -98,6 +100,7 @@ export function tokenGetter() {
     MatSliderModule,
     MatSnackBarModule,
     MatAutocompleteModule,
+    MatRadioModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

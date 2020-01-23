@@ -35,8 +35,8 @@ export class HistoryFormComponent implements OnInit {
       quiz: [null]
     });
 
-    if (data.tale) {
-      this.historyFormGroup.patchValue(data.tale);
+    if (data.history) {
+      this.historyFormGroup.patchValue(data.history);
     }
   }
 

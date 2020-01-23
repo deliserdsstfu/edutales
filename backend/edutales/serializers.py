@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 
 from .models import *
+from .models import Reward, Media
 
 
 class RegionOptionSerializer(serializers.ModelSerializer):
@@ -73,18 +74,19 @@ class ParentOptionSerializer(serializers.ModelSerializer):
         return ' '.join(filter(None, (obj.first_name, obj.last_name)))
 
 
+class TaleQuizRelation(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = Quiz
+        fields = '__all__'
+
 class TaleListSerializer(serializers.ModelSerializer):
 
+    quiz = TaleQuizRelation()
     class Meta:
         model = Tale
         fields = '__all__'
-
-class AnswerListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Answer
-        fields = '__all__'
-
 
 
 class TaleFormSerializer(serializers.ModelSerializer):
@@ -105,7 +107,26 @@ class TaleOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tale
-        fields = ['id', 'title']
+        fields = '__all__'
+
+
+class HistoryListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = History
+        fields = '__all__'
+
+class HistoryFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = History
+        fields = '__all__'
+
+class HistoryOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = History
+        fields = '__all__'
 
 class HistoryListSerializer(serializers.ModelSerializer):
 
@@ -131,24 +152,11 @@ class RewardSerializer(serializers.ModelSerializer):
         model = Reward
         fields = '__all__'
 
-class DestinationListSerializer(serializers.ModelSerializer):
+class LanguageOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Destination
+        model = Language
         fields = '__all__'
-
-
-class DestinationFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Destination
-        fields = '__all__'
-
-class DestinationOptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Destination
-        fields = ['id', 'title']
 
 
 class ProgressListSerializer(serializers.ModelSerializer):
@@ -220,15 +228,67 @@ class TaleQuizSerializer(serializers.ModelSerializer):
     def get_answer_answer(self, obj):
         return obj.answer.answer if obj.answer else ''
 
+
+class GameOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
+        fields = '__all__'
+
+
+
+class TaleQuizSerializer(serializers.ModelSerializer):
+
+    quiz_question = serializers.SerializerMethodField()
+    quiz_answer = serializers.SerializerMethodField()
+    quiz_true = serializers.SerializerMethodField()
+
+
+    class Meta:
+        model = Tale
+        fields = ['id','title', 'text','quiz_question','quiz_answer', 'quiz_true']
+
+    def get_quiz_question(self, obj):
+        return obj.quiz.question if obj.quiz else ''
+    def get_quiz_answer(self, obj):
+        return obj.quiz.answer if obj.quiz else ''
+    def get_quiz_true(self, obj):
+        return obj.quiz.isTrue if obj.quiz else ''
+
+
+
+class RewardListSerializer(serializers.ModelSerializer):
+    history_title = serializers.SerializerMethodField()
+    tale_title = serializers.SerializerMethodField()
+    #tale_pictures = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Reward
+        fields = ['id', 'name', 'history_title', 'tale_title']#, 'tale_pictures']
+
+    def get_history_title(self, obj):
+        return obj.history.title if obj.history else ''
+
+    def get_tale_title(self, obj):
+        return obj.tale.title if obj.tale else ''
+
+
+    #def get_tale_pictures(self, obj):
+        #return obj.tale.pictures if obj.tale else ''
+
 class RewardListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reward
         fields = '__all__'
 
-
 class RewardFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reward
+        fields = '__all__'
+
+class MediaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Media
         fields = '__all__'

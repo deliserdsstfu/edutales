@@ -32,7 +32,8 @@ export class TaleFormComponent implements OnInit {
       title: ['', [Validators.required, this.badWordValidator()], [this.titleTaleValidator()]],
       type: [null],
       text: ['', [Validators.required, this.badWordValidator()]],
-      quiz: [null]
+      quiz: [null],
+      pictures: [[]]
     });
 
     if (data.tale) {

@@ -15,7 +15,7 @@ export class RewardListComponent implements OnInit {
   // @ts-ignore
   @ViewChild('content') content: ElementRef;
   rewards: any[];
-  displayedColumns = ['name', 'original_file_name', 'content_type', 'size', 'id'];
+  displayedColumns = ['name', 'tale_title', 'history_title', 'id'];
 
   constructor(private http: HttpClient, private rewardService: RewardService) { }
 

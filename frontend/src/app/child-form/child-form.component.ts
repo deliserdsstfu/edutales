@@ -6,7 +6,6 @@ import {ChildService} from '../service/child.service';
 import {GameService} from '../service/game.service';
 import {ParentService} from '../service/parent.service';
 import {UserService} from '../service/user.service';
-
 import * as Filter from 'bad-words';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -19,6 +18,7 @@ import {map} from 'rxjs/operators';
 export class ChildFormComponent implements OnInit {
 
   childFormGroup;
+
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute,
               public childService: ChildService, public gameService: GameService, private parentService: ParentService,

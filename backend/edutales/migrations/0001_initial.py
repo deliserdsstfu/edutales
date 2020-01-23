@@ -32,13 +32,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Destination',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField()),
-            ],
-        ),
-        migrations.CreateModel(
             name='GameType',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -51,17 +44,42 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('points', models.PositiveIntegerField()),
                 ('question', models.TextField()),
-                ('answer', models.ManyToManyField(blank=True, to='edutales.Answer')),
+                ('answer', models.TextField()),
+                ('isTrue', models.BooleanField()),
             ],
         ),
         migrations.CreateModel(
-            name='Reward',
+            name='History',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField()),
+                ('title', models.TextField()),
+                ('type', models.CharField(choices=[('w', 'witzig'), ('g', 'gruselig')], max_length=1, null=True)),
+                ('text', models.TextField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Language',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('german', models.TextField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Media',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('original_file_name', models.TextField()),
                 ('content_type', models.TextField()),
                 ('size', models.PositiveIntegerField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Quiz',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('points', models.PositiveIntegerField()),
+                ('question', models.TextField()),
+                ('answer', models.ManyToManyField(blank=True, to='edutales.Answer')),
             ],
         ),
         migrations.CreateModel(
@@ -71,7 +89,17 @@ class Migration(migrations.Migration):
                 ('title', models.TextField()),
                 ('type', models.CharField(choices=[('w', 'witzig'), ('g', 'gruselig')], max_length=1, null=True)),
                 ('text', models.TextField()),
+                ('pictures', models.ManyToManyField(blank=True, to='edutales.Media')),
                 ('quiz', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Quiz')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Reward',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.TextField()),
+                ('history', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.History')),
+                ('tale', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Tale')),
             ],
         ),
         migrations.CreateModel(
@@ -86,8 +114,8 @@ class Migration(migrations.Migration):
             name='Progress',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('destination', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Destination')),
                 ('points', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Quiz')),
+                ('tale', models.ManyToManyField(blank=True, to='edutales.Tale')),
             ],
         ),
         migrations.CreateModel(
@@ -98,6 +126,7 @@ class Migration(migrations.Migration):
                 ('last_name', models.TextField(null=True)),
                 ('day_of_birth', models.DateField(null=True)),
                 ('children', models.ManyToManyField(blank=True, related_name='parent', to='edutales.Child')),
+                ('language', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Language')),
                 ('region', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Region')),
                 ('user', models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
@@ -111,6 +140,11 @@ class Migration(migrations.Migration):
                 ('text', models.TextField()),
                 ('quiz', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Quiz')),
             ],
+        ),
+        migrations.AddField(
+            model_name='history',
+            name='quiz',
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Quiz'),
         ),
         migrations.AddField(
             model_name='destination',
