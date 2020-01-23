@@ -24,7 +24,6 @@ export class QuizFormComponent implements OnInit {
       'id': [null],
       'question': ['', Validators.required],
       'points': [null, Validators.required],
-      'answer': ['', Validators.required],
       'isTrue': false
     });
 

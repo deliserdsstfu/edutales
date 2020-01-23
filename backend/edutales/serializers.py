@@ -105,13 +105,6 @@ class TaleOptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AnswerListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Answer
-        fields = '__all__'
-
-
 class HistoryListSerializer(serializers.ModelSerializer):
 
     class Meta:

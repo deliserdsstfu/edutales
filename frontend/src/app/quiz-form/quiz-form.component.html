@@ -8,11 +8,6 @@
     <input matInput type="number" placeholder="Points" formControlName="points">
     <mat-hint align="end">The points for the question</mat-hint>
   </mat-form-field>
-  <mat-form-field>
-    <input matInput type="text" placeholder="Answer" formControlName="answer" required>
-    <mat-hint align="end">Answer</mat-hint>
-    <mat-error *ngIf="quizFormGroup.controls.question.hasError('required')">Answer is required</mat-error>
-  </mat-form-field>
   <mat-checkbox formControlName="isTrue">Is True?</mat-checkbox>
   <br>
   <mat-card-actions align="center">
