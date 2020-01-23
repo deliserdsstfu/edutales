@@ -17,6 +17,10 @@ class Quiz(models.Model):
     question = models.TextField()
     answer = models.ManyToManyField('Answer', blank = True)
 
+    class Meta:
+        verbose_name = 'Quiz'
+        verbose_name_plural = 'Quizzes'
+
     def __str__(self):
             return self.question
 
@@ -53,6 +57,10 @@ class History(models.Model):
     type = models.CharField(max_length=1, choices=CHOICES, null=True)
     text = models.TextField()
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        verbose_name = 'History'
+        verbose_name_plural = 'Histories'
 
     def __str__(self):
         return self.title
@@ -93,7 +101,7 @@ class Reward(models.Model):
     tale = models.ForeignKey(Tale, on_delete=models.CASCADE, null=True)
 
 
-def __str__(self):
+    def __str__(self):
         return self.name
 
 
@@ -110,6 +118,10 @@ class Child(models.Model):
     game = models.CharField(max_length=1, choices=CHOICES, null=True)
     progress = models.ForeignKey(Progress, on_delete=models.CASCADE, null=True)
     reward = models.ForeignKey(Reward, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        verbose_name = 'Child'
+        verbose_name_plural = 'Children'
 
     def __str__(self):
         return self.user_name
