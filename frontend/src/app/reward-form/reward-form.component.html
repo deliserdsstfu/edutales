@@ -3,6 +3,8 @@
     <input matInput type="text" placeholder="Name" formControlName="name" required>
     <mat-hint align="end">The name of the reward</mat-hint>
     <mat-error *ngIf="rewardFormGroup.controls.name.hasError('required')">Name is required</mat-error>
+    <mat-error *ngIf="rewardFormGroup.controls.name.hasError('badWord')">Contains Bad Word!</mat-error>
+    <mat-error *ngIf="rewardFormGroup.controls.name.hasError('rewardAlreadyExists')">Reward-Name already Exists!</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-select placeholder="Tale" formControlName="tale">

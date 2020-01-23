@@ -22,6 +22,10 @@ class Migration(migrations.Migration):
                 ('year_of_birth', models.IntegerField()),
                 ('game', models.CharField(choices=[('p', 'Pink'), ('b', 'Blue'), ('g', 'Green')], max_length=1, null=True)),
             ],
+            options={
+                'verbose_name': 'Child',
+                'verbose_name_plural': 'Children',
+            },
         ),
         migrations.CreateModel(
             name='GameType',
@@ -70,7 +74,19 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('points', models.PositiveIntegerField()),
                 ('question', models.TextField()),
-                ('answer', models.ManyToManyField(blank=True, to='edutales.Answer')),
+                ('answer', models.TextField()),
+                ('isTrue', models.BooleanField()),
+            ],
+            options={
+                'verbose_name': 'Quiz',
+                'verbose_name_plural': 'Quizzes',
+            },
+        ),
+        migrations.CreateModel(
+            name='Region',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.TextField()),
             ],
         ),
         migrations.CreateModel(
@@ -91,14 +107,6 @@ class Migration(migrations.Migration):
                 ('name', models.TextField()),
                 ('history', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.History')),
                 ('tale', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Tale')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Region',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField()),
-                ('destination', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Destination')),
             ],
         ),
         migrations.CreateModel(
@@ -126,16 +134,6 @@ class Migration(migrations.Migration):
             model_name='history',
             name='quiz',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Quiz'),
-        ),
-        migrations.AddField(
-            model_name='destination',
-            name='quiz',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Quiz'),
-        ),
-        migrations.AddField(
-            model_name='destination',
-            name='tale',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='edutales.Tale'),
         ),
         migrations.AddField(
             model_name='child',

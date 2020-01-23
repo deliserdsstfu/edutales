@@ -6,6 +6,7 @@ from django.dispatch import receiver
 
 
 
+
 class Quiz(models.Model):
     points = models.PositiveIntegerField()
     question = models.TextField()

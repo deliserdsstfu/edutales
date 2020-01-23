@@ -74,7 +74,6 @@ class ParentOptionSerializer(serializers.ModelSerializer):
         return ' '.join(filter(None, (obj.first_name, obj.last_name)))
 
 
-
 class TaleQuizRelation(serializers.ModelSerializer):
 
 
@@ -90,13 +89,12 @@ class TaleListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
 class TaleFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tale
         fields = '__all__'
+
 
 class TaleOptionSerializer(serializers.ModelSerializer):
 
@@ -194,6 +192,27 @@ class QuizOptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class GameOptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Quiz
+        fields = '__all__'
+
+
+class TaleQuizSerializer(serializers.ModelSerializer):
+
+    quiz_question = serializers.SerializerMethodField()
+    answer_answer = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Tale
+        fields = ['id','title', 'text','quiz_question', 'answer_answer']
+
+    def get_quiz_question(self, obj):
+        return obj.quiz.question if obj.quiz else ''
+
+    def get_answer_answer(self, obj):
+        return obj.answer.answer if obj.answer else ''
 
 
 class GameOptionSerializer(serializers.ModelSerializer):

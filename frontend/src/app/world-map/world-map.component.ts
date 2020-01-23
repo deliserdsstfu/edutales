@@ -29,7 +29,9 @@ export class WorldMapComponent implements OnInit {
     this.locationChosen = true;
   }
 
+
   constructor(private taleService: TaleService, private router: Router, private historyService: HistoryService) { }
+
 
 
   ngOnInit() {
@@ -42,6 +44,7 @@ export class WorldMapComponent implements OnInit {
       });
   }
 
+
   getHistory(id) {
     this.historyService.getHistory(id)
       .subscribe( () => {
@@ -50,4 +53,3 @@ export class WorldMapComponent implements OnInit {
   }
 
 }
-
