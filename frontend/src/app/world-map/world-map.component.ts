@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TaleService} from '../service/tale.service';
 import {Router} from '@angular/router';
 import {HistoryService} from '../service/history.service';
+import {UserService} from '../service/user.service';
 
 
 @Component({
@@ -16,6 +17,10 @@ export class WorldMapComponent implements OnInit {
   locationChosen = false;
   previous;
 
+  constructor(private taleService: TaleService, private router: Router,
+              private historyService: HistoryService, private userService: UserService) {
+  }
+
   clickedMarker(infowindow) {
     if (this.previous) {
       this.previous.close();
@@ -29,27 +34,26 @@ export class WorldMapComponent implements OnInit {
     this.locationChosen = true;
   }
 
-
-  constructor(private taleService: TaleService, private router: Router, private historyService: HistoryService) { }
-
-
-
   ngOnInit() {
   }
 
   getTale(id) {
     this.taleService.getTale(id)
       .subscribe(() => {
-        this.router.navigate(['/tale-quiz/' + id ]);
+        this.router.navigate(['/tale-quiz/' + id]);
       });
   }
 
 
   getHistory(id) {
     this.historyService.getHistory(id)
-      .subscribe( () => {
+      .subscribe(() => {
         this.router.navigate(['history-quiz/' + id]);
       });
+  }
+
+  logout() {
+    this.userService.logout();
   }
 
 }
