@@ -3,6 +3,8 @@
     <input matInput type="text" placeholder="Title" formControlName="title">
     <mat-hint align="end">The title of the tale</mat-hint>
     <mat-error *ngIf="taleFormGroup.controls.title.hasError('required')">Title is required</mat-error>
+    <mat-error *ngIf="taleFormGroup.controls.title.hasError('badWord')">Contains Bad Word!</mat-error>
+    <mat-error *ngIf="taleFormGroup.controls.title.hasError('taleTitleAlreadyExists')">Title Already Exists!</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-select placeholder="Tale Category" formControlName="type">
@@ -15,6 +17,7 @@
     <textarea matInput type="text" placeholder="Text" formControlName="text"></textarea>
     <mat-hint align="end">The text of the tale</mat-hint>
     <mat-error *ngIf="taleFormGroup.controls.text.hasError('required')">Text is required</mat-error>
+    <mat-error *ngIf="taleFormGroup.controls.text.hasError('badWord')">Contains Bad Word!</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-select placeholder="Quiz"
@@ -27,7 +30,7 @@
   <br/>
   <div>
     <app-mediainput formControlName="pictures"></app-mediainput>
-  </div>
+  </div><br>
   <mat-card-actions align="center">
     <button mat-raised-button color="primary" [disabled]="!taleFormGroup.valid" (click)="createTale()">
       <span *ngIf="!taleFormGroup.controls.id.value">Create</span>

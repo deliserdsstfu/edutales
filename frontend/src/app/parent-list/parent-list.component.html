@@ -23,7 +23,7 @@
       <button mat-button [routerLink]="'/parent-form/' + parent.id">Edit</button>
       &nbsp;
       &nbsp;
-      <button mat-button (click)=" deleteParent(parent) " color="warn">Delete</button>
+      <button mat-button (click)="deleteParent(parent)" color="warn">Delete</button>
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

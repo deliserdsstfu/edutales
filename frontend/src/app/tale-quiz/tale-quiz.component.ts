@@ -1,4 +1,5 @@
-import {AfterContentInit, AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+
 import {TaleService} from '../service/tale.service';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -6,8 +7,6 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {QuizService} from '../service/quiz.service';
 import {QuizResolver} from '../resolver/quiz.resolver';
 import {TaleQuizService} from '../service/tale-quiz.service';
-import {ChildService} from '../service/child.service';
-import {ChildFormComponent} from '../child-form/child-form.component';
 
 
 @Component({
@@ -17,20 +16,20 @@ import {ChildFormComponent} from '../child-form/child-form.component';
 
 })
 
+
 export class TaleQuizComponent implements OnInit {
 
-
-  pointsForQuizz: number;
   tale: any;
   finished =  false;
   taleQuizGroup;
   data: any;
   isSubmitted = false;
+  childId = localStorage.getItem('childId');
 
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               // tslint:disable-next-line:max-line-length
-              private router: Router, private taleService: TaleService, private taleQuizService: TaleQuizService, public quizService: QuizService, private childService: ChildService) { }
+              private router: Router, private taleService: TaleService, private taleQuizService: TaleQuizService, public quizService: QuizService) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -43,28 +42,24 @@ export class TaleQuizComponent implements OnInit {
     this.taleQuizGroup = this.fb.group({
     isTrue: ['', [Validators.required]]
     });
-
   }
-
-
-
   get myForm() {
     return this.taleQuizGroup.get('isTrue');
   }
   onSubmit() {
     this.isSubmitted = true;
     const isT = this.route.snapshot.data.taleQuizResolver.quiz_true;
-    console.log(isT);
+    // console.log(pointsIfT);
     if (!this.taleQuizGroup.valid) {
       return false;
     } else if (JSON.stringify(this.taleQuizGroup.value) === '{"isTrue":"' + isT + '"}') {
-      alert('Richtige Antwort!');
-      console.log('yes');
+      alert('Richtige Antwort! Du hast Punkte gesammelt!');
+      const pointsIfT = this.route.snapshot.data.taleQuizResolver.quiz_points;
+      const pointsOld = localStorage.getItem('points');
+      const pointsNew = parseInt(pointsOld, 10) + pointsIfT
+      localStorage.setItem('points', pointsNew);
     }  else {
       alert('Die Antwort ist leider falsch!');
-      console.log('ney');
     }
   }
-
-
 }

@@ -16,6 +16,9 @@ class RegionAdmin(admin.ModelAdmin): pass
 class QuizAdmin(admin.ModelAdmin): pass
 
 
+class AnswerAdmin(admin.ModelAdmin): pass
+
+
 class ChildAdmin(admin.ModelAdmin): pass
 
 
@@ -24,9 +27,12 @@ class ProgressAdmin(admin.ModelAdmin): pass
 
 class GameTypeAdmin(admin.ModelAdmin): pass
 
+
 class LanguageAdmin(admin.ModelAdmin): pass
 
+
 class RewardAdmin(admin.ModelAdmin): pass
+
 
 class HistoryAdmin(admin.ModelAdmin): pass
 

@@ -9,10 +9,11 @@ import { ParentListComponent } from './parent-list/parent-list.component';
 import { ParentFormComponent } from './parent-form/parent-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  MatAutocompleteModule,
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule,
-  MatMenuModule, MatNativeDateModule, MatRadioModule,
+  MatMenuModule, MatNativeDateModule, MatProgressBarModule, MatRadioModule,
   MatSelectModule, MatSliderModule,
   MatTableModule,
   MatToolbarModule
@@ -40,6 +41,7 @@ import {TaleQuizComponent} from './tale-quiz/tale-quiz.component';
 import { HistoryQuizComponent } from './history-quiz/history-quiz.component';
 import {MediainputComponent} from './mediainput/mediainput.component';
 import {FileUploadModule} from 'ng2-file-upload';
+import {BackButtonDisableModule} from 'angular-disable-browser-back-button';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -74,6 +76,7 @@ export function tokenGetter() {
     HttpClientModule,
     FileUploadModule,
     ReactiveFormsModule,
+    BackButtonDisableModule.forRoot(),
     BrowserAnimationsModule,
     MatTableModule,
     MatButtonModule,
@@ -98,7 +101,9 @@ export function tokenGetter() {
     }),
     MatSliderModule,
     MatSnackBarModule,
+    MatAutocompleteModule,
     MatRadioModule,
+    MatProgressBarModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
