@@ -73,13 +73,6 @@ class GameType(models.Model):
         return self.name
 
 
-class Progress(models.Model):
-    tale = models.ManyToManyField('Tale', blank= True)
-    points = models.ForeignKey(Quiz, on_delete= models.CASCADE, null=True)
-
-    def __str__(self):
-        return self.points
-
 class Reward(models.Model):
     name = models.TextField()
     history = models.ForeignKey(History, on_delete=models.CASCADE, null=True)
@@ -102,7 +95,7 @@ class Child(models.Model):
     user_name = models.TextField()
     year_of_birth = models.IntegerField()
     game = models.CharField(max_length=1, choices=CHOICES, null=True)
-    progress = models.ForeignKey(Progress, on_delete=models.CASCADE, null=True)
+    progress = models.PositiveIntegerField(null = True)
     reward = models.ForeignKey(Reward, on_delete=models.CASCADE, null=True)
 
     class Meta:

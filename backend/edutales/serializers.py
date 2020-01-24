@@ -135,25 +135,6 @@ class LanguageOptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ProgressListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Progress
-        fields = '__all__'
-
-class ProgressFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Progress
-        fields = '__all__'
-
-class ProgressOptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Progress
-        fields = '__all__'
-
-
 class QuizListSerializer(serializers.ModelSerializer):
 
     class Meta:
