@@ -46,14 +46,6 @@ export class WorldMapComponent implements OnInit {
   ngOnInit() {
     this.getUserLocation();
 
-    if (localStorage.length === 1) {
-      const points = 'points';
-      localStorage.setItem(points, String(0));
-      const childId = this.route.snapshot.paramMap.get('id');
-      const key = 'childId';
-      localStorage.setItem(key, childId);
-    }
-
     this.progress = parseInt(localStorage.getItem('points'), 10);
   }
 
