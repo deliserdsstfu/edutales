@@ -3,7 +3,15 @@ import {HttpClient} from '@angular/common/http';
 import {ChildService} from '../service/child.service';
 import {RewardService} from '../service/reward.service';
 import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import {UserOptions} from 'jspdf-autotable';
 import {AbstractControl, ValidatorFn} from '@angular/forms';
+
+// tslint:disable-next-line:class-name
+interface jsPDFWithPlugin extends jsPDF {
+  autotable: (options: UserOptions) => jsPDF;
+
+}
 
 @Component({
   selector: 'app-reward-list',
@@ -33,7 +41,7 @@ export class RewardListComponent implements OnInit {
       });
   }
   downloadPdf() {
-    const doc = new jsPDF();
+    const doc = new jsPDF('portrait', 'px', 'a4') as jsPDFWithPlugin;
 
     const specialElementHandlers = {
       '#editor'(element, renderer) {
