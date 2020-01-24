@@ -14,9 +14,9 @@ import {ParentService} from '../service/parent.service';
 })
 export class WorldMapComponent implements OnInit {
 
-  latitude = 47.06667;
-  longitude = 15.45;
-  locationChosen = false;
+  lat: number;
+  lng: number;
+
   previous;
   parent;
   progress;
@@ -28,10 +28,15 @@ export class WorldMapComponent implements OnInit {
     this.previous = infowindow;
   }
 
-  onChoseLocation(event) {
-    this.latitude = event.coords.lat;
-    this.longitude = event.coords.lng;
-    this.locationChosen = true;
+  private getUserLocation() {
+    /// locate the user
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+
+      });
+    }
   }
 
   // tslint:disable-next-line:max-line-length
@@ -39,6 +44,8 @@ export class WorldMapComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getUserLocation();
+
     if (localStorage.length === 1) {
       const points = 'points';
       localStorage.setItem(points, String(0));
@@ -46,8 +53,8 @@ export class WorldMapComponent implements OnInit {
       const key = 'childId';
       localStorage.setItem(key, childId);
     }
-    this.progress = parseInt(localStorage.getItem('points'), 10);
 
+    this.progress = parseInt(localStorage.getItem('points'), 10);
   }
 
   getTale(id) {
@@ -64,11 +71,5 @@ export class WorldMapComponent implements OnInit {
       });
   }
 
-  getCurrChild(id) {
-    this.childService.getChild(id)
-      .subscribe( () => {
-        this.router.navigate(['/api/child/' + id + '/get']);
-      });
-  }
 
 }

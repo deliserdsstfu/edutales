@@ -4,8 +4,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-
-
 class Quiz(models.Model):
     points = models.PositiveIntegerField()
     question = models.TextField()
@@ -79,6 +77,8 @@ class Progress(models.Model):
     tale = models.ManyToManyField('Tale', blank= True)
     points = models.ForeignKey(Quiz, on_delete= models.CASCADE, null=True)
 
+    def __str__(self):
+        return self.points
 
 class Reward(models.Model):
     name = models.TextField()
@@ -122,10 +122,18 @@ class Parent(models.Model):
     children = models.ManyToManyField('Child', blank = True , related_name= 'parent')
     language = models.ForeignKey(Language, on_delete=models.CASCADE, null= True)
 
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
+
 class Media(models.Model):
     original_file_name = models.TextField()
     content_type = models.TextField()
     size = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.original_file_name
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

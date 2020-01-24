@@ -1,7 +1,7 @@
 <mat-toolbar>
   &nbsp; &nbsp;<mat-progress-bar mode="determinate" value="{{progress}}" color="primary"></mat-progress-bar> &nbsp; &nbsp;
 </mat-toolbar>
-<agm-map [latitude]="latitude" [longitude]="longitude">
+<agm-map [latitude]="lat" [longitude]="lng">
   <agm-marker [latitude]="47.623637" [longitude]="13.840456" (markerClick)="getTale(1 )" iconUrl="https://img.icons8.com/ultraviolet/48/000000/marker.png"></agm-marker>
   <agm-marker [latitude]="47.5944" [longitude]="15" (markerClick)="getTale(2 )" iconUrl="https://img.icons8.com/ultraviolet/48/000000/marker.png"></agm-marker>
   <agm-marker [latitude]="47.420194" [longitude]="13.062638" (markerClick)="getTale(3 )" iconUrl="https://img.icons8.com/ultraviolet/48/000000/marker.png"></agm-marker>
