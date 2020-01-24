@@ -24,6 +24,8 @@ export class TaleQuizComponent implements OnInit {
   taleQuizGroup;
   data: any;
   isSubmitted = false;
+  childId = localStorage.getItem('childId');
+
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               // tslint:disable-next-line:max-line-length
@@ -37,7 +39,6 @@ export class TaleQuizComponent implements OnInit {
         this.finished = true;
       });
     this.data = this.route.snapshot.data.taleQuizResolver;
-
     this.taleQuizGroup = this.fb.group({
     isTrue: ['', [Validators.required]]
     });
@@ -48,15 +49,17 @@ export class TaleQuizComponent implements OnInit {
   onSubmit() {
     this.isSubmitted = true;
     const isT = this.route.snapshot.data.taleQuizResolver.quiz_true;
-    console.log(isT);
+    // console.log(pointsIfT);
     if (!this.taleQuizGroup.valid) {
       return false;
     } else if (JSON.stringify(this.taleQuizGroup.value) === '{"isTrue":"' + isT + '"}') {
-      alert('Richtige Antwort!');
-      console.log('yes');
+      alert('Richtige Antwort! Du hast Punkte gesammelt!');
+      const pointsIfT = this.route.snapshot.data.taleQuizResolver.quiz_points;
+      const pointsOld = localStorage.getItem('points');
+      const pointsNew = parseInt(pointsOld, 10) + pointsIfT
+      localStorage.setItem('points', pointsNew);
     }  else {
       alert('Die Antwort ist leider falsch!');
-      console.log('ney');
     }
   }
 }

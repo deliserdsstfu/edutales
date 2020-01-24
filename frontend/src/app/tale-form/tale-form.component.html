@@ -30,7 +30,7 @@
   <br/>
   <div>
     <app-mediainput formControlName="pictures"></app-mediainput>
-  </div>
+  </div><br>
   <mat-card-actions align="center">
     <button mat-raised-button color="primary" [disabled]="!taleFormGroup.valid" (click)="createTale()">
       <span *ngIf="!taleFormGroup.controls.id.value">Create</span>

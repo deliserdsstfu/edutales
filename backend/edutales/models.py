@@ -31,9 +31,8 @@ class Tale(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
     pictures = models.ManyToManyField('Media', blank=True)
 
-
-def __str__(self):
-        return self.title
+    def __str__(self):
+            return self.title
 
 class Language(models.Model):
     german = models.TextField()
@@ -85,9 +84,9 @@ class History(models.Model):
     def __str__(self):
         return self.title
 
+
 class Region(models.Model):
     name = models.TextField()
-
 
     def __str__(self):
         return self.name

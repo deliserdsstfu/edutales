@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "points": 10,
-      "question": "w",
+      "question": "Ist der Wassermann blau?",
       "isTrue": false
     }
   },
@@ -13,7 +13,7 @@
     "pk": 2,
     "fields": {
       "points": 10,
-      "question": "w",
+      "question": "Ist der Erzberges über 1000m hoch?",
       "isTrue": false
     }
   },
@@ -22,7 +22,7 @@
     "pk": 3,
     "fields": {
       "points": 10,
-      "question": "w",
+      "question": "Nennt man die Alm am Hochkönig 'Übergossene Alm'?",
       "isTrue": true
     }
   }

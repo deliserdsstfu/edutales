@@ -36,6 +36,7 @@ export class UserService {
   logout() {
     localStorage.removeItem(this.accessTokenLocalStorageKey);
     this.isLoggedIn.next(false);
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 
@@ -50,6 +51,14 @@ export class UserService {
     const token = localStorage.getItem(this.accessTokenLocalStorageKey);
     const decodedToken = this.jwtHelperService.decodeToken(token);
     return decodedToken.user_id;
+  }
+
+  deleteUser(user) {
+    return this.http.delete('/api/user/' + user.id + '/delete', user);
+  }
+
+  getUser(id) {
+    return this.http.get('/api/user/' + id + '/get');
   }
 
 }
