@@ -10,7 +10,7 @@ import { ParentFormComponent } from './parent-form/parent-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDividerModule,
   MatFormFieldModule,
   MatInputModule,
   MatMenuModule, MatNativeDateModule, MatProgressBarModule, MatRadioModule,
@@ -73,11 +73,11 @@ export function tokenGetter() {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FileUploadModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     MatTableModule,
     MatButtonModule,
     MatToolbarModule,
@@ -104,6 +104,7 @@ export function tokenGetter() {
     MatAutocompleteModule,
     MatRadioModule,
     MatProgressBarModule,
+    MatDividerModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
