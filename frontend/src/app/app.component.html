@@ -1,4 +1,4 @@
-<mat-toolbar *ngIf="isLoggedIn && !isWorldMap() && !isTaleQuiz() && !isLogin()">
+<mat-toolbar *ngIf="isLoggedIn && !isWorldMap() && !isTaleQuiz() && !isLogin()" color="primary">
   <button mat-button
   [matMenuTriggerFor]="parentMenu">Parent</button>
   <mat-menu #parentMenu="matMenu">
