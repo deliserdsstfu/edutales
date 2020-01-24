@@ -1,1 +1,11 @@
-<p>child-profile works!</p>
+<mat-card *ngIf="finished">
+  <mat-card-title>Profil von {{child.user_name}}</mat-card-title>
+  <mat-divider></mat-divider><br>
+  <mat-card-content>
+  Aktueller Punktestand: {{points}}
+  </mat-card-content><br><br>
+  <mat-card-content>
+    Viel Spaß bei Edutales !
+  </mat-card-content><br><br>
+  <button mat-fab color="accent" [routerLink]="'/world-map/' + childId">Play</button>
+</mat-card>
