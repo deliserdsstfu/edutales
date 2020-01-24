@@ -1,9 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
-
 
 
 class Quiz(models.Model):
@@ -16,7 +14,7 @@ class Quiz(models.Model):
         verbose_name_plural = 'Quizzes'
 
     def __str__(self):
-            return self.question
+        return self.question
 
 
 class Tale(models.Model):
@@ -33,13 +31,15 @@ class Tale(models.Model):
 
 
 def __str__(self):
-        return self.title
+    return self.title
+
 
 class Language(models.Model):
     german = models.TextField()
 
     def __str__(self):
         return self.german
+
 
 class History(models.Model):
     CHOICES = (
@@ -59,13 +59,15 @@ class History(models.Model):
 
 
 def __str__(self):
-        return self.title
+    return self.title
+
 
 class Language(models.Model):
     german = models.TextField()
 
     def __str__(self):
         return self.german
+
 
 class History(models.Model):
     CHOICES = (
@@ -85,9 +87,9 @@ class History(models.Model):
     def __str__(self):
         return self.title
 
+
 class Region(models.Model):
     name = models.TextField()
-
 
     def __str__(self):
         return self.name
@@ -101,8 +103,8 @@ class GameType(models.Model):
 
 
 class Progress(models.Model):
-    tale = models.ManyToManyField('Tale', blank= True)
-    points = models.ForeignKey(Quiz, on_delete= models.CASCADE, null=True)
+    tale = models.ManyToManyField('Tale', blank=True)
+    points = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 
 
 class Reward(models.Model):
@@ -111,13 +113,11 @@ class Reward(models.Model):
     tale = models.ForeignKey(Tale, on_delete=models.CASCADE, null=True)
     pictures = models.ManyToManyField('Media', blank=True)
 
-
     def __str__(self):
         return self.name
 
 
 class Child(models.Model):
-
     CHOICES = (
         ('p', 'Pink'),
         ('b', 'Blue'),
@@ -139,18 +139,20 @@ class Child(models.Model):
 
 
 class Parent(models.Model):
-    first_name = models.TextField(null= True)
-    last_name = models.TextField(null= True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null= True)
+    first_name = models.TextField(null=True)
+    last_name = models.TextField(null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     day_of_birth = models.DateField(null=True)
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
-    children = models.ManyToManyField('Child', blank = True , related_name= 'parent')
-    language = models.ForeignKey(Language, on_delete=models.CASCADE, null= True)
+    children = models.ManyToManyField('Child', blank=True, related_name='parent')
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
+
 
 class Media(models.Model):
     original_file_name = models.TextField()
     content_type = models.TextField()
     size = models.PositiveIntegerField()
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

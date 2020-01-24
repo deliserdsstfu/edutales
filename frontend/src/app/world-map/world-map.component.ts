@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {TaleService} from '../service/tale.service';
 import {Router} from '@angular/router';
 import {HistoryService} from '../service/history.service';
-import {UserService} from '../service/user.service';
 import {ChildService} from '../service/child.service';
 
 
@@ -19,7 +18,7 @@ export class WorldMapComponent implements OnInit {
   previous;
 
   constructor(private taleService: TaleService, private router: Router,
-              private historyService: HistoryService, private userService: UserService) {
+              private historyService: HistoryService, private childService: ChildService) {
   }
 
   clickedMarker(infowindow) {
@@ -35,9 +34,6 @@ export class WorldMapComponent implements OnInit {
     this.locationChosen = true;
   }
 
-
-  constructor(private taleService: TaleService, private router: Router, private historyService: HistoryService, private childService: ChildService
-  ) { }
 
   ngOnInit() {
   }
@@ -58,7 +54,7 @@ export class WorldMapComponent implements OnInit {
 
   getCurrChild(id) {
     this.childService.getChild(id)
-      .subscribe( () => {
+      .subscribe(() => {
         this.router.navigate(['/api/child/' + id + '/get']);
       });
   }

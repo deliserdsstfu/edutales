@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from .views import generate_pdf
 
 
 class TaleAdmin(admin.ModelAdmin):
@@ -17,7 +18,6 @@ class QuizAdmin(admin.ModelAdmin): pass
 
 
 class AnswerAdmin(admin.ModelAdmin): pass
-
 
 class ChildAdmin(admin.ModelAdmin): pass
 
@@ -47,3 +47,4 @@ admin.site.register(Child, ChildAdmin)
 admin.site.register(History, HistoryAdmin)
 admin.site.register(Quiz, QuizAdmin)
 admin.site.register(Language, LanguageAdmin)
+
