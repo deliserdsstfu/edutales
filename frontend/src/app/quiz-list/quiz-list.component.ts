@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {ChildService} from '../service/child.service';
 import {QuizService} from '../service/quiz.service';
 
 @Component({

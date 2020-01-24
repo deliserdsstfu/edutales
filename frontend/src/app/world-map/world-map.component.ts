@@ -3,6 +3,7 @@ import {TaleService} from '../service/tale.service';
 import {Router} from '@angular/router';
 import {HistoryService} from '../service/history.service';
 import {UserService} from '../service/user.service';
+import {ChildService} from '../service/child.service';
 
 
 @Component({
@@ -34,6 +35,10 @@ export class WorldMapComponent implements OnInit {
     this.locationChosen = true;
   }
 
+
+  constructor(private taleService: TaleService, private router: Router, private historyService: HistoryService, private childService: ChildService
+  ) { }
+
   ngOnInit() {
   }
 
@@ -44,7 +49,6 @@ export class WorldMapComponent implements OnInit {
       });
   }
 
-
   getHistory(id) {
     this.historyService.getHistory(id)
       .subscribe(() => {
@@ -52,8 +56,11 @@ export class WorldMapComponent implements OnInit {
       });
   }
 
-  logout() {
-    this.userService.logout();
+  getCurrChild(id) {
+    this.childService.getChild(id)
+      .subscribe( () => {
+        this.router.navigate(['/api/child/' + id + '/get']);
+      });
   }
 
 }

@@ -1,3 +1,11 @@
+<mat-form-field class="example-full-width">
+  <input type="text" placeholder="Pick a history" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getHistory($event)">
+    <mat-option *ngFor="let history of filteredOptions | async" [value]="history.id">
+      {{history.title}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
 <table mat-table [dataSource]="histories">
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Title</th>

@@ -15,7 +15,7 @@ import {Router} from '@angular/router';
 export class TaleListComponent implements OnInit {
 
   tales: any[];
-  displayedColumns = ['title', 'type', 'id'];
+  displayedColumns = ['title', 'type', 'picture', 'id'];
   myControl = new FormControl();
   filteredOptions: Observable<any[]>;
 

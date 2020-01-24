@@ -2,8 +2,10 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ChildService} from '../service/child.service';
+import {GameService} from '../service/game.service';
 import {RewardService} from '../service/reward.service';
-
+import * as jsPDF from 'jspdf';
 import * as Filter from 'bad-words';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -36,7 +38,8 @@ export class RewardFormComponent implements OnInit {
       id: [null],
       name: ['', [Validators.required, this.badWordValidator()], [this.rewardNameValidator()]],
       history: [null],
-      tale: [null]
+      tale: [null],
+      pictures: [[]]
     });
 
     if (data.reward) {

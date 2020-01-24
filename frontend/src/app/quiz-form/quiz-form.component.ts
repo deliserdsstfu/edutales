@@ -12,7 +12,6 @@ import {QuizService} from '../service/quiz.service';
 export class QuizFormComponent implements OnInit {
 
   quizFormGroup;
-  answerOptions;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               private router: Router, private quizService: QuizService) {
@@ -20,13 +19,11 @@ export class QuizFormComponent implements OnInit {
 
   ngOnInit() {
     const data = this.route.snapshot.data;
-    this.answerOptions = data.answerOptions;
 
     this.quizFormGroup = this.fb.group({
       'id': [null],
       'question': ['', Validators.required],
       'points': [null, Validators.required],
-      'answer': [[]],
       'isTrue': false
     });
 

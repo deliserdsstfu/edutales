@@ -121,23 +121,7 @@ class HistoryOptionSerializer(serializers.ModelSerializer):
         model = History
         fields = '__all__'
 
-class HistoryListSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = History
-        fields = '__all__'
-
-class HistoryFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = History
-        fields = '__all__'
-
-class HistoryOptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = History
-        fields = '__all__'
 
 
 class RewardSerializer(serializers.ModelSerializer):
@@ -146,10 +130,10 @@ class RewardSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class LanguageOptionSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Language
         fields = '__all__'
+
 
 
 class ProgressListSerializer(serializers.ModelSerializer):
@@ -214,6 +198,40 @@ class TaleQuizSerializer(serializers.ModelSerializer):
     def get_answer_answer(self, obj):
         return obj.answer.answer if obj.answer else ''
 
+class TaleQuizSerializer(serializers.ModelSerializer):
+
+    quiz_question = serializers.SerializerMethodField()
+    quiz_answer = serializers.SerializerMethodField()
+    quiz_true = serializers.SerializerMethodField()
+    quiz_points = serializers.SerializerMethodField()
+
+
+    class Meta:
+        model = Tale
+        fields = ['id','title', 'text','quiz_question','quiz_answer', 'quiz_true','quiz_points']
+
+    def get_quiz_question(self, obj):
+        return obj.quiz.question if obj.quiz else ''
+    def get_quiz_answer(self, obj):
+        return obj.quiz.answer if obj.quiz else ''
+    def get_quiz_true(self, obj):
+        return obj.quiz.isTrue if obj.quiz else ''
+    def get_quiz_points(self, obj):
+        return obj.quiz.points if obj.quiz else ''
+
+
+
+class RewardListSerializer(serializers.ModelSerializer):
+    history_title = serializers.SerializerMethodField()
+    tale_title = serializers.SerializerMethodField()
+    #tale_pictures = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Reward
+        fields = ['id', 'name', 'history_title', 'tale_title']#, 'tale_pictures']
+
+    def get_history_title(self, obj):
+        return obj.history.title if obj.history else ''
 
 class GameOptionSerializer(serializers.ModelSerializer):
 
@@ -246,7 +264,7 @@ class RewardListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reward
-        fields = ['id', 'name', 'history_title', 'tale_title']#, 'tale_pictures']
+        fields = ['id', 'name', 'history_title', 'tale_title', 'pictures']#, 'tale_pictures']
 
     def get_history_title(self, obj):
         return obj.history.title if obj.history else ''
