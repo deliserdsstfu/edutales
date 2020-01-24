@@ -1,11 +1,14 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AbstractControl, FormBuilder, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ChildService} from '../service/child.service';
 import {GameService} from '../service/game.service';
 import {RewardService} from '../service/reward.service';
 import * as jsPDF from 'jspdf';
+import * as Filter from 'bad-words';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-reward-form',
@@ -21,8 +24,8 @@ export class RewardFormComponent implements OnInit {
   // @ts-ignore
   @ViewChild('content') content: ElementRef;
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private route: ActivatedRoute, public rewardService: RewardService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router,
+              private route: ActivatedRoute, public rewardService: RewardService) {
   }
 
   ngOnInit() {
@@ -33,10 +36,10 @@ export class RewardFormComponent implements OnInit {
 
     this.rewardFormGroup = this.fb.group({
       id: [null],
-      name: ['', [Validators.required, this.badWordValidator()]],
+      name: ['', [Validators.required, this.badWordValidator()], [this.rewardNameValidator()]],
       history: [null],
-      tale: [null]
-
+      tale: [null],
+      pictures: [[]]
     });
 
     if (data.reward) {
@@ -44,6 +47,7 @@ export class RewardFormComponent implements OnInit {
     }
 
   }
+
   createReward() {
     const reward = this.rewardFormGroup.value;
     if (reward.id) {
@@ -58,11 +62,33 @@ export class RewardFormComponent implements OnInit {
         });
     }
   }
+
   badWordValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      const forbidden = /arsch/.test(control.value);
-      const forbidden2 = /idiot/.test(control.value);
-      return forbidden || forbidden2 ? {badWord: {value: control.value}} : null;
+      const forbidden = new Filter();
+      return forbidden.isProfane(control.value) ? {badWord: {value: control.value}} : null;
+    };
+  }
+
+  rewardNameValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+      return this.rewardService.getRewards()
+        .pipe(
+          map((reward: any[]) => {
+            const currentId = this.rewardFormGroup.controls.id.value;
+            const currentName = control.value;
+            const rewardWithSameName = reward.find((r) => {
+              return r.id !== currentId && r.name === currentName;
+            });
+            if (rewardWithSameName) {
+              return {
+                rewardAlreadyExists: true
+              };
+            } else {
+              return null;
+            }
+          })
+        );
     };
   }
 }

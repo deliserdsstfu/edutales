@@ -74,7 +74,6 @@ class ParentOptionSerializer(serializers.ModelSerializer):
         return ' '.join(filter(None, (obj.first_name, obj.last_name)))
 
 
-
 class TaleQuizRelation(serializers.ModelSerializer):
 
 
@@ -90,13 +89,12 @@ class TaleListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
 class TaleFormSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tale
         fields = '__all__'
+
 
 class TaleOptionSerializer(serializers.ModelSerializer):
 
@@ -123,23 +121,7 @@ class HistoryOptionSerializer(serializers.ModelSerializer):
         model = History
         fields = '__all__'
 
-class HistoryListSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = History
-        fields = '__all__'
-
-class HistoryFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = History
-        fields = '__all__'
-
-class HistoryOptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = History
-        fields = '__all__'
 
 
 class RewardSerializer(serializers.ModelSerializer):
@@ -148,10 +130,10 @@ class RewardSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class LanguageOptionSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Language
         fields = '__all__'
+
 
 
 class ProgressListSerializer(serializers.ModelSerializer):
@@ -226,7 +208,7 @@ class RewardListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reward
-        fields = ['id', 'name', 'history_title', 'tale_title']#, 'tale_pictures']
+        fields = ['id', 'name', 'history_title', 'tale_title', 'pictures']#, 'tale_pictures']
 
     def get_history_title(self, obj):
         return obj.history.title if obj.history else ''

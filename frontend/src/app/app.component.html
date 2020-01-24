@@ -10,30 +10,38 @@
     <button mat-menu-item routerLink="child-list/currentParent">List</button>
     <button mat-menu-item routerLink="child-form">Create</button>
   </mat-menu>
+  <div *ngIf="userService.hasPermission('edutales.add_tale')">
   <button mat-button
           [matMenuTriggerFor]="taleMenu">Tale</button>
   <mat-menu #taleMenu="matMenu">
     <button mat-menu-item routerLink="tale-list">List</button>
     <button mat-menu-item routerLink="tale-form">Create</button>
   </mat-menu>
-  <button mat-button
+  </div>
+  <div *ngIf="userService.hasPermission('edutales.add_history')">
+  <button  mat-button
   [matMenuTriggerFor]="historyMenu">History</button>
 <mat-menu #historyMenu="matMenu">
-<button mat-menu-item routerLink="history-list">List</button>
-<button mat-menu-item routerLink="history-form">Create</button>
+  <button mat-menu-item routerLink="history-list">List</button>
+<button mat-menu-item routerLink="history-form">Create </button>
 </mat-menu>
+  </div>
+  <div *ngIf="userService.hasPermission('edutales.add_reward')">
 <button mat-button
 [matMenuTriggerFor]="rewardMenu">Reward</button>
 <mat-menu #rewardMenu="matMenu">
 <button mat-menu-item routerLink="reward-list">List</button>
 <button mat-menu-item routerLink="reward-form">Create</button>
 </mat-menu>
+  </div>
+  <div *ngIf="userService.hasPermission('edutales.add_quiz')">
 <button mat-button
           [matMenuTriggerFor]="quizMenu">Quiz</button>
   <mat-menu #quizMenu="matMenu">
     <button mat-menu-item routerLink="quiz-list">List</button>
     <button mat-menu-item routerLink="quiz-form">Create</button>
   </mat-menu>
+  </div>
   <app-logout></app-logout>
 </mat-toolbar>
 <mat-toolbar *ngIf="isWorldMap()">

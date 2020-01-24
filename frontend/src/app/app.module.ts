@@ -9,6 +9,7 @@ import { ParentListComponent } from './parent-list/parent-list.component';
 import { ParentFormComponent } from './parent-form/parent-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  MatAutocompleteModule,
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule,
@@ -98,6 +99,7 @@ export function tokenGetter() {
     }),
     MatSliderModule,
     MatSnackBarModule,
+    MatAutocompleteModule,
     MatRadioModule,
     MatProgressBarModule,
   ],

@@ -7,6 +7,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 
 from edutales.views import FileUploadView
 from . import views
+from .views import FileUploadView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -37,6 +38,11 @@ urlpatterns = [
     path('quiz/<int:pk>/delete', views.quiz_delete),
     path('game/list', views.gametype_option_list),
     path('game/options', views.gametype_option_list),
+
+
+   # path('answer/<int:pk>/update', views.tale_form_update),
+   # path('answer/<int:pk>/delete', views.tale_delete),
+
     path('region/list', views.region_option_list),
     path('progress/list', views.progress_list),
     path('progress/create', views.progress_form_create),

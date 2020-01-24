@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+
 import {TaleService} from '../service/tale.service';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -7,12 +8,14 @@ import {QuizService} from '../service/quiz.service';
 import {QuizResolver} from '../resolver/quiz.resolver';
 import {TaleQuizService} from '../service/tale-quiz.service';
 
+
 @Component({
   selector: 'app-tale-quiz',
   templateUrl: './tale-quiz.component.html',
   styleUrls: ['./tale-quiz.component.scss'],
 
 })
+
 
 export class TaleQuizComponent implements OnInit {
 

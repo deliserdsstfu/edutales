@@ -13,7 +13,8 @@ export class QuizListComponent implements OnInit {
   quizzes: any[];
   displayedColumns = ['question', 'isTrue', 'points', 'id']
 
-  constructor(private http: HttpClient, private quizService: QuizService) { }
+  constructor(private http: HttpClient, private quizService: QuizService) {
+  }
 
   ngOnInit() {
     this.quizService.getQuizzes()

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {ParentListComponent} from './parent-list/parent-list.component';
 import {ParentFormComponent} from './parent-form/parent-form.component';
 import {LoginComponent} from './login/login.component';
@@ -33,7 +33,6 @@ import {LanguageOptionsResolver} from './resolver/language-options.resolver';
 const routes: Routes = [
   { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard] },
   { path: 'child-list/:id', component: ChildListComponent, canActivate: [AuthGuard] },
-  // { path: 'world-map', component: WorldMapComponent, canActivate: [AuthGuard] },
   { path: 'world-map/:id', component: WorldMapComponent, canActivate: [AuthGuard] },
   { path: 'reward-list', component: RewardListComponent, canActivate: [AuthGuard] },
   { path: 'history-list', component: HistoryListComponent, canActivate: [AuthGuard] },
@@ -56,64 +55,83 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     resolve: {
       quizOptions: QuizOptionsResolver
-    } },
-  { path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard] },
-  { path: 'parent-form/:id',
+    }
+  },
+  {path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard]},
+  {
+    path: 'parent-form/:id',
     component: ParentFormComponent,
     canActivate: [AuthGuard],
     resolve: {
       childrenOptions: ChildOptionsResolver,
       languageOptions: LanguageOptionsResolver,
       parent: ParentResolver
-    } },
-  { path: 'child-form/:id',
+    }
+  },
+  {
+    path: 'child-form/:id',
     component: ChildFormComponent,
     canActivate: [AuthGuard],
     resolve: {
-    child: ChildResolver
-    } },
-  { path: 'reward-form/:id',
+      child: ChildResolver
+    }
+  },
+  {
+    path: 'reward-form/:id',
     component: RewardFormComponent,
     canActivate: [AuthGuard],
     resolve: {
       historyOptions: HistoryOptionsResolver,
       taleOptions: TaleOptionsResolver,
       reward: RewardResolver
-    } },
-  { path: 'history-form/:id',
+    }
+  },
+  {
+    path: 'history-form/:id',
     component: HistoryFormComponent,
     canActivate: [AuthGuard],
     resolve: {
       history: HistoryResolver,
       quizOptions: QuizOptionsResolver
-    } },
-  { path: '', redirectTo: 'parent-list', pathMatch: 'full' },
-  { path: 'tale-list', component: TaleListComponent, canActivate: [AuthGuard] },
-  { path: 'tale-form',
+    }
+  },
+  {path: '', redirectTo: 'parent-list', pathMatch: 'full'},
+  {path: 'tale-list', component: TaleListComponent, canActivate: [AuthGuard]},
+  {
+    path: 'tale-form',
     component: TaleFormComponent,
     canActivate: [AuthGuard],
     resolve: {
       quizOptions: QuizOptionsResolver
-    } },
-  { path: 'tale-form/:id',
+    }
+  },
+  {
+    path: 'tale-form/:id',
     component: TaleFormComponent,
     canActivate: [AuthGuard],
     resolve: {
       tale: TaleResolver,
       quizOptions: QuizOptionsResolver
-    }},
-  { path: 'quiz-list', component: QuizListComponent, canActivate: [AuthGuard] },
-  { path: 'tale-quiz/:id', component: TaleQuizComponent, canActivate: [AuthGuard], resolve: {
+    }
+  },
+  {path: 'quiz-list', component: QuizListComponent, canActivate: [AuthGuard]},
+  {
+    path: 'tale-quiz/:id', component: TaleQuizComponent, canActivate: [AuthGuard], resolve: {
       taleQuizResolver: TaleQuizResolver
-    } },
-  { path: 'history-quiz/:id', component: HistoryQuizComponent, canActivate: [AuthGuard], resolve: {
+    }
+  },
+  {
+    path: 'history-quiz/:id', component: HistoryQuizComponent, canActivate: [AuthGuard], resolve: {
       taleQuizResolver: TaleQuizResolver
-    } },
-  { path: 'quiz-form', component: QuizFormComponent, canActivate: [AuthGuard] },
-  { path: 'quiz-form/:id', component: QuizFormComponent, canActivate: [AuthGuard], resolve: {
+    }
+  },
+  {path: 'quiz-form', component: QuizFormComponent, canActivate: [AuthGuard]},
+  {
+    path: 'quiz-form/:id', component: QuizFormComponent, canActivate: [AuthGuard], resolve: {
       quiz: QuizResolver
-    }},
-  { path: '', redirectTo: 'parent-list', pathMatch: 'full' },
+    }
+  },
+  {path: '', redirectTo: 'parent-list', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
 ];
 
@@ -121,4 +139,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

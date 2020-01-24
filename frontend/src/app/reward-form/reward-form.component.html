@@ -3,6 +3,8 @@
     <input matInput type="text" placeholder="Name" formControlName="name" required>
     <mat-hint align="end">The name of the reward</mat-hint>
     <mat-error *ngIf="rewardFormGroup.controls.name.hasError('required')">Name is required</mat-error>
+    <mat-error *ngIf="rewardFormGroup.controls.name.hasError('badWord')">Contains Bad Word!</mat-error>
+    <mat-error *ngIf="rewardFormGroup.controls.name.hasError('rewardAlreadyExists')">Reward-Name already Exists!</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-select placeholder="Tale" formControlName="tale">
@@ -12,14 +14,15 @@
     </mat-select>
     <mat-hint align="end">The title of the tale</mat-hint>
   </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Picture" formControlName="tale">
+  <!--<mat-form-field>
+    <mat-select placeholder="Picture" formControlName="pictures" multiple>
       <mat-option [value]="null">Picture</mat-option>
       <mat-option [value]="taleOption.id"
                   *ngFor="let taleOption of taleOptions">{{taleOption.pictures}}</mat-option>
     </mat-select>
     <mat-hint align="end">The title of the tale</mat-hint>
   </mat-form-field>
+  -->
   <mat-form-field>
     <mat-select placeholder="History" formControlName="history">
       <mat-option [value]="null">History</mat-option>
@@ -28,7 +31,9 @@
     </mat-select>
     <mat-hint align="end">The title of the history</mat-hint>
   </mat-form-field>
-
+  <div>
+    <app-mediainput formControlName="pictures"></app-mediainput>
+  </div>
   <br>
   <mat-card-actions align="center">
     <button mat-raised-button color="primary" [disabled]="!rewardFormGroup.valid" (click)="createReward()">

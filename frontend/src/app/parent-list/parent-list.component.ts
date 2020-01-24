@@ -26,16 +26,4 @@ export class ParentListComponent implements OnInit {
       });
   }
 
-/*
-  deleteParent(parent) {
-    const currId = this.userService.getCurrentId();
-    // tslint:disable-next-line:no-unused-expression
-    this.parentService.deleteParent(parent)
-      .subscribe(() => {
-            this.router.navigate(['/login']);
-      });
-  }
-*/
-
-
 }

@@ -50,6 +50,32 @@ class History(models.Model):
     type = models.CharField(max_length=1, choices=CHOICES, null=True)
     text = models.TextField()
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+    pictures = models.ManyToManyField('Media', blank=True)
+
+    class Meta:
+        verbose_name = 'History'
+        verbose_name_plural = 'Histories'
+
+
+def __str__(self):
+        return self.title
+
+class Language(models.Model):
+    german = models.TextField()
+
+    def __str__(self):
+        return self.german
+
+class History(models.Model):
+    CHOICES = (
+        ('w', 'witzig'),
+        ('g', 'gruselig')
+    )
+
+    title = models.TextField()
+    type = models.CharField(max_length=1, choices=CHOICES, null=True)
+    text = models.TextField()
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'History'
@@ -75,13 +101,14 @@ class GameType(models.Model):
 
 class Progress(models.Model):
     tale = models.ManyToManyField('Tale', blank= True)
-    points = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+    points = models.ForeignKey(Quiz, on_delete= models.CASCADE, null=True)
 
 
 class Reward(models.Model):
     name = models.TextField()
     history = models.ForeignKey(History, on_delete=models.CASCADE, null=True)
     tale = models.ForeignKey(Tale, on_delete=models.CASCADE, null=True)
+    pictures = models.ManyToManyField('Media', blank=True)
 
 
     def __str__(self):

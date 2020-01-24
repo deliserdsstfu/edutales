@@ -7,4 +7,3 @@ venv\Scripts\python.exe manage.py loaddata initial_languages
 venv/bin/python manage.py loaddata initial_quizzes <br>
 venv/bin/python manage.py loaddata initial_tales <br>
 venv/bin/python manage.py loaddata initial_languages
-
