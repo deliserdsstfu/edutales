@@ -30,7 +30,6 @@ import {TaleOptionsResolver} from './resolver/tale-options.resolver';
 import {HistoryOptionsResolver} from './resolver/history-options.resolver';
 import {LanguageOptionsResolver} from './resolver/language-options.resolver';
 import {ChildProfileComponent} from './child-profile/child-profile.component';
-import {WelcomeComponent} from './welcome/welcome.component';
 
 const routes: Routes = [
   { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard] },
@@ -135,7 +134,6 @@ const routes: Routes = [
     }
   },
   {path: '', redirectTo: 'parent-list', pathMatch: 'full'},
- // {path: 'welcome', component: WelcomeComponent},
   {path: 'login', component: LoginComponent},
 ];
 
