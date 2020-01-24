@@ -41,6 +41,7 @@ import {TaleQuizComponent} from './tale-quiz/tale-quiz.component';
 import { HistoryQuizComponent } from './history-quiz/history-quiz.component';
 import {MediainputComponent} from './mediainput/mediainput.component';
 import {FileUploadModule} from 'ng2-file-upload';
+import {BackButtonDisableModule} from 'angular-disable-browser-back-button';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -75,6 +76,7 @@ export function tokenGetter() {
     HttpClientModule,
     FileUploadModule,
     ReactiveFormsModule,
+    BackButtonDisableModule.forRoot(),
     BrowserAnimationsModule,
     MatTableModule,
     MatButtonModule,
