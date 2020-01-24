@@ -1,0 +1,44 @@
+<mat-card>
+
+  <mat-card-title>{{rewards.name}}</mat-card-title>
+  <br>
+  <br>
+  <mat-card-title>Dein Photo:</mat-card-title>
+
+  <img *ngFor="let pic of pictures" src="/api/media/{{pic}}" height="200" alt="">
+  <br>
+
+  <mat-card-title>Dein Märchen:</mat-card-title>
+
+  <h3 >{{taleTitle}}</h3>
+  <br>
+  <mat-card>{{taleText}}</mat-card>
+
+  <br>
+  <br>
+  <br>
+
+  <mat-card-title>Deine Geschichte:</mat-card-title>
+
+  <h3>{{historyTitle}}</h3>
+
+  <br>
+  <mat-card>{{historyText}}</mat-card>
+  <br>
+  <br>
+  <br>
+  <button mat-flat-button color="warn" (click)="downloadPdf()">Exportiere deine Auszeichnung als PDF</button>
+  <button mat-flat-button color="warn" (click)="print()">Drucken</button>
+  <div id="content" #content>
+    <h1>{{rewards.name}}</h1>
+    <br>
+    <h2>{{rewards.pictures}}</h2>
+    <br>
+    <h2>{{taleTitle}}:</h2>
+    <br>
+    <p>{{taleText}}</p>
+    <h2>{{historyTitle}}:</h2>
+    <p>{{historyText}}</p>
+  </div>
+</mat-card>
+

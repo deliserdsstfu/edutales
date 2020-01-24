@@ -123,7 +123,6 @@ class HistoryOptionSerializer(serializers.ModelSerializer):
 
 
 
-
 class RewardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reward
