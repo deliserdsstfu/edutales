@@ -13,7 +13,7 @@
     <mat-select placeholder="Language" formControlName="language">
       <mat-option [value]="null">Language</mat-option>
       <mat-option [value]="languageOption.id"
-                  *ngFor="let languageOption of languageOptions">{{languageOption.german}}</mat-option>
+                  *ngFor="let languageOption of languageOptions">{{languageOption.language}}</mat-option>
     </mat-select>
     <mat-hint align="end">The title of the history</mat-hint>
   </mat-form-field>

@@ -38,7 +38,6 @@ def history_option_list(request):
     return Response(serializer.data)
 
 
-
 @swagger_auto_schema(method='GET', responses={200: TaleOptionSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('edutales.view_tale', raise_exception=True)
@@ -56,6 +55,7 @@ def gametype_option_list(request):
     serializer = GameTypeOptionSerializer(gametypes, many=True)
     return Response(serializer.data)
 
+
 @swagger_auto_schema(method='GET', responses={200: LanguageOptionSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('edutales.view_language', raise_exception=True)
@@ -63,9 +63,6 @@ def language_option_list(request):
     languages = Language.objects.all()
     serializer = LanguageOptionSerializer(languages, many=True)
     return Response(serializer.data)
-
-
-
 
 
 @swagger_auto_schema(method='GET', responses={200: QuizListSerializer(many=True)})

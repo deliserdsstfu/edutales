@@ -122,18 +122,17 @@ class HistoryOptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
 class RewardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reward
         fields = '__all__'
 
+
 class LanguageOptionSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Language
         fields = '__all__'
-
 
 
 class ProgressListSerializer(serializers.ModelSerializer):

@@ -34,37 +34,13 @@ class Tale(models.Model):
     def __str__(self):
             return self.title
 
-class Language(models.Model):
-    german = models.TextField()
-
-    def __str__(self):
-        return self.german
-
-class History(models.Model):
-    CHOICES = (
-        ('w', 'witzig'),
-        ('g', 'gruselig')
-    )
-
-    title = models.TextField()
-    type = models.CharField(max_length=1, choices=CHOICES, null=True)
-    text = models.TextField()
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
-    pictures = models.ManyToManyField('Media', blank=True)
-
-    class Meta:
-        verbose_name = 'History'
-        verbose_name_plural = 'Histories'
-
-
-def __str__(self):
-        return self.title
 
 class Language(models.Model):
-    german = models.TextField()
+    language = models.TextField()
 
     def __str__(self):
-        return self.german
+        return self.language
+
 
 class History(models.Model):
     CHOICES = (
