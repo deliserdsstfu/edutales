@@ -49,7 +49,6 @@ class History(models.Model):
     title = models.TextField()
     type = models.CharField(max_length=1, choices=CHOICES, null=True)
     text = models.TextField()
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'History'
