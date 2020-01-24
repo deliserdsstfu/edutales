@@ -11,22 +11,16 @@
     <th mat-header-cell *matHeaderCellDef>Game Type</th>
     <td mat-cell *matCellDef="let child">{{child.game}}</td>
   </ng-container>
-
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let child">
-      <button mat-button [routerLink]="'/world-map/' + child.id" color="primary">Play</button>
+      <!-- <button mat-button [routerLink]="'/world-map/' + child.id" color="primary">Play</button> -->
+      <button mat-button [routerLink]="'/child-profile/' + child.id" color="primary">Play</button>
       <button mat-button [routerLink]="'/child-form/' + child.id">Edit</button>
       &nbsp;&nbsp;
       <button mat-button (click)="deleteChild(child)" color="warn">Delete</button>
     </td>
   </ng-container>
-
-  <ng-container matColumnDef="progress">
-    <th mat-header-cell *matHeaderCellDef>Points out of 100</th>
-    <td mat-cell *matCellDef="let child">{{child.progress}}</td>
-  </ng-container>
-
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
