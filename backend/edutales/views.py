@@ -192,66 +192,6 @@ def tale_form_get(request, pk):
     return Response(serializer.data)
 
 
-@swagger_auto_schema(method='GET', responses={200: ProgressListSerializer(many=True)})
-@api_view(['GET'])
-@permission_required('edutales.view_progress', raise_exception=True)
-def progress_list(request):
-    progresss = Progress.objects.all()
-    serializer = ProgressListSerializer(progresss, many=True)
-    return Response(serializer.data)
-
-
-@swagger_auto_schema(method='POST', request_body=ProgressFormSerializer, responses={200: ProgressFormSerializer()})
-@api_view(['POST'])
-@permission_required('edutales.add_progress', raise_exception=True)
-def progress_form_create(request):
-    serializer = ProgressFormSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=201)
-    return Response(serializer.errors, status=400)
-
-
-@swagger_auto_schema(method='PUT', request_body=ProgressFormSerializer, responses={200: ProgressFormSerializer()})
-@api_view(['PUT'])
-@permission_required('edutales.change_progress', raise_exception=True)
-def progress_form_update(request, pk):
-    try:
-        progress = Progress.objects.get(pk=pk)
-    except Progress.DoesNotExist:
-        return Response({'error': 'Progress does not exist.'}, status=404)
-
-    serializer = ProgressFormSerializer(progress, data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors, status=400)
-
-
-@api_view(['DELETE'])
-@permission_required('edutales.delete_progress', raise_exception=True)
-def progress_delete(request, pk):
-    try:
-        progress = Progress.objects.get(pk=pk)
-    except Progress.DoesNotExist:
-        return Response({'error': 'Progress does not exist.'}, status=404)
-    progress.delete()
-    return Response(status=204)
-
-
-@swagger_auto_schema(method='GET', responses={200: ProgressFormSerializer()})
-@api_view(['GET'])
-@permission_required('edutales.view_progress', raise_exception=True)
-def progress_form_get(request, pk):
-    try:
-        progress = Progress.objects.get(pk=pk)
-    except Progress.DoesNotExist:
-        return Response({'error': 'Progress does not exist.'}, status=404)
-
-    serializer = ProgressFormSerializer(progress)
-    return Response(serializer.data)
-
-
 @swagger_auto_schema(method='GET', responses={200: ChildListSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('edutales.view_child', raise_exception=True)
