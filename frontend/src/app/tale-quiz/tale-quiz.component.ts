@@ -25,6 +25,7 @@ export class TaleQuizComponent implements OnInit {
   data: any;
   isSubmitted = false;
   childId = localStorage.getItem('childId');
+  pictures: number[];
 
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
@@ -36,7 +37,9 @@ export class TaleQuizComponent implements OnInit {
     this.taleService.getTale(id).subscribe(
       (response: any) => {
         this.tale = response;
+        console.log(this.tale);
         this.finished = true;
+        this.pictures = response.pictures;
       });
     this.data = this.route.snapshot.data.taleQuizResolver;
     this.taleQuizGroup = this.fb.group({

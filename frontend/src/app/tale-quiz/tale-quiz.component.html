@@ -1,6 +1,8 @@
 <mat-card align="center" *ngIf="finished" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
   <mat-card-title>{{tale.title}}</mat-card-title>
     <br>
+  <p *ngFor="let pic of pictures"> pic: <img src="api/media/{{pic}}" height="100px"> </p>
+  <br>
   <mat-card-content>{{tale.text}}</mat-card-content>
   <br>
   <mat-card-title>{{data.quiz_question}}</mat-card-title>
@@ -10,6 +12,7 @@
     <input id="false" type="radio" class="custom-control-input" value="false" name="isTrue" formControlName="isTrue">
     <label class="custom-control-label" for="false">Falsch</label>
   </div>
+
 <br>
   <div>
     <input id="true" type="radio" class="custom-control-input" value="true" name="isTrue" formControlName="isTrue">
