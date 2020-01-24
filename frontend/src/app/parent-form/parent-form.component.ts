@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ChildListComponent} from '../child-list/child-list.component';
+import {max} from 'rxjs/operators';
 
 @Component({
   selector: 'app-parent-form',
@@ -32,7 +33,7 @@ export class ParentFormComponent implements OnInit {
       'id': [null],
       'first_name': ['', Validators.required],
       'last_name': ['', Validators.required],
-      'day_of_birth': [null],
+      'day_of_birth': [null,  Validators.max(2020)],
       'children': [null],
       'region': [null],
       'language': [null]

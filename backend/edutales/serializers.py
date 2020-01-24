@@ -1,6 +1,7 @@
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import serializers
 from rest_framework.decorators import api_view
+from rest_framework.exceptions import ValidationError
 from rest_framework.parsers import JSONParser
 
 from .models import *
