@@ -32,7 +32,7 @@ export class ParentFormComponent implements OnInit {
       'id': [null],
       'first_name': ['', Validators.required],
       'last_name': ['', Validators.required],
-      'day_of_birth': [null],
+      'day_of_birth': [null,  Validators.max(2006)],
       'children': [null],
       'region': [null],
       'language': [null]
