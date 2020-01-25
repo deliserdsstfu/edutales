@@ -418,7 +418,6 @@ def history_list(request):
 
 class FileUploadView(views.APIView):
     parser_classes = [MultiPartParser]
-
     def post(self, request, format=None):
         file = request.FILES['file']
         file_input = {
@@ -443,6 +442,8 @@ def media_download(request, pk):
     return response
 
 
+
+
 @swagger_auto_schema(method='GET', responses={200: MediaSerializer()})
 @api_view(['GET'])
 def media_get(request, pk):
@@ -453,7 +454,6 @@ def media_get(request, pk):
 
     serializer = MediaSerializer(tale)
     return Response(serializer.data)
-
 
 @swagger_auto_schema(method='POST', request_body=HistoryFormSerializer, responses={200: HistoryFormSerializer()})
 @api_view(['POST'])
@@ -624,3 +624,4 @@ def generate_pdf(request):
         response.write(output.read())
 
     return response
+

@@ -85,6 +85,8 @@ class TaleFormSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
+
 class TaleOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tale
@@ -97,6 +99,7 @@ class HistoryListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class HistoryFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = History
@@ -104,6 +107,7 @@ class HistoryFormSerializer(serializers.ModelSerializer):
 
 
 class HistoryOptionSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = History
         fields = '__all__'
@@ -144,6 +148,7 @@ class GameOptionSerializer(serializers.ModelSerializer):
         model = Quiz
         fields = '__all__'
 
+
 class TaleQuizSerializer(serializers.ModelSerializer):
     quiz_question = serializers.SerializerMethodField()
     quiz_true = serializers.SerializerMethodField()
@@ -169,7 +174,8 @@ class RewardListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reward
-        fields = ['id', 'name', 'history_title', 'tale_title', 'pictures']  # , 'tale_pictures']
+        fields = ['id', 'name', 'history_title', 'tale_title', 'pictures']#, 'tale_pictures']
+
 
     def get_history_title(self, obj):
         return obj.history.title if obj.history else ''

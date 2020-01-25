@@ -17,7 +17,7 @@ class RegionAdmin(admin.ModelAdmin): pass
 class QuizAdmin(admin.ModelAdmin): pass
 
 
-class AnswerAdmin(admin.ModelAdmin): pass
+
 
 class ChildAdmin(admin.ModelAdmin): pass
 

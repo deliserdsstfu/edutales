@@ -73,6 +73,7 @@ class Reward(models.Model):
     tale = models.ForeignKey(Tale, on_delete=models.CASCADE, null=True)
     pictures = models.ManyToManyField('Media', blank=True)
 
+
     def __str__(self):
         return self.name
 
@@ -106,6 +107,10 @@ class Parent(models.Model):
     region = models.ForeignKey(Region, on_delete=models.CASCADE, null=True)
     children = models.ManyToManyField('Child', blank=True, related_name='parent')
     language = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
+
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name
 
 
     def __str__(self):
