@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TaleService} from '../service/tale.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HistoryService} from '../service/history.service';
@@ -21,6 +21,12 @@ export class WorldMapComponent implements OnInit {
   parent;
   progress;
 
+  constructor(private route: ActivatedRoute, private taleService: TaleService,
+              private parentService: ParentService, private childService: ChildService,
+              private router: Router, private historyService: HistoryService,
+              private userService: UserService) { }
+
+
   clickedMarker(infowindow) {
     if (this.previous) {
       this.previous.close();
@@ -39,8 +45,6 @@ export class WorldMapComponent implements OnInit {
     }
   }
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private route: ActivatedRoute, private taleService: TaleService, private parentService: ParentService, private childService: ChildService, private router: Router, private historyService: HistoryService, private userService: UserService) { }
 
   ngOnInit() {
     this.getUserLocation();
@@ -51,13 +55,13 @@ export class WorldMapComponent implements OnInit {
   getTale(id) {
     this.taleService.getTale(id)
       .subscribe(() => {
-        this.router.navigate(['/tale-quiz/' + id ]);
+        this.router.navigate(['/tale-quiz/' + id]);
       });
   }
 
   getHistory(id) {
     this.historyService.getHistory(id)
-      .subscribe( () => {
+      .subscribe(() => {
         this.router.navigate(['history-quiz/' + id]);
       });
   }

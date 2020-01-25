@@ -42,8 +42,8 @@ const routes: Routes = [
     component: ParentFormComponent,
     canActivate: [AuthGuard],
     resolve: {
-    childrenOptions: ChildOptionsResolver,
-    languageOptions: LanguageOptionsResolver,
+      childrenOptions: ChildOptionsResolver,
+      languageOptions: LanguageOptionsResolver,
     } },
   { path: 'reward-form',
     component: RewardFormComponent,

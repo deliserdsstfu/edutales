@@ -1,14 +1,18 @@
+import tempfile
+
 from django.contrib.auth.decorators import permission_required
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.http import HttpResponse
+from django.template.loader import render_to_string
+from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import views
 from rest_framework.decorators import api_view
-from rest_framework.parsers import MultiPartParser
+from rest_framework.parsers import MultiPartParser, JSONParser
 from rest_framework.response import Response
+from weasyprint import HTML
 
-from edutales.models import *
 from edutales.serializers import *
 
 
@@ -26,7 +30,6 @@ def quiz_option_list(request):
     quizzes = Quiz.objects.all()
     serializer = QuizOptionSerializer(quizzes, many=True)
     return Response(serializer.data)
-
 
 
 @swagger_auto_schema(method='GET', responses={200: HistoryOptionSerializer(many=True)})
@@ -74,8 +77,6 @@ def quiz_list(request):
     return Response(serializer.data)
 
 
-
-
 @swagger_auto_schema(method='POST', request_body=QuizFormSerializer, responses={200: QuizFormSerializer()})
 @api_view(['POST'])
 @permission_required('edutales.add_quiz', raise_exception=True)
@@ -85,8 +86,6 @@ def quiz_form_create(request):
         serializer.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
-
-
 
 
 @swagger_auto_schema(method='PUT', request_body=QuizFormSerializer, responses={200: QuizFormSerializer()})
@@ -315,7 +314,6 @@ def parent_form_update(request, pk):
 @api_view(['DELETE'])
 @permission_required('edutales.delete_parent', raise_exception=True)
 def parent_delete(request, pk):
-
     request.user.is_active = False
     request.user.save()
     parent = Parent.objects.get(pk=pk)
@@ -345,6 +343,7 @@ def reward_list(request):
     serializer = RewardListSerializer(rewards, many=True)
     return Response(serializer.data)
 
+
 @swagger_auto_schema(method='POST', request_body=RewardFormSerializer, responses={200: RewardFormSerializer()})
 @api_view(['POST'])
 @permission_required('edutales.add_reward', raise_exception=True)
@@ -372,6 +371,7 @@ def reward_form_update(request, pk):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=400)
+
 
 @api_view(['DELETE'])
 @permission_required('edutales.delete_reward', raise_exception=True)
@@ -438,7 +438,7 @@ def media_download(request, pk):
     data = default_storage.open('media/' + str(pk)).read()
     content_type = media.content_type
     response = HttpResponse(data, content_type=content_type)
-    original_file_name =media.original_file_name
+    original_file_name = media.original_file_name
     response['Content-Disposition'] = 'inline; filename=' + original_file_name
     return response
 
@@ -454,6 +454,7 @@ def media_get(request, pk):
     serializer = MediaSerializer(tale)
     return Response(serializer.data)
 
+
 @swagger_auto_schema(method='POST', request_body=HistoryFormSerializer, responses={200: HistoryFormSerializer()})
 @api_view(['POST'])
 @permission_required('edutales.add_history', raise_exception=True)
@@ -480,6 +481,7 @@ def history_form_update(request, pk):
         return Response(serializer.data)
     return Response(serializer.errors, status=400)
 
+
 @api_view(['DELETE'])
 @permission_required('edutales.delete_history', raise_exception=True)
 def history_delete(request, pk):
@@ -501,6 +503,7 @@ def history_form_get(request, pk):
         return Response({'error': 'History does not exist.'}, status=404)
     serializer = HistoryFormSerializer(history)
     return Response(serializer.data)
+
 
 @swagger_auto_schema(method='POST', request_body=ParentFormSerializer, responses={200: ParentFormSerializer()})
 @api_view(['POST'])
@@ -512,6 +515,7 @@ def parent_form_create(request):
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
 
+
 @swagger_auto_schema(method='GET', responses={200: HistoryListSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('edutales.view_history', raise_exception=True)
@@ -519,6 +523,7 @@ def history_list(request):
     histories = History.objects.all()
     serializer = HistoryListSerializer(histories, many=True)
     return Response(serializer.data)
+
 
 @swagger_auto_schema(method='POST', request_body=HistoryFormSerializer, responses={200: HistoryFormSerializer()})
 @api_view(['POST'])
@@ -546,6 +551,7 @@ def history_form_update(request, pk):
         return Response(serializer.data)
     return Response(serializer.errors, status=400)
 
+
 @api_view(['DELETE'])
 @permission_required('edutales.delete_history', raise_exception=True)
 def history_delete(request, pk):
@@ -567,6 +573,7 @@ def history_form_get(request, pk):
         return Response({'error': 'History does not exist.'}, status=404)
     serializer = HistoryFormSerializer(history)
     return Response(serializer.data)
+
 
 @swagger_auto_schema(method='GET', responses={200: TaleQuizSerializer()})
 @api_view(['GET'])
@@ -592,3 +599,28 @@ def history_quiz_get(request, pk):
 
     serializer = TaleQuizSerializer(his)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_required('edutales.view_child', raise_exception=True)
+def generate_pdf(request):
+    """Generate pdf."""
+    # Model data
+    people = Child.objects.all().order_by('user_name')
+
+    # Rendered
+    html_string = render_to_string('templatePDF.html', {'people': people})
+    html = HTML(string=html_string)
+    result = html.write_pdf()
+
+    # Creating http response
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=list_children.pdf'
+    response['Content-Transfer-Encoding'] = 'binary'
+    with tempfile.NamedTemporaryFile(delete=True) as output:
+        output.write(result)
+        output.flush()
+        output = open(output.name, 'rb')
+        response.write(output.read())
+
+    return response
