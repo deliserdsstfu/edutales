@@ -22,9 +22,9 @@ German is used a s the language for the contend, so the target group is initiall
 ## Requirements
 **Python 3.7**
 
-> Get [HERE](https://www.python.org/downloads/) for MAC
+> Get [HERE](https://www.python.org/downloads/) for **MAC**
 
-> Get [HERE](https://www.wikihow.com/Install-Python-on-Windows) for Windows
+> Get [HERE](https://www.wikihow.com/Install-Python-on-Windows) for **Windows**
 
 **Django 2.2.7**
 ```bash
@@ -61,15 +61,30 @@ npm install -g @angular/cli
     - Configure -> Plugins -> Install Python Community Edition 
 
 ### Import in IDE IntelliJ (Tested with Version 2019.2.4, Version 2019.3)
-- Open IntelligJ
+- Open IntelliJ
   - File -> Open -> Select **backend** directory -> OK (if requested **open in new window**)
   - File -> Open -> Select **frontend** direcotry -> OK (if reuqested **open in new window**)
 - Switch to **backend**
   - Select Python interpreter in File -> Preferences -> Project: backend -> Project Interpreter
-  - Install requirements from **requirements.txt** in backend/
+  - Install following requirements from **requirements.txt** in backend/
+    - django==2.2.7
+    - djangorestframework==3.10.3
+    - drf-yasg==1.17.0
+    - djangorestframework-jwt==1.11.0
   - Install bad-words ```npm install bad-words```
+  - Install Weasyprint **MAC**
+    - Django Weasyprint ```pip install -U django-weasyprint```
+    - Install homebrew ```/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"```
+    - Install Cairo ```brew install cairo```
+    - (If needed for Cairo install xcode-select ```xcode-select --install``` and run Install cairo again)
+    - Install Pango ```brew install pango```
+  - Install Weasyprint **Windows**
+    - Follow instructions from the official Weasyprint Documentation [HERE](https://weasyprint.readthedocs.io/en/latest/) 
+
+  
 - Switch to **frontend**
   - use ```npm install``` to install all required libraries
+  - 
   
 ### Alternative Import in PyCharm (Backend) (Tested with Version 2019.2.3)
 - Open PyCharm
