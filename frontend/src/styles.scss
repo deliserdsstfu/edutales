@@ -14,7 +14,6 @@ $default-theme: mat-light-theme(mat-palette($mat-pink, A400), mat-palette($mat-l
 @include angular-material-theme($default-theme);
 
 html, body, app-root, .app-frame {
-  //overflow: hidden;
   margin: 0;
   height: 100%;
   box-sizing: border-box;
