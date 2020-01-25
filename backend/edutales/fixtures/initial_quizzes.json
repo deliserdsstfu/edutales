@@ -14,7 +14,7 @@
     "fields": {
       "points": 20,
       "question": "Ist der Erzberges über 1000m hoch?",
-      "isTrue": false
+      "isTrue": true
     }
   },
   {
