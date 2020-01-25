@@ -1,7 +1,6 @@
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import serializers
 from rest_framework.decorators import api_view
-from rest_framework.exceptions import ValidationError
 from rest_framework.parsers import JSONParser
 
 from .models import *
@@ -123,36 +122,16 @@ class HistoryOptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
 class RewardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reward
         fields = '__all__'
 
+
 class LanguageOptionSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Language
-        fields = '__all__'
-
-
-
-class ProgressListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Progress
-        fields = '__all__'
-
-class ProgressFormSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Progress
-        fields = '__all__'
-
-class ProgressOptionSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Progress
         fields = '__all__'
 
 
@@ -205,7 +184,6 @@ class TaleQuizSerializer(serializers.ModelSerializer):
 class RewardListSerializer(serializers.ModelSerializer):
     history_title = serializers.SerializerMethodField()
     tale_title = serializers.SerializerMethodField()
-    #tale_pictures = serializers.SerializerMethodField()
 
     class Meta:
         model = Reward
@@ -216,10 +194,6 @@ class RewardListSerializer(serializers.ModelSerializer):
 
     def get_tale_title(self, obj):
         return obj.tale.title if obj.tale else ''
-
-
-    #def get_tale_pictures(self, obj):
-        #return obj.tale.pictures if obj.tale else ''
 
 
 class RewardFormSerializer(serializers.ModelSerializer):

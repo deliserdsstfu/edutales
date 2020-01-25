@@ -2,6 +2,5 @@
   <mat-card-title>{{history.title}}</mat-card-title>
   <br>
   <mat-card-content>{{history.text}}</mat-card-content>
-  <br>
-  <mat-card-content>{{data.quiz_question}}</mat-card-content>
+  <button mat-button [routerLink]="'/world-map/' + childId" color="accent">Zurück zur Karte</button>
 </mat-card>

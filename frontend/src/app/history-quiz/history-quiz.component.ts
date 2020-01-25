@@ -18,8 +18,8 @@ export class HistoryQuizComponent implements OnInit {
 
   history: any;
   finished =  false;
-  // question;
-  data: any;
+  childId = localStorage.getItem('childId');
+
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               // tslint:disable-next-line:max-line-length
@@ -33,7 +33,5 @@ export class HistoryQuizComponent implements OnInit {
         this.finished = true;
         // this.question = this.quizService.getQuiz(response.quiz);
       });
-    this.data = this.route.snapshot.data.taleQuizResolver;
-
   }
 }

@@ -1,52 +1,53 @@
-<mat-toolbar *ngIf="isLoggedIn && !isWorldMap() && !isTaleQuiz() && !isLogin()">
+<div class="mat-typography app-frame mat-app-background" fxLayout="column">
+<mat-toolbar *ngIf="isLoggedIn && !isWorldMap() && !isTaleQuiz() && !isLogin()" color="primary">
   <button mat-button
-  [matMenuTriggerFor]="parentMenu">Parent</button>
+  [matMenuTriggerFor]="parentMenu">Persönliche Infos</button>
   <mat-menu #parentMenu="matMenu">
-    <button mat-menu-item routerLink="parent-list">List</button>
+    <button mat-menu-item routerLink="parent-list">bearbeiten</button>
   </mat-menu>
   <button mat-button
-          [matMenuTriggerFor]="childMenu">Children</button>
+          [matMenuTriggerFor]="childMenu">Spielen</button>
   <mat-menu #childMenu="matMenu">
-    <button mat-menu-item routerLink="child-list/currentParent">List</button>
-    <button mat-menu-item routerLink="child-form">Create</button>
+    <button mat-menu-item routerLink="child-list/currentParent">Kind auswählen</button>
+    <button mat-menu-item routerLink="child-form">Kind erstellen</button>
   </mat-menu>
   <div *ngIf="userService.hasPermission('edutales.add_tale')">
   <button mat-button
-          [matMenuTriggerFor]="taleMenu">Tale</button>
+          [matMenuTriggerFor]="taleMenu">Sagen</button>
   <mat-menu #taleMenu="matMenu">
-    <button mat-menu-item routerLink="tale-list">List</button>
-    <button mat-menu-item routerLink="tale-form">Create</button>
+    <button mat-menu-item routerLink="tale-list">Listen</button>
+    <button mat-menu-item routerLink="tale-form">Erstellen</button>
   </mat-menu>
   </div>
   <div *ngIf="userService.hasPermission('edutales.add_history')">
   <button  mat-button
-  [matMenuTriggerFor]="historyMenu">History</button>
+  [matMenuTriggerFor]="historyMenu">Geschichten</button>
 <mat-menu #historyMenu="matMenu">
-  <button mat-menu-item routerLink="history-list">List</button>
-<button mat-menu-item routerLink="history-form">Create </button>
+  <button mat-menu-item routerLink="history-list">Listen</button>
+<button mat-menu-item routerLink="history-form">Erstellen</button>
 </mat-menu>
   </div>
   <div *ngIf="userService.hasPermission('edutales.add_reward')">
 <button mat-button
-[matMenuTriggerFor]="rewardMenu">Reward</button>
+[matMenuTriggerFor]="rewardMenu">Auszeichnung</button>
 <mat-menu #rewardMenu="matMenu">
-<button mat-menu-item routerLink="reward-list">List</button>
-<button mat-menu-item routerLink="reward-form">Create</button>
+<button mat-menu-item routerLink="reward-list">Listen</button>
+<button mat-menu-item routerLink="reward-form">Erstellen</button>
 </mat-menu>
   </div>
   <div *ngIf="userService.hasPermission('edutales.add_quiz')">
 <button mat-button
           [matMenuTriggerFor]="quizMenu">Quiz</button>
   <mat-menu #quizMenu="matMenu">
-    <button mat-menu-item routerLink="quiz-list">List</button>
-    <button mat-menu-item routerLink="quiz-form">Create</button>
+    <button mat-menu-item routerLink="quiz-list">Listen</button>
+    <button mat-menu-item routerLink="quiz-form">Erstellen</button>
   </mat-menu>
-  </div>
+  </div>&nbsp;&nbsp;
   <app-logout></app-logout>
 </mat-toolbar>
 <mat-toolbar *ngIf="isWorldMap()">
-  <app-logout></app-logout>
-  <button mat-button routerLink="login">Back to Home</button>
+  <app-logout></app-logout>&nbsp;&nbsp;
+  <button mat-button routerLink="login">Pause</button>
 </mat-toolbar>
 <mat-toolbar *ngIf="isTaleQuiz()">
   <app-logout></app-logout>

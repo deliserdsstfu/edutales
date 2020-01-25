@@ -1,0 +1,25 @@
+[
+  {
+    "model": "edutales.history",
+    "pk": 1,
+    "fields": {
+      "title": "Der Grundlsee",
+      "text": "Der Grundlsee ist ein Alpensee im steirischen Teil des Salzkammergutes in der Nähe von Bad Aussee. Er befindet sich am Südende des Toten Gebirges. Im Osten befinden sich der Toplitzsee und der Kammersee. Mit einer Fläche von 4,22 km² ist er der größte See der Steiermark. Gleichnamig dem See wird auch die Gemeinde Grundlsee genannt."
+    }
+  },
+  {
+    "model": "edutales.history",
+    "pk": 2,
+    "fields": {
+      "title": "Der Erzberg",
+      "text": "Der Erzberg ist ein Berg in der steirischen Stadt Eisenerz in der Gebirgsgruppe der Eisenerzer Alpen. Zumindest seit dem 11. Jahrhundert wird am Erzberg Eisenerz abgebaut, hauptsächlich Siderit. Es handelt sich dabei um den größten Eisenerztagbau Mitteleuropas und das größte Sideritvorkommen weltweit. Der auch „Steirischer Brotlaib“ genannte Berg stellt damit auch heute noch die wichtigste wirtschaftliche Grundlage in einer sonst strukturschwachen Region dar. Dem Erzberg verdanken wichtige österreichische Institutionen wie die Voestalpine mit ihren Stahlwerken in Linz und Leoben-Donawitz oder die Montanuniversität Leoben ihre Existenz. Er war auch Grundlage des wirtschaftlichen Aufschwungs der Region Eisenwurzen und der östlichen Obersteiermark vom 16. bis zum 20. Jahrhundert."
+    }
+  },
+  {
+    "model": "edutales.history",
+    "pk": 3,
+    "fields": {
+      "title": "Die „Übergossene Alm“",
+      "text": "Übergossene Alm ist die Bezeichnung der Gipfelflur des Hochkönigs (2941 m) in den Berchtesgadener Alpen im äußersten Süden des Gemeindegebiets von Werfen. Dort befinden sich die Reste des gleichnamigen Gletschers, der früher fast das gesamte Gipfelplateau bedeckte und bis in die 1920er Jahre das größte Eisfeld der Nördlichen Kalkalpen war, ehe ihm der Hallstätter Gletscher am Dachstein den Rang ablief. Das im Vergleich schnellere Abschmelzen des Hochköniggletschers wird darauf zurückgeführt, dass Plateaugletscher wie die Übergossene Alm sehr sensibel auf ein Ansteigen der Firnlinie reagieren, wodurch große Bereiche der Oberfläche vom Nähr- ins Zehrgebiet wechseln.[3] 1888 waren rund 5,5 km² des Plateaus vereist. 2002 war die Gletscherfläche auf weniger als 1,9 km² abgeschmolzen und der Gletscher in drei kleine, spaltenfreie Teilbereiche zerfallen.[1] Der Name des Gletschers geht auf eine Sage zurück."}
+  }
+]

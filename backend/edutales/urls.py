@@ -38,17 +38,7 @@ urlpatterns = [
     path('quiz/<int:pk>/delete', views.quiz_delete),
     path('game/list', views.gametype_option_list),
     path('game/options', views.gametype_option_list),
-
-
-   # path('answer/<int:pk>/update', views.tale_form_update),
-   # path('answer/<int:pk>/delete', views.tale_delete),
-
     path('region/list', views.region_option_list),
-    path('progress/list', views.progress_list),
-    path('progress/create', views.progress_form_create),
-    path('progress/<int:pk>/get', views.progress_form_get),
-    path('progress/<int:pk>/update', views.progress_form_update),
-    path('progress/<int:pk>/delete', views.progress_delete),
     path('child/list/<int:pk>', views.child_list),
     path('child/create', views.child_form_create),
     path('child/<int:pk>/get', views.child_form_get),
@@ -64,6 +54,7 @@ urlpatterns = [
     path('media/<int:pk>', views.media_download),
     path('media/<int:pk>/get', views.media_get),
     path('tale-quiz/<int:pk>/get', views.tale_quiz_get),
+    path('history-quiz/<int:pk>/get', views.tale_quiz_get),
     path('reward/list', views.reward_list),
     path('reward/create', views.reward_form_create),
     path('reward/<int:pk>/get', views.reward_form_get),

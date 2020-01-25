@@ -10,7 +10,7 @@ import { ParentFormComponent } from './parent-form/parent-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDividerModule,
   MatFormFieldModule,
   MatInputModule,
   MatMenuModule, MatNativeDateModule, MatProgressBarModule, MatRadioModule,
@@ -42,6 +42,8 @@ import { HistoryQuizComponent } from './history-quiz/history-quiz.component';
 import {MediainputComponent} from './mediainput/mediainput.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import {BackButtonDisableModule} from 'angular-disable-browser-back-button';
+import { RewardExportComponent } from './reward-export/reward-export.component';
+import { ChildProfileComponent } from './child-profile/child-profile.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -68,16 +70,18 @@ export function tokenGetter() {
     QuizListComponent,
     TaleQuizComponent,
     HistoryQuizComponent,
-    MediainputComponent
+    MediainputComponent,
+    RewardExportComponent,
+    ChildProfileComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FileUploadModule,
     ReactiveFormsModule,
     BackButtonDisableModule.forRoot(),
-    BrowserAnimationsModule,
     MatTableModule,
     MatButtonModule,
     MatToolbarModule,
@@ -104,6 +108,7 @@ export function tokenGetter() {
     MatAutocompleteModule,
     MatRadioModule,
     MatProgressBarModule,
+    MatDividerModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

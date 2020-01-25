@@ -18,7 +18,6 @@ export class TaleFormComponent implements OnInit {
 
   taleFormGroup;
   quizOptions;
-  taleIsGreaterTen = false;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router,
               private route: ActivatedRoute, public taleService: TaleService,
@@ -51,9 +50,9 @@ export class TaleFormComponent implements OnInit {
         });
     } else {
       this.taleService.createTale(tale)
-          .subscribe((response: any) => {
-              this.router.navigate(['/tale-form/' + response.id]);
-          });
+        .subscribe((response: any) => {
+          this.router.navigate(['/tale-form/' + response.id]);
+        });
     }
   }
 
