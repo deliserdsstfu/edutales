@@ -25,6 +25,4 @@ export class ParentListComponent implements OnInit {
         console.log(this.parents);
       });
   }
-
-
 }

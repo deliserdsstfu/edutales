@@ -4,8 +4,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-
-
 class Quiz(models.Model):
     points = models.PositiveIntegerField()
     question = models.TextField()
@@ -34,36 +32,25 @@ class Tale(models.Model):
     def __str__(self):
             return self.title
 
+
 class Language(models.Model):
-    german = models.TextField()
+    language = models.TextField()
 
     def __str__(self):
-        return self.german
+        return self.language
+
 
 class History(models.Model):
-    CHOICES = (
-        ('w', 'witzig'),
-        ('g', 'gruselig')
-    )
 
     title = models.TextField()
-    type = models.CharField(max_length=1, choices=CHOICES, null=True)
     text = models.TextField()
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'History'
         verbose_name_plural = 'Histories'
 
-
     def __str__(self):
         return self.title
-
-class Language(models.Model):
-    german = models.TextField()
-
-    def __str__(self):
-        return self.german
 
 
 class Region(models.Model):
@@ -78,11 +65,6 @@ class GameType(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Progress(models.Model):
-    tale = models.ManyToManyField('Tale', blank= True)
-    points = models.ForeignKey(Quiz, on_delete= models.CASCADE, null=True)
 
 
 class Reward(models.Model):
@@ -107,7 +89,7 @@ class Child(models.Model):
     user_name = models.TextField()
     year_of_birth = models.IntegerField()
     game = models.CharField(max_length=1, choices=CHOICES, null=True)
-    progress = models.ForeignKey(Progress, on_delete=models.CASCADE, null=True)
+    progress = models.PositiveIntegerField(null = True)
     reward = models.ForeignKey(Reward, on_delete=models.CASCADE, null=True)
 
     class Meta:
@@ -127,10 +109,18 @@ class Parent(models.Model):
     children = models.ManyToManyField('Child', blank = True , related_name= 'parent')
     language = models.ForeignKey(Language, on_delete=models.CASCADE, null= True)
 
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
+
 class Media(models.Model):
     original_file_name = models.TextField()
     content_type = models.TextField()
     size = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.original_file_name
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

@@ -38,7 +38,6 @@ def history_option_list(request):
     return Response(serializer.data)
 
 
-
 @swagger_auto_schema(method='GET', responses={200: TaleOptionSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('edutales.view_tale', raise_exception=True)
@@ -56,6 +55,7 @@ def gametype_option_list(request):
     serializer = GameTypeOptionSerializer(gametypes, many=True)
     return Response(serializer.data)
 
+
 @swagger_auto_schema(method='GET', responses={200: LanguageOptionSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('edutales.view_language', raise_exception=True)
@@ -63,9 +63,6 @@ def language_option_list(request):
     languages = Language.objects.all()
     serializer = LanguageOptionSerializer(languages, many=True)
     return Response(serializer.data)
-
-
-
 
 
 @swagger_auto_schema(method='GET', responses={200: QuizListSerializer(many=True)})
@@ -132,9 +129,6 @@ def quiz_form_get(request, pk):
     return Response(serializer.data)
 
 
-
-
-
 @swagger_auto_schema(method='GET', responses={200: TaleListSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('edutales.view_tale', raise_exception=True)
@@ -195,72 +189,12 @@ def tale_form_get(request, pk):
     return Response(serializer.data)
 
 
-@swagger_auto_schema(method='GET', responses={200: ProgressListSerializer(many=True)})
-@api_view(['GET'])
-@permission_required('edutales.view_progress', raise_exception=True)
-def progress_list(request):
-    progresss = Progress.objects.all()
-    serializer = ProgressListSerializer(progresss, many=True)
-    return Response(serializer.data)
-
-
-@swagger_auto_schema(method='POST', request_body=ProgressFormSerializer, responses={200: ProgressFormSerializer()})
-@api_view(['POST'])
-@permission_required('edutales.add_progress', raise_exception=True)
-def progress_form_create(request):
-    serializer = ProgressFormSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=201)
-    return Response(serializer.errors, status=400)
-
-
-@swagger_auto_schema(method='PUT', request_body=ProgressFormSerializer, responses={200: ProgressFormSerializer()})
-@api_view(['PUT'])
-@permission_required('edutales.change_progress', raise_exception=True)
-def progress_form_update(request, pk):
-    try:
-        progress = Progress.objects.get(pk=pk)
-    except Progress.DoesNotExist:
-        return Response({'error': 'Progress does not exist.'}, status=404)
-
-    serializer = ProgressFormSerializer(progress, data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors, status=400)
-
-
-@api_view(['DELETE'])
-@permission_required('edutales.delete_progress', raise_exception=True)
-def progress_delete(request, pk):
-    try:
-        progress = Progress.objects.get(pk=pk)
-    except Progress.DoesNotExist:
-        return Response({'error': 'Progress does not exist.'}, status=404)
-    progress.delete()
-    return Response(status=204)
-
-
-@swagger_auto_schema(method='GET', responses={200: ProgressFormSerializer()})
-@api_view(['GET'])
-@permission_required('edutales.view_progress', raise_exception=True)
-def progress_form_get(request, pk):
-    try:
-        progress = Progress.objects.get(pk=pk)
-    except Progress.DoesNotExist:
-        return Response({'error': 'Progress does not exist.'}, status=404)
-
-    serializer = ProgressFormSerializer(progress)
-    return Response(serializer.data)
-
-
 @swagger_auto_schema(method='GET', responses={200: ChildListSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('edutales.view_child', raise_exception=True)
 def child_list(request, pk):
-    childs = Child.objects.filter(parent__id=pk)
-    serializer = ChildListSerializer(childs, many=True)
+    children = Child.objects.filter(parent__id=pk)
+    serializer = ChildListSerializer(children, many=True)
     return Response(serializer.data)
 
 
@@ -481,6 +415,7 @@ def history_list(request):
     serializer = HistoryListSerializer(histories, many=True)
     return Response(serializer.data)
 
+
 class FileUploadView(views.APIView):
     parser_classes = [MultiPartParser]
 
@@ -506,7 +441,7 @@ def media_download(request, pk):
     original_file_name =media.original_file_name
     response['Content-Disposition'] = 'inline; filename=' + original_file_name
     return response
-    
+
 
 @swagger_auto_schema(method='GET', responses={200: MediaSerializer()})
 @api_view(['GET'])
@@ -643,4 +578,17 @@ def tale_quiz_get(request, pk):
         return Response({'error': 'Tale does not exist.'}, status=404)
 
     serializer = TaleQuizSerializer(tale)
+    return Response(serializer.data)
+
+
+@swagger_auto_schema(method='GET', responses={200: TaleQuizSerializer()})
+@api_view(['GET'])
+@permission_required('edutales.view_history', raise_exception=True)
+def history_quiz_get(request, pk):
+    try:
+        his = History.objects.get(pk=pk)
+    except History.DoesNotExist:
+        return Response({'error': 'History does not exist.'}, status=404)
+
+    serializer = TaleQuizSerializer(his)
     return Response(serializer.data)

@@ -29,6 +29,7 @@ import {HistoryQuizComponent} from './history-quiz/history-quiz.component';
 import {TaleOptionsResolver} from './resolver/tale-options.resolver';
 import {HistoryOptionsResolver} from './resolver/history-options.resolver';
 import {LanguageOptionsResolver} from './resolver/language-options.resolver';
+import {ChildProfileComponent} from './child-profile/child-profile.component';
 import {RewardExportComponent} from './reward-export/reward-export.component';
 
 const routes: Routes = [
@@ -58,6 +59,7 @@ const routes: Routes = [
       quizOptions: QuizOptionsResolver
     }
   },
+  { path: 'child-profile/:id', component: ChildProfileComponent, canActivate: [AuthGuard]},
   {path: 'child-form', component: ChildFormComponent, canActivate: [AuthGuard]},
   {
     path: 'parent-form/:id',

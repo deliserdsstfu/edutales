@@ -7,6 +7,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {QuizService} from '../service/quiz.service';
 import {QuizResolver} from '../resolver/quiz.resolver';
 import {TaleQuizService} from '../service/tale-quiz.service';
+import {ChildService} from '../service/child.service';
 
 
 @Component({
@@ -24,12 +25,13 @@ export class TaleQuizComponent implements OnInit {
   taleQuizGroup;
   data: any;
   isSubmitted = false;
+  child;
   childId = localStorage.getItem('childId');
-
+  progress = localStorage.getItem('points');
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               // tslint:disable-next-line:max-line-length
-              private router: Router, private taleService: TaleService, private taleQuizService: TaleQuizService, public quizService: QuizService) { }
+              private router: Router, private childService: ChildService, private taleService: TaleService, private taleQuizService: TaleQuizService, public quizService: QuizService) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -58,6 +60,7 @@ export class TaleQuizComponent implements OnInit {
       const pointsOld = localStorage.getItem('points');
       const pointsNew = parseInt(pointsOld, 10) + pointsIfT
       localStorage.setItem('points', pointsNew);
+
     }  else {
       alert('Die Antwort ist leider falsch!');
     }

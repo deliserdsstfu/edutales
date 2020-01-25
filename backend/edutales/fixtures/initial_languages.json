@@ -2,7 +2,7 @@
     "model": "edutales.language",
     "pk": 1,
     "fields": {
-      "german": "Deutsch"
+      "language": "Deutsch"
     }
   }
   ]
