@@ -13,12 +13,17 @@
   <mat-card-title>Deine Geschichte:</mat-card-title>
   <mat-card><h3 >{{historyTitle}}</h3><br>{{historyText}}</mat-card>
   <br>
+  <mat-card-title>Deine Punkte:<br><br> {{progress}}</mat-card-title>
+
   <br>
   <button mat-flat-button color="accent" (click)="downloadPdf()">Exportiere deine Auszeichnung als PDF</button><br><br><br>
   <mat-card-subtitle>Oder du druckst die Seite mit der überaus gut implementieren Browser-Druck-Funktion ;)</mat-card-subtitle>
   <button mat-flat-button color="primary" (click)="print()">Drucken</button>
   <div id="content" #content>
     <h1>{{rewards.name}}</h1>
+    <br>
+    <h2>Deine Punkte:</h2>
+    {{progress}}
     <br><br>
     <h2>{{taleTitle}}:</h2>
     <br>

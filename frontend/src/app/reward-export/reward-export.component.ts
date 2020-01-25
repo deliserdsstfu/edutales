@@ -29,6 +29,7 @@ export class RewardExportComponent implements OnInit {
   taleText: any = [];
   historyText: any = [];
   pictures: number[];
+  progress = localStorage.getItem('points');
 
 
   constructor(private route: ActivatedRoute, private rewardService: RewardService, public taleService: TaleService,
