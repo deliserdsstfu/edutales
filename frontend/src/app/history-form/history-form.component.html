@@ -1,29 +1,22 @@
 <form [formGroup]="historyFormGroup" class="history-form">
   <mat-form-field>
     <input matInput type="text" placeholder="Title" formControlName="title">
-    <mat-hint align="end">The title of the history</mat-hint>
-    <mat-error *ngIf="historyFormGroup.controls.title.hasError('required')">Title is required</mat-error>
-    <mat-error *ngIf="historyFormGroup.controls.title.hasError('badWord')">Contains Bad Word!</mat-error>
-    <mat-error *ngIf="historyFormGroup.controls.title.hasError('historyAlreadyExists')">Title Already Exists!</mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="History Category" formControlName="type">
-      <mat-option [value]="type.key"
-                  *ngFor="let type of typeService.opNames | keyvalue">{{type.value}}</mat-option>
-    </mat-select>
-    <mat-hint align="end">Which category is the history?</mat-hint>
+    <mat-hint align="end">Der Titel Geschichte</mat-hint>
+    <mat-error *ngIf="historyFormGroup.controls.title.hasError('required')">Der Titel ist notwendig</mat-error>
+    <mat-error *ngIf="historyFormGroup.controls.title.hasError('badWord')">Enhält ein Schimpfwort!</mat-error>
+    <mat-error *ngIf="historyFormGroup.controls.title.hasError('historyAlreadyExists')">Den Titel gibt es bereits!</mat-error>
   </mat-form-field>
   <mat-form-field>
     <textarea matInput type="text" placeholder="Text" formControlName="text"></textarea>
-    <mat-hint align="end">The text of the history</mat-hint>
-    <mat-error *ngIf="historyFormGroup.controls.text.hasError('required')">Text is required</mat-error>
-    <mat-error *ngIf="historyFormGroup.controls.text.hasError('badWord')">Contains Bad Word!</mat-error>
+    <mat-hint align="end">Der Text der Geschichte</mat-hint>
+    <mat-error *ngIf="historyFormGroup.controls.text.hasError('required')">Der Text ist notwendig</mat-error>
+    <mat-error *ngIf="historyFormGroup.controls.text.hasError('badWord')">Enhält ein Schimpfwort!</mat-error>
   </mat-form-field>
   <br>
   <mat-card-actions align="center">
     <button mat-raised-button color="primary" [disabled]="!historyFormGroup.valid" (click)="createHistory()">
-      <span *ngIf="!historyFormGroup.controls.id.value">Create</span>
-      <span *ngIf="historyFormGroup.controls.id.value">Update</span>
+      <span *ngIf="!historyFormGroup.controls.id.value">Erstellen</span>
+      <span *ngIf="historyFormGroup.controls.id.value">Aktualisieren</span>
     </button>
   </mat-card-actions>
 </form>

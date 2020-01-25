@@ -30,7 +30,6 @@ export class HistoryFormComponent implements OnInit {
     this.historyFormGroup = this.fb.group({
       id: [null],
       title: ['', [Validators.required, this.badWordValidator()], [this.historyNameValidator()]],
-      type: [null],
       text: ['', [Validators.required, this.badWordValidator()]],
       quiz: [null]
     });

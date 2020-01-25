@@ -18,7 +18,7 @@
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Aktionen</th>
     <td mat-cell *matCellDef="let reward">
-      <button mat-button [routerLink]="'/reward-export/' + reward.id">Export als PDF</button>
+      <button mat-button [routerLink]="'/reward-export/' + reward.id">Exportiere als PDF</button>
       <button mat-button [routerLink]="'/reward-form/' + reward.id">Bearbeiten</button>
       <button mat-button (click)="deleteReward(reward)" color="warn">Löschen</button>
     </td>

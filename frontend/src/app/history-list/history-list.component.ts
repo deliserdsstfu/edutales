@@ -15,7 +15,7 @@ import {Router} from '@angular/router';
 export class HistoryListComponent implements OnInit {
 
   histories: any[];
-  displayedColumns = ['title', 'type', 'id'];
+  displayedColumns = ['title', 'id'];
   myControl = new FormControl();
   filteredOptions: Observable<any[]>;
 

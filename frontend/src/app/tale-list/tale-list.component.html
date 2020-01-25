@@ -8,24 +8,24 @@
 </mat-form-field>
 <table mat-table [dataSource]="tales">
   <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef>Title</th>
+    <th mat-header-cell *matHeaderCellDef>Titel</th>
     <td mat-cell *matCellDef="let tale">{{tale.title}}</td>
   </ng-container>
   <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef>Category</th>
+    <th mat-header-cell *matHeaderCellDef>Kategorie</th>
     <td mat-cell *matCellDef="let tale">{{tale.type}}</td>
   </ng-container>
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <th mat-header-cell *matHeaderCellDef>Aktionen</th>
     <td mat-cell *matCellDef="let tale">
-      <button mat-button [routerLink]="'/tale-form/' + tale.id">Edit</button>
+      <button mat-button [routerLink]="'/tale-form/' + tale.id">Bearbeiten</button>
       &nbsp;
       &nbsp;
-      <button mat-button (click)="deleteTale(tale)" color="warn">Delete</button>
+      <button mat-button (click)="deleteTale(tale)" color="warn">Löschen</button>
     </td>
   </ng-container>
   <ng-container matColumnDef="picture">
-    <th mat-header-cell *matHeaderCellDef>Picture</th>
+    <th mat-header-cell *matHeaderCellDef>Bild</th>
     <td mat-cell *matCellDef="let tale">{{tale.pictures}}</td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
