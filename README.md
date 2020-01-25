@@ -26,10 +26,6 @@ German is used a s the language for the contend, so the target group is initiall
 
 > Get [HERE](https://www.wikihow.com/Install-Python-on-Windows) for **Windows**
 
-**Django 2.2.7**
-```bash
-pip install django
-```
 **virtualenv**
 ```bash
 pip install virtualenv
