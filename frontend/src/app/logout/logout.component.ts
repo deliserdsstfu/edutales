@@ -10,6 +10,7 @@ import {ChildService} from '../service/child.service';
 })
 export class LogoutComponent implements OnInit {
 
+  childId = localStorage.getItem('childId');
   constructor(private router: Router, private userService: UserService, private childService: ChildService) {
   }
 
@@ -19,11 +20,15 @@ export class LogoutComponent implements OnInit {
   }
 
   logout() {
-    this.childService.getChild(localStorage.getItem('childId')).subscribe((child: any) => {
-      child.tale = [];
-      this.childService.updateChild(child).subscribe((r) => {
-        this.userService.logout();
+    if (this.childId) {
+      this.childService.getChild(localStorage.getItem('childId')).subscribe((child: any) => {
+        child.tale = [];
+        this.childService.updateChild(child).subscribe((r) => {
+          this.userService.logout();
+        });
       });
-    });
+    } else {
+      this.userService.logout();
+    }
   }
 }
