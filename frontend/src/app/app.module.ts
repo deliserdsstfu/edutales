@@ -45,6 +45,7 @@ import { ChildProfileComponent } from './child-profile/child-profile.component';
 import { RewardExportComponent } from './reward-export/reward-export.component';
 import {BackButtonDisableModule} from 'angular-disable-browser-back-button';
 import { WelcomeComponent } from './welcome/welcome.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -88,6 +89,7 @@ export function tokenGetter() {
     MatButtonModule,
     MatToolbarModule,
     MatTooltipModule,
+    FlexLayoutModule,
     MatMenuModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCSKOJGEKdNYe_Et8g3CC7rrJnPo6ff9qc'
