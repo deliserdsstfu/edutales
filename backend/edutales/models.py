@@ -40,7 +40,6 @@ class Language(models.Model):
         return self.language
 
 
-
 class History(models.Model):
 
     title = models.TextField()
