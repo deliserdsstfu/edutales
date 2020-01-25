@@ -26,7 +26,7 @@ German is used a s the language for the contend, so the target group is initiall
 
 > Get [HERE](https://www.wikihow.com/Install-Python-on-Windows) for **Windows**
 
-**Homebrew**
+**Homebrew** (for MAC)
 ```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
@@ -83,34 +83,51 @@ npm install -g @angular/cli
   
 - Switch to **frontend**
   - use ```npm install``` to install all required libraries
-  - 
   
 ### Alternative Import in PyCharm (Backend) (Tested with Version 2019.2.3)
 - Open PyCharm
   - File -> Open -> Select **frontend** direcotry -> OK (if reuqested **open in new window**)
+  - Then follow the instructions from **IntelliJ backend**
 
 ### Alternative Import in WebStorm (Frontent) (Tested with Version 2019.3)
 - Open PyCharm
   - File -> Open -> Select **backend** directory -> OK (if requested **open in new window**)
+  - Then follow the instructions from **IntelliJ frontend**
 
 ### Run Project in IDE
-  - **backend**: Start Django Application 
+  - **backend**: Start **Django Application** (IntelliJ or PyCharm)
+  - loaddata for **Mac**
+```bash
+venv/bin/python manage.py loaddata 
+venv/bin/python manage.py loaddata
+venv/bin/python manage.py loaddata
+```
+  - loaddata for **Windows**
+```bash
+venv\Scripts\python.exe manage.py loaddata 
+venv\Scripts\python.exe manage.py loaddata
+venv\Scripts\python.exe manage.py loaddata
+```
+  - make migrations
 ```bash
 python manage.py makemigrations
 ```
 ```bash
 python manage.py migrate
 ```
+  - run server
 ```bash
 python manage.py runserver
 ```
 
-  - **frontend**: Start via **Angular CLI Server** 
+  - **frontend**: Start via **Angular CLI Server** (IntelliJ or WebStorm)
   - Check application running on http://localhost:4200 in browser
       - Default Admin:
           - User: admin
           - Password: admin
 
+### Browser
+  - For PDF-Export with Weasyprint (of children) you have to deactivate any PugIn that can block a PopUp
 
 ## Possible Calls
 
