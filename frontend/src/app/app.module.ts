@@ -42,6 +42,8 @@ import { HistoryQuizComponent } from './history-quiz/history-quiz.component';
 import {MediainputComponent} from './mediainput/mediainput.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import { ChildProfileComponent } from './child-profile/child-profile.component';
+import {BackButtonDisableModule} from 'angular-disable-browser-back-button';
+import { RewardExportComponent } from './reward-export/reward-export.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -70,6 +72,7 @@ export function tokenGetter() {
     HistoryQuizComponent,
     MediainputComponent,
     ChildProfileComponent
+    RewardExportComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +81,7 @@ export function tokenGetter() {
     HttpClientModule,
     FileUploadModule,
     ReactiveFormsModule,
+    BackButtonDisableModule.forRoot(),
     MatTableModule,
     MatButtonModule,
     MatToolbarModule,

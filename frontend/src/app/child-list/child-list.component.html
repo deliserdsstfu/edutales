@@ -14,7 +14,6 @@
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Aktionen</th>
     <td mat-cell *matCellDef="let child">
-      <!-- <button mat-button [routerLink]="'/world-map/' + child.id" color="primary">Play</button> -->
       <button mat-button [routerLink]="'/child-profile/' + child.id" color="accent">Spiel beginnen</button>
       <button mat-button [routerLink]="'/child-form/' + child.id">Bearbeiten</button>
       &nbsp;&nbsp;

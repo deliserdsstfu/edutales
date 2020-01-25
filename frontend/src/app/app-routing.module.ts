@@ -30,6 +30,7 @@ import {TaleOptionsResolver} from './resolver/tale-options.resolver';
 import {HistoryOptionsResolver} from './resolver/history-options.resolver';
 import {LanguageOptionsResolver} from './resolver/language-options.resolver';
 import {ChildProfileComponent} from './child-profile/child-profile.component';
+import {RewardExportComponent} from './reward-export/reward-export.component';
 
 const routes: Routes = [
   { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard] },
@@ -88,6 +89,8 @@ const routes: Routes = [
       reward: RewardResolver
     }
   },
+  {
+    path: 'reward-export/:id', component: RewardExportComponent, canActivate: [AuthGuard]},
   {
     path: 'history-form/:id',
     component: HistoryFormComponent,

@@ -129,9 +129,6 @@ def quiz_form_get(request, pk):
     return Response(serializer.data)
 
 
-
-
-
 @swagger_auto_schema(method='GET', responses={200: TaleListSerializer(many=True)})
 @api_view(['GET'])
 @permission_required('edutales.view_tale', raise_exception=True)
