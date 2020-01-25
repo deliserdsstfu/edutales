@@ -23,7 +23,7 @@ export class RewardListComponent implements OnInit {
   @ViewChild('content') content: ElementRef;
 
 
-  rewards: any[];
+  rewards: any[] = [];
   displayedColumns = ['name', 'tale_title', 'history_title', 'picture', 'id'];
 
   constructor(private http: HttpClient, private rewardService: RewardService) {
