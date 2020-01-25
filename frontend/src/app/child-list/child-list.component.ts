@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ChildService} from '../service/child.service';
 import {UserService} from '../service/user.service';
 import {ParentService} from '../service/parent.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-child-list',
@@ -17,7 +17,7 @@ export class ChildListComponent implements OnInit {
 
 
   // tslint:disable-next-line:max-line-length
-  constructor(private http: HttpClient, private route: ActivatedRoute, private childService: ChildService, private userService: UserService, private parentService: ParentService) { }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private childService: ChildService, private userService: UserService, private parentService: ParentService) { }
 
 
   ngOnInit() {
@@ -32,6 +32,14 @@ export class ChildListComponent implements OnInit {
       .subscribe(() => {
         this.ngOnInit();
       });
+  }
+
+  sub(id) {
+    if (parseInt(localStorage.getItem('childId'), 10) !== id) {
+      const points = 'points';
+      localStorage.setItem(points, String(0));
+    }
+    this.router.navigate(['/child-profile/' + id]);
   }
 
   genPDF() {

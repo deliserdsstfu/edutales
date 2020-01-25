@@ -7,5 +7,5 @@
   <mat-card-content>
     Viel Spaß bei Edutales !
   </mat-card-content><br><br>
-  <button mat-fab color="accent" [routerLink]="'/world-map/' + childId">Play</button>
+  <button mat-fab color="accent" (click)="sub()" [routerLink]="'/world-map/' + childId">Play</button>
 </mat-card>

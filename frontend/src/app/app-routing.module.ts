@@ -34,7 +34,9 @@ import {RewardExportComponent} from './reward-export/reward-export.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 
 const routes: Routes = [
-  { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard] },
+  { path: 'parent-list', component: ParentListComponent, canActivate: [AuthGuard], resolve: {
+      languageOptions: LanguageOptionsResolver,
+    }},
   { path: 'child-list/:id', component: ChildListComponent, canActivate: [AuthGuard] },
   { path: 'world-map/:id', component: WorldMapComponent, canActivate: [AuthGuard] },
   { path: 'reward-list', component: RewardListComponent, canActivate: [AuthGuard] },

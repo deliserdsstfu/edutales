@@ -40,12 +40,24 @@ class ChildParentRelation(serializers.ModelSerializer):
         fields = ['id', 'user_name']
 
 
+class LanguageS(serializers.ModelSerializer):
+    class Meta:
+        model = Language
+        fields = ['language']
+
+
 class ParentListSerializer(serializers.ModelSerializer):
     children = ChildParentRelation(many=True)
+    language_language = serializers.SerializerMethodField()
 
+    # language = Language()
     class Meta:
         model = Parent
-        fields = '__all__'
+        fields = ['id', 'first_name', 'last_name', 'user', 'day_of_birth', 'region', 'children', 'language_language']
+
+    def get_language_language(self, obj):
+        return obj.language.language if obj.language else ''
+
 
 
 class ParentFormSerializer(serializers.ModelSerializer):
@@ -85,8 +97,6 @@ class TaleFormSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
 class TaleOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tale
@@ -99,7 +109,6 @@ class HistoryListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class HistoryFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = History
@@ -107,7 +116,6 @@ class HistoryFormSerializer(serializers.ModelSerializer):
 
 
 class HistoryOptionSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = History
         fields = '__all__'
@@ -154,10 +162,9 @@ class TaleQuizSerializer(serializers.ModelSerializer):
     quiz_true = serializers.SerializerMethodField()
     quiz_points = serializers.SerializerMethodField()
 
-
     class Meta:
         model = Tale
-        fields = ['id', 'title', 'text', 'quiz_question', 'quiz_true', 'quiz_points',]
+        fields = ['id', 'title', 'text', 'quiz_question', 'quiz_true', 'quiz_points', ]
 
     def get_quiz_question(self, obj):
         return obj.quiz.question if obj.quiz else ''
@@ -175,8 +182,7 @@ class RewardListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reward
-        fields = ['id', 'name', 'history_title', 'tale_title', 'pictures']#, 'tale_pictures']
-
+        fields = ['id', 'name', 'history_title', 'tale_title', 'pictures']  # , 'tale_pictures']
 
     def get_history_title(self, obj):
         return obj.history.title if obj.history else ''

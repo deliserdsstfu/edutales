@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ParentService} from '../service/parent.service';
 import {UserService} from '../service/user.service';
 import {ChildService} from '../service/child.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-parent-list',
@@ -13,17 +13,21 @@ import {Router} from '@angular/router';
 export class ParentListComponent implements OnInit {
 
   parents: any[] = [];
-  displayedColumns = ['first_name', 'last_name', 'language', 'day_of_birth', 'id'];
+  displayedColumns = ['first_name', 'last_name', 'language_language', 'day_of_birth', 'id'];
+  languageOptions;
 
-  constructor(private http: HttpClient, private router: Router, private parentService: ParentService, private userService: UserService, private childService: ChildService) { }
+  constructor(private http: HttpClient, private router: Router, private parentService: ParentService, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     const currId = this.userService.getCurrentId();
     this.parentService.getParent(currId)
       .subscribe((response: any) => {
         this.parents.push(response);
+        const language = this.languageOptions.filter(f => f.id === this.parents[0].id)[0].language;
+        this.parents[0].language = language;
         console.log(this.parents);
       });
+    this.languageOptions = this.route.snapshot.data.languageOptions;
   }
 
   deleteParent(parent) {

@@ -108,10 +108,8 @@ class Parent(models.Model):
     language = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.first_name + " " + self.last_name
+        return '%s %s ' %  (self.first_name, self.last_name)
 
-    def __str__(self):
-        return self.first_name + " " + self.last_name
 
 
 class Media(models.Model):
@@ -122,12 +120,10 @@ class Media(models.Model):
     def __str__(self):
         return self.original_file_name
 
-
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Parent.objects.create(user=instance)
-
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):

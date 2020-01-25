@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from weasyprint import HTML
 
 from edutales.serializers import *
+from edutales.models import *
 
 
 @swagger_auto_schema(method='GET', responses={200: RegionOptionSerializer(many=True)})
@@ -192,7 +193,7 @@ def tale_form_get(request, pk):
 @api_view(['GET'])
 @permission_required('edutales.view_child', raise_exception=True)
 def child_list(request, pk):
-    children = Child.objects.filter(pk=request.user.id)
+    children = Child.objects.filter(parent__id=pk)
     serializer = ChildListSerializer(children, many=True)
     return Response(serializer.data)
 

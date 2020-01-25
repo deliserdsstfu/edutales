@@ -5,7 +5,10 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>&nbsp;&nbsp;&nbsp;<i class="material-icons">meeting_room</i></ng-template>
-      <h1>Welcome to Edutales!</h1>
+      <h1>Wilkommen bei Edutales!</h1>
+      Bei Edutales können deine Kinder ihren Enteckergeist auf einer interaktiven Landkarte ausleben und sowohl Sagen als auch geschichtliche Fakten entdecken. Auf diese Weise lernen sie spielerisch neues Wissen dazu und sind vielleicht auch ein wenig beschäftigt sodass du dir auch eine kleine Verschnaufpause im Alltag gönnen kannst!
+      <br>
+      <br>
       <div>
         <button mat-icon-button matStepperNext>
           <mat-icon color="accent">arrow_forward</mat-icon>
@@ -16,7 +19,10 @@
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>&nbsp;&nbsp;&nbsp;<i class="material-icons">menu_book</i></ng-template>
-      Hellooooooooooooo
+      <h1>Wie kann ich loslegen?</h1>
+      Bitte schick eine E-Mail an unseren Administrator an "administrator@edutales.at" um dich bei unserer Plattform zu registrieren. Im Anschluss erhälst du von ihm deine Zugangsdaten mit denen du dich auf der nächsten Seite (->) einloggen kannst.
+      <br>
+      <br>
       <div>
         <button mat-icon-button matStepperPrevious>
           <mat-icon color="accent">arrow_back</mat-icon>
@@ -33,9 +39,6 @@
     <div>
       <button mat-icon-button matStepperPrevious>
         <mat-icon color="accent">arrow_back</mat-icon>
-      </button>
-      <button mat-icon-button (click)="stepper.reset()">
-        <mat-icon color="accent">refresh</mat-icon>
       </button>
     </div>
   </mat-step>
