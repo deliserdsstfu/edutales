@@ -3,7 +3,7 @@
     "model": "edutales.quiz",
     "pk": 1,
     "fields": {
-      "points": 10,
+      "points": 20,
       "question": "Ist der Wassermann blau?",
       "isTrue": false
     }
@@ -12,7 +12,7 @@
     "model": "edutales.quiz",
     "pk": 2,
     "fields": {
-      "points": 10,
+      "points": 20,
       "question": "Ist der Erzberges über 1000m hoch?",
       "isTrue": false
     }
@@ -21,8 +21,28 @@
     "model": "edutales.quiz",
     "pk": 3,
     "fields": {
-      "points": 10,
+      "points": 20,
       "question": "Nennt man die Alm am Hochkönig 'Übergossene Alm'?",
+      "isTrue": true
+    }
+  }
+,
+  {
+    "model": "edutales.quiz",
+    "pk": 4,
+    "fields": {
+      "points": 20,
+      "question": "Die Zwerge verstecken Schätze in den Bergen?",
+      "isTrue": true
+    }
+  }
+,
+  {
+    "model": "edutales.quiz",
+    "pk": 5,
+    "fields": {
+      "points": 20,
+      "question": "Als Sepp erwachte, lag er in seiner Hütte im Wald.",
       "isTrue": true
     }
   }
