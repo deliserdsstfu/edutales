@@ -1,6 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ChildService} from '../service/child.service';
 import {RewardService} from '../service/reward.service';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -27,7 +26,8 @@ export class RewardListComponent implements OnInit {
   rewards: any[];
   displayedColumns = ['name', 'tale_title', 'history_title', 'picture', 'id'];
 
-  constructor(private http: HttpClient, private rewardService: RewardService) { }
+  constructor(private http: HttpClient, private rewardService: RewardService) {
+  }
 
   ngOnInit() {
     this.rewardService.getRewards()
@@ -42,6 +42,7 @@ export class RewardListComponent implements OnInit {
         this.ngOnInit();
       });
   }
+
   downloadPdf() {
     const doc = new jsPDF('portrait', 'px', 'a4') as jsPDFWithPlugin;
 
@@ -58,7 +59,8 @@ export class RewardListComponent implements OnInit {
       elementHandlers: specialElementHandlers
     });
 
-    doc.save('test.pdf');
+    doc.save('Auszeichnung.pdf');
 
   }
+
 }

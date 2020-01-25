@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TaleService} from '../service/tale.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HistoryService} from '../service/history.service';
@@ -20,6 +20,14 @@ export class WorldMapComponent implements OnInit {
   previous;
   parent;
   progress;
+
+
+  constructor(private route: ActivatedRoute, private taleService: TaleService,
+              private parentService: ParentService, private childService: ChildService,
+              private router: Router, private historyService: HistoryService,
+              private userService: UserService) { }
+
+
 
   clickedMarker(infowindow) {
     if (this.previous) {
@@ -51,13 +59,13 @@ export class WorldMapComponent implements OnInit {
   getTale(id) {
     this.taleService.getTale(id)
       .subscribe(() => {
-        this.router.navigate(['/tale-quiz/' + id ]);
+        this.router.navigate(['/tale-quiz/' + id]);
       });
   }
 
   getHistory(id) {
     this.historyService.getHistory(id)
-      .subscribe( () => {
+      .subscribe(() => {
         this.router.navigate(['history-quiz/' + id]);
       });
   }
