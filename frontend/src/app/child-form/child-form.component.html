@@ -14,7 +14,7 @@
     <mat-error *ngIf="childFormGroup.controls.year_of_birth.hasError('min')">Geburtsjahr ist zu lange her</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <mat-select placeholder="Spiel Typ" formControlName="game">
+    <mat-select placeholder="Spieltyp" formControlName="game">
       <mat-option [value]="game.key"
                   *ngFor="let game of gameService.opNames | keyvalue">{{game.value}}</mat-option>
     </mat-select>

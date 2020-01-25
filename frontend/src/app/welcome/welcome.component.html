@@ -1,0 +1,46 @@
+<!--<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button>-->
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>&nbsp;&nbsp;&nbsp;<i class="material-icons">meeting_room</i></ng-template>
+      <h1>Welcome to Edutales!</h1>
+      <div>
+        <button mat-icon-button matStepperNext>
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>&nbsp;&nbsp;&nbsp;<i class="material-icons">menu_book</i></ng-template>
+      Hellooooooooooooo
+      <div>
+        <button mat-icon-button matStepperPrevious>
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button mat-icon-button matStepperNext>
+          <mat-icon>arrow_forward</mat-icon>
+        </button>      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>&nbsp;&nbsp;&nbsp;<i class="material-icons">check</i></ng-template>
+    <app-login></app-login>
+    <div>
+      <button mat-icon-button matStepperPrevious>
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button mat-icon-button (click)="stepper.reset()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

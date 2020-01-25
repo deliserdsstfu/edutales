@@ -1,34 +1,21 @@
 <mat-card>
-
   <mat-card-title>{{rewards.name}}</mat-card-title>
   <br>
-  <br>
   <mat-card-title>Dein Photo:</mat-card-title>
-
   <img *ngFor="let pic of pictures" src="/api/media/{{pic}}" height="200" alt="">
   <br>
-
+  <br>
   <mat-card-title>Dein Märchen:</mat-card-title>
-
-  <h3 >{{taleTitle}}</h3>
-  <br>
-  <mat-card>{{taleText}}</mat-card>
-
+  <mat-card><h3 >{{taleTitle}}</h3><br>{{taleText}}</mat-card>
   <br>
   <br>
-  <br>
-
   <mat-card-title>Deine Geschichte:</mat-card-title>
-
-  <h3>{{historyTitle}}</h3>
-
-  <br>
-  <mat-card>{{historyText}}</mat-card>
+  <mat-card><h3 >{{historyTitle}}</h3><br>{{historyText}}</mat-card>
   <br>
   <br>
-  <br>
-  <button mat-flat-button color="warn" (click)="downloadPdf()">Exportiere deine Auszeichnung als PDF</button>
-  <button mat-flat-button color="warn" (click)="print()">Drucken</button>
+  <button mat-flat-button color="accent" (click)="downloadPdf()">Exportiere deine Auszeichnung als PDF</button><br><br><br>
+  <mat-card-subtitle>Oder du druckst die Seite mit der überaus gut implementieren Browser-Druck-Funktion ;)</mat-card-subtitle>
+  <button mat-flat-button color="primary" (click)="print()">Drucken</button>
   <div id="content" #content>
     <h1>{{rewards.name}}</h1>
     <br>

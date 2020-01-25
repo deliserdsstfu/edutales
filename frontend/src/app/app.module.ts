@@ -11,12 +11,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDividerModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatMenuModule, MatNativeDateModule, MatProgressBarModule, MatRadioModule,
-  MatSelectModule, MatSliderModule,
+  MatSelectModule, MatSidenavModule, MatSliderModule, MatStepperModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {DateComponent} from './date/date/date.component';
 import {BarRatingModule} from 'ngx-bar-rating';
@@ -44,6 +44,7 @@ import {FileUploadModule} from 'ng2-file-upload';
 import { ChildProfileComponent } from './child-profile/child-profile.component';
 import { RewardExportComponent } from './reward-export/reward-export.component';
 import {BackButtonDisableModule} from 'angular-disable-browser-back-button';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -72,7 +73,8 @@ export function tokenGetter() {
     HistoryQuizComponent,
     MediainputComponent,
     ChildProfileComponent,
-    RewardExportComponent
+    RewardExportComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +87,7 @@ export function tokenGetter() {
     MatTableModule,
     MatButtonModule,
     MatToolbarModule,
+    MatTooltipModule,
     MatMenuModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCSKOJGEKdNYe_Et8g3CC7rrJnPo6ff9qc'
@@ -109,6 +112,9 @@ export function tokenGetter() {
     MatRadioModule,
     MatProgressBarModule,
     MatDividerModule,
+    MatSidenavModule,
+    MatStepperModule,
+    MatIconModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
