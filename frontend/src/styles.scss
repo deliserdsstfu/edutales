@@ -9,12 +9,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import '~@angular/material/_theming.scss';
 @include mat-core();
 
-//$default-theme: mat-dark-theme(mat-palette($mat-deep-purple, A400), mat-palette($mat-light-blue, A400));
-$default-theme: mat-light-theme(mat-palette($mat-pink, A400), mat-palette($mat-light-blue, A400));
+$default-theme: mat-light-theme(mat-palette($mat-pink, A400), mat-palette($mat-light-blue, A200));
+
 @include angular-material-theme($default-theme);
 
 html, body, app-root, .app-frame {
-  //overflow: hidden;
   margin: 0;
   height: 100%;
   box-sizing: border-box;

@@ -8,7 +8,7 @@
       <h1>Welcome to Edutales!</h1>
       <div>
         <button mat-icon-button matStepperNext>
-          <mat-icon>arrow_forward</mat-icon>
+          <mat-icon color="accent">arrow_forward</mat-icon>
         </button>
       </div>
     </form>
@@ -19,22 +19,23 @@
       Hellooooooooooooo
       <div>
         <button mat-icon-button matStepperPrevious>
-          <mat-icon>arrow_back</mat-icon>
+          <mat-icon color="accent">arrow_back</mat-icon>
         </button>
         <button mat-icon-button matStepperNext>
-          <mat-icon>arrow_forward</mat-icon>
+          <mat-icon color="accent">arrow_forward</mat-icon>
         </button>      </div>
     </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>&nbsp;&nbsp;&nbsp;<i class="material-icons">check</i></ng-template>
+    <br>
     <app-login></app-login>
     <div>
       <button mat-icon-button matStepperPrevious>
-        <mat-icon>arrow_back</mat-icon>
+        <mat-icon color="accent">arrow_back</mat-icon>
       </button>
       <button mat-icon-button (click)="stepper.reset()">
-        <mat-icon>refresh</mat-icon>
+        <mat-icon color="accent">refresh</mat-icon>
       </button>
     </div>
   </mat-step>
