@@ -26,6 +26,10 @@ German is used a s the language for the contend, so the target group is initiall
 
 > Get [HERE](https://www.wikihow.com/Install-Python-on-Windows) for **Windows**
 
+**Homebrew**
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
 **virtualenv**
 ```bash
 pip install virtualenv
@@ -70,7 +74,6 @@ npm install -g @angular/cli
   - Install bad-words ```npm install bad-words```
   - Install Weasyprint **MAC**
     - Django Weasyprint ```pip install -U django-weasyprint```
-    - Install homebrew ```/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"```
     - Install Cairo ```brew install cairo```
     - (If needed for Cairo install xcode-select ```xcode-select --install``` and run Install cairo again)
     - Install Pango ```brew install pango```
