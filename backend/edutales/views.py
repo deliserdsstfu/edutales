@@ -192,7 +192,7 @@ def tale_form_get(request, pk):
 @api_view(['GET'])
 @permission_required('edutales.view_child', raise_exception=True)
 def child_list(request, pk):
-    children = Child.objects.filter(parent__id=pk)
+    children = Child.objects.filter(pk=request.user.id)
     serializer = ChildListSerializer(children, many=True)
     return Response(serializer.data)
 
