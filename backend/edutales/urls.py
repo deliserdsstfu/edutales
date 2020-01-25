@@ -59,6 +59,7 @@ urlpatterns = [
     path('media/<int:pk>', views.media_download),
     path('media/<int:pk>/get', views.media_get),
     path('tale-quiz/<int:pk>/get', views.tale_quiz_get),
+    path('history-quiz/<int:pk>/get', views.tale_quiz_get),
     path('reward/list', views.reward_list),
     path('reward/create', views.reward_form_create),
     path('reward/<int:pk>/get', views.reward_form_get),

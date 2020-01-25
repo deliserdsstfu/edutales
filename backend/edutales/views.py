@@ -196,8 +196,8 @@ def tale_form_get(request, pk):
 @api_view(['GET'])
 @permission_required('edutales.view_child', raise_exception=True)
 def child_list(request, pk):
-    childs = Child.objects.filter(parent__id=pk)
-    serializer = ChildListSerializer(childs, many=True)
+    children = Child.objects.filter(parent__id=pk)
+    serializer = ChildListSerializer(children, many=True)
     return Response(serializer.data)
 
 
@@ -581,4 +581,17 @@ def tale_quiz_get(request, pk):
         return Response({'error': 'Tale does not exist.'}, status=404)
 
     serializer = TaleQuizSerializer(tale)
+    return Response(serializer.data)
+
+
+@swagger_auto_schema(method='GET', responses={200: TaleQuizSerializer()})
+@api_view(['GET'])
+@permission_required('edutales.view_history', raise_exception=True)
+def history_quiz_get(request, pk):
+    try:
+        his = History.objects.get(pk=pk)
+    except History.DoesNotExist:
+        return Response({'error': 'History does not exist.'}, status=404)
+
+    serializer = TaleQuizSerializer(his)
     return Response(serializer.data)

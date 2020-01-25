@@ -41,13 +41,8 @@ class Language(models.Model):
 
 
 class History(models.Model):
-    CHOICES = (
-        ('w', 'witzig'),
-        ('g', 'gruselig')
-    )
 
     title = models.TextField()
-    type = models.CharField(max_length=1, choices=CHOICES, null=True)
     text = models.TextField()
 
     class Meta:
