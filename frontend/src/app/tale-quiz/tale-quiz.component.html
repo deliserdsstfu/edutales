@@ -20,7 +20,7 @@
     <p>Wähle wahr oder falsch aus um die Frage zu beantworten!</p>
   </div>
 <br>
-  <button mat-raised-button type="submit" color="primary">Antwort absenden</button>
+  <button mat-raised-button type="submit" [disabled] = "done" color="primary">Antwort absenden</button>
   <br><br>
   <button mat-button [routerLink]="'/world-map/' + childId" color="accent">Zurück zur Karte</button>
 </form>

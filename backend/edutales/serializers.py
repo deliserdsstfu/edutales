@@ -25,7 +25,7 @@ class ChildListSerializer(serializers.ModelSerializer):
 class ChildFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
-        fields = ['id', 'user_name', 'year_of_birth', 'game', 'progress', 'reward', 'parent']
+        fields = ['id', 'user_name', 'year_of_birth', 'game', 'progress', 'reward', 'parent', 'tale']
 
 
 class ChildOptionSerializer(serializers.ModelSerializer):
@@ -154,9 +154,10 @@ class TaleQuizSerializer(serializers.ModelSerializer):
     quiz_true = serializers.SerializerMethodField()
     quiz_points = serializers.SerializerMethodField()
 
+
     class Meta:
         model = Tale
-        fields = ['id', 'title', 'text', 'quiz_question', 'quiz_true', 'quiz_points']
+        fields = ['id', 'title', 'text', 'quiz_question', 'quiz_true', 'quiz_points',]
 
     def get_quiz_question(self, obj):
         return obj.quiz.question if obj.quiz else ''

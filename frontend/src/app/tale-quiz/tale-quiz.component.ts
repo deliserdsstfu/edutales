@@ -28,6 +28,7 @@ export class TaleQuizComponent implements OnInit {
   child;
   childId = localStorage.getItem('childId');
   progress = localStorage.getItem('points');
+  done: boolean;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               // tslint:disable-next-line:max-line-length
@@ -39,6 +40,10 @@ export class TaleQuizComponent implements OnInit {
       (response: any) => {
         this.tale = response;
         this.finished = true;
+        this.childService.getChild(this.childId).subscribe((r: any) => {
+          this.done = r.tale.includes(this.tale.id);
+          console.log(this.done);
+        });
       });
     this.data = this.route.snapshot.data.taleQuizResolver;
     this.taleQuizGroup = this.fb.group({
@@ -49,12 +54,17 @@ export class TaleQuizComponent implements OnInit {
     return this.taleQuizGroup.get('isTrue');
   }
   onSubmit() {
-    this.isSubmitted = true;
     const isT = this.route.snapshot.data.taleQuizResolver.quiz_true;
+    this.isSubmitted = true;
     // console.log(pointsIfT);
     if (!this.taleQuizGroup.valid) {
       return false;
     } else if (JSON.stringify(this.taleQuizGroup.value) === '{"isTrue":"' + isT + '"}') {
+      this.done = true;
+      this.childService.getChild(this.childId).subscribe((child: any) => {
+        child.tale.push(this.tale.id);
+        this.childService.updateChild(child).subscribe();
+      });
       alert('Richtige Antwort! Du hast Punkte gesammelt!');
       const pointsIfT = this.route.snapshot.data.taleQuizResolver.quiz_points;
       const pointsOld = localStorage.getItem('points');

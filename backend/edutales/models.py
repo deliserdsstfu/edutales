@@ -30,7 +30,7 @@ class Tale(models.Model):
     pictures = models.ManyToManyField('Media', blank=True)
 
     def __str__(self):
-            return self.title
+        return self.title
 
 
 class Language(models.Model):
@@ -41,7 +41,6 @@ class Language(models.Model):
 
 
 class History(models.Model):
-
     title = models.TextField()
     text = models.TextField()
 
@@ -73,7 +72,6 @@ class Reward(models.Model):
     tale = models.ForeignKey(Tale, on_delete=models.CASCADE, null=True)
     pictures = models.ManyToManyField('Media', blank=True)
 
-
     def __str__(self):
         return self.name
 
@@ -88,8 +86,9 @@ class Child(models.Model):
     user_name = models.TextField()
     year_of_birth = models.IntegerField()
     game = models.CharField(max_length=1, choices=CHOICES, null=True)
-    progress = models.PositiveIntegerField(null = True)
+    progress = models.PositiveIntegerField(null=True)
     reward = models.ForeignKey(Reward, on_delete=models.CASCADE, null=True)
+    tale = models.ManyToManyField(Tale, blank=True)
 
     class Meta:
         verbose_name = 'Child'
@@ -108,10 +107,8 @@ class Parent(models.Model):
     children = models.ManyToManyField('Child', blank=True, related_name='parent')
     language = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
 
-
     def __str__(self):
         return self.first_name + " " + self.last_name
-
 
     def __str__(self):
         return self.first_name + " " + self.last_name
