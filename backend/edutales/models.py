@@ -73,7 +73,6 @@ class Reward(models.Model):
     tale = models.ForeignKey(Tale, on_delete=models.CASCADE, null=True)
     pictures = models.ManyToManyField('Media', blank=True)
 
-
     def __str__(self):
         return self.name
 
