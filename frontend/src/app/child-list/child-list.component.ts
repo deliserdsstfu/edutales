@@ -15,6 +15,7 @@ export class ChildListComponent implements OnInit {
   children: any[];
   displayedColumns = ['user_name', 'year_of_birth', 'game', 'id'];
 
+  // tslint:disable-next-line:max-line-length
   constructor(private http: HttpClient, private route: ActivatedRoute, private childService: ChildService, private userService: UserService, private parentService: ParentService) { }
 
 
