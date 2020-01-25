@@ -21,12 +21,10 @@ export class WorldMapComponent implements OnInit {
   parent;
   progress;
 
-
   constructor(private route: ActivatedRoute, private taleService: TaleService,
               private parentService: ParentService, private childService: ChildService,
               private router: Router, private historyService: HistoryService,
               private userService: UserService) { }
-
 
 
   clickedMarker(infowindow) {
@@ -47,8 +45,6 @@ export class WorldMapComponent implements OnInit {
     }
   }
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private route: ActivatedRoute, private taleService: TaleService, private parentService: ParentService, private childService: ChildService, private router: Router, private historyService: HistoryService, private userService: UserService) { }
 
   ngOnInit() {
     this.getUserLocation();

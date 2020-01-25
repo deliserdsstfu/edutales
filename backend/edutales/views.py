@@ -432,6 +432,16 @@ class FileUploadView(views.APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=400)
 
+def media_download(request, pk):
+    media = Media.objects.get(pk=pk)
+    data = default_storage.open('media/' + str(pk)).read()
+    content_type = media.content_type
+    response = HttpResponse(data, content_type=content_type)
+    original_file_name = media.original_file_name
+    response['Content-Disposition'] = 'inline; filename=' + original_file_name
+    return response
+
+
 
 
 @swagger_auto_schema(method='GET', responses={200: MediaSerializer()})
