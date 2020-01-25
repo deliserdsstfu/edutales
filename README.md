@@ -98,17 +98,13 @@ npm install -g @angular/cli
   - **backend**: Start **Django Application** (IntelliJ or PyCharm)
   - loaddata for **Mac**
 ```bash
-venv/bin/python manage.py loaddata initial_quizzes 
-venv/bin/python manage.py loaddata initial_tales 
-venv/bin/python manage.py loaddata initial_languages 
-venv/bin/python manage.py loaddata initial_histories
+venv/bin/python manage.py loaddata db.json
+venv/bin/python manage.py loaddata auth.json
 ```
   - loaddata for **Windows**
 ```bash
-venv\Scripts\python.exe manage.py loaddata initial_quizzes 
-venv\Scripts\python.exe manage.py loaddata initial_tales 
-venv\Scripts\python.exe manage.py loaddata initial_languages 
-venv\Scripts\python.exe manage.py loaddata initial_histories
+venv\Scripts\python.exe manage.py db.json
+venv\Scripts\python.exe manage.py auth.json
 ```
   - make migrations
 ```bash
@@ -127,6 +123,9 @@ python manage.py runserver
       - Default Admin:
           - User: admin
           - Password: admin
+      - Default User (Parent):
+          - User: johndoe
+          - Password: Pa55w.rd
 
 ### Browser
   - For PDF-Export with Weasyprint (of children) you have to deactivate any PugIn that can block a PopUp
