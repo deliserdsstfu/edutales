@@ -96,7 +96,7 @@ npm install -g @angular/cli
 
 ### Run Project in IDE
   - **backend**: Start **Django Application** (IntelliJ or PyCharm)
-    - run server
+  - run server
 ```bash
 python manage.py runserver
 ```
@@ -117,8 +117,12 @@ venv/bin/python manage.py loaddata auth.json
 venv\Scripts\python.exe manage.py db.json
 venv\Scripts\python.exe manage.py auth.json
 ```
+  - Check application running on http://localhost:8000/admin in browser
+    - Default Admin:
+      - User: admin
+      - Password: admin
   - **frontend**: Start via **Angular CLI Server** (IntelliJ or WebStorm)
-  - Check application running on http://localhost:4200 in browser
+    - Check application running on http://localhost:4200 in browser
       - Default Admin:
           - User: admin
           - Password: admin
