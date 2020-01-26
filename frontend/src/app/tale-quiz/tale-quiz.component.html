@@ -1,0 +1,29 @@
+<mat-card align="center" *ngIf="finished" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <mat-card-title>{{tale.title}}</mat-card-title>
+    <br>
+  <mat-card-content>{{tale.text}}</mat-card-content><br>
+  <mat-divider></mat-divider><br>
+  <mat-card-title>{{data.quiz_question}}</mat-card-title>
+<br>
+<form [formGroup]="taleQuizGroup" (ngSubmit)="onSubmit()" align="center">
+  <div>
+    <input id="false" type="radio" class="custom-control-input" value="false" name="isTrue" formControlName="isTrue">
+    <label class="custom-control-label" for="false">Falsch</label>
+  </div>
+<br>
+  <div>
+    <input id="true" type="radio" class="custom-control-input" value="true" name="isTrue" formControlName="isTrue">
+    <label class="custom-control-label" for="true">Wahr</label>
+  </div>
+
+  <div *ngIf="isSubmitted && myForm.invalid">
+    <p>Wähle wahr oder falsch aus um die Frage zu beantworten!</p>
+  </div>
+<br>
+  <button mat-raised-button type="submit" [disabled] = "done" color="primary">Antwort absenden</button>
+  <br><br>
+  <button mat-button [routerLink]="'/world-map/' + childId" color="accent">Zurück zur Karte</button>
+</form>
+</mat-card>
+<br>
+

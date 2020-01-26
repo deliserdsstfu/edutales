@@ -1,0 +1,21 @@
+/*
+!* You can add global styles to this file, and also import other style files *!
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import '~ngx-bar-rating/themes/br-default-theme';
+*/
+@import '~@angular/material/_theming.scss';
+@include mat-core();
+
+$default-theme: mat-light-theme(mat-palette($mat-pink, A400), mat-palette($mat-light-blue, A200));
+
+@include angular-material-theme($default-theme);
+
+html, body, app-root, .app-frame {
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}

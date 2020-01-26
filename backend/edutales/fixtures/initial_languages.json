@@ -1,0 +1,10 @@
+  [{
+    "model": "edutales.language",
+    "pk": 1,
+    "fields": {
+      "language": "Deutsch"
+    }
+  }
+  ]
+
+

@@ -1,0 +1,6 @@
+<mat-card align="center" *ngIf="finished">
+  <mat-card-title>{{history.title}}</mat-card-title>
+  <br>
+  <mat-card-content>{{history.text}}</mat-card-content>
+  <button mat-button [routerLink]="'/world-map/' + childId" color="accent">Zurück zur Karte</button>
+</mat-card>

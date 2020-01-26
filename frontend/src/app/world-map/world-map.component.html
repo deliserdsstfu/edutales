@@ -1,0 +1,21 @@
+<mat-toolbar><h3>Dein Fortschritt: </h3>
+  &nbsp; &nbsp;<mat-progress-bar mode="determinate" value="{{progress}}" color="primary"></mat-progress-bar> &nbsp; &nbsp;
+</mat-toolbar>
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng" (markerClick)="clickedMarker(infowindow)" iconUrl="data:image/png;base64,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"><agm-info-window #infowindow>
+    <strong>Du bist hier!</strong>
+  </agm-info-window></agm-marker>
+  <agm-marker [latitude]="47.623637" [longitude]="13.840456" (markerClick)="getTale(1 )" iconUrl="https://img.icons8.com/ultraviolet/48/000000/marker.png"></agm-marker>
+  <agm-marker [latitude]="47.5944" [longitude]="15" (markerClick)="getTale(2 )" iconUrl="https://img.icons8.com/ultraviolet/48/000000/marker.png"></agm-marker>
+  <agm-marker [latitude]="47.420194" [longitude]="13.062638" (markerClick)="getTale(3 )" iconUrl="https://img.icons8.com/ultraviolet/48/000000/marker.png"></agm-marker>
+  <agm-marker [latitude]="46.9167" [longitude]="14.8" (markerClick)="getTale(4 )" iconUrl="https://img.icons8.com/ultraviolet/48/000000/marker.png"></agm-marker>
+  <agm-marker [latitude]="47.8" [longitude]="15.3" (markerClick)="getTale(5 )" iconUrl="https://img.icons8.com/ultraviolet/48/000000/marker.png"></agm-marker>
+
+  <agm-marker [latitude]="47" [longitude]="13.840456" (markerClick)="getHistory(1 )" iconUrl="https://img.icons8.com/office/48/000000/marker.png"></agm-marker>
+  <agm-marker [latitude]="47.5944" [longitude]="16" (markerClick)="getHistory(2 )" iconUrl="https://img.icons8.com/office/48/000000/marker.png"></agm-marker>
+  <agm-marker [latitude]="47.194" [longitude]="13.062638" (markerClick)="getHistory(3 )" iconUrl="https://img.icons8.com/office/48/000000/marker.png"></agm-marker>
+  <agm-marker [latitude]="47" [longitude]="14.8" (markerClick)="getHistory(4)" iconUrl="https://img.icons8.com/office/48/000000/marker.png"></agm-marker>
+  <agm-marker [latitude]="47.7728" [longitude]="15.3174" (markerClick)="getHistory(5 )" iconUrl="https://img.icons8.com/office/48/000000/marker.png"></agm-marker>
+
+</agm-map>
+

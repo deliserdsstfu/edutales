@@ -1,0 +1,33 @@
+<br><i class="material-icons">search</i>&nbsp;<mat-form-field class="example-full-width">
+  <input type="text" placeholder="Suche nach einer Sage" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getTale($event)">
+    <mat-option *ngFor="let tale of filteredOptions | async" [value]="tale.id">
+      {{tale.title}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+<table mat-table [dataSource]="tales">
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Titel</th>
+    <td mat-cell *matCellDef="let tale">{{tale.title}}</td>
+  </ng-container>
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>Kategorie</th>
+    <td mat-cell *matCellDef="let tale">{{tale.type}}</td>
+  </ng-container>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Aktionen</th>
+    <td mat-cell *matCellDef="let tale">
+      <button mat-button [routerLink]="'/tale-form/' + tale.id">Bearbeiten</button>
+      &nbsp;
+      &nbsp;
+      <button mat-button (click)="deleteTale(tale)" color="warn">Löschen</button>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="picture">
+    <th mat-header-cell *matHeaderCellDef>Bild</th>
+    <td mat-cell *matCellDef="let tale">{{tale.pictures}}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

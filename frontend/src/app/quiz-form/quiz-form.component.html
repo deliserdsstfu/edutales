@@ -1,0 +1,19 @@
+<form [formGroup]="quizFormGroup" class="quiz-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Aussage" formControlName="question" required>
+    <mat-hint align="end">Aussage</mat-hint>
+    <mat-error *ngIf="quizFormGroup.controls.question.hasError('required')">Eine Aussage ist notwendig</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Points" formControlName="points">
+    <mat-hint align="end">Die Punkte für die Aussage</mat-hint>
+  </mat-form-field><br>
+  <mat-checkbox formControlName="isTrue">Ist das richtig?</mat-checkbox>
+  <br>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!quizFormGroup.valid" (click)="createQuiz()">
+      <span *ngIf="!quizFormGroup.controls.id.value">Erstellen</span>
+      <span *ngIf="quizFormGroup.controls.id.value">Aktualisieren</span>
+    </button>
+  </mat-card-actions>
+</form>

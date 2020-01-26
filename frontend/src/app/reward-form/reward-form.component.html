@@ -1,0 +1,36 @@
+<form [formGroup]="rewardFormGroup" class="reward-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Die Bezeichnung der Auszeichnung" formControlName="name" required>
+    <mat-hint align="end">Die Bezeichnung der Auszeichnung</mat-hint>
+    <mat-error *ngIf="rewardFormGroup.controls.name.hasError('required')">Name ist erforderlich</mat-error>
+    <mat-error *ngIf="rewardFormGroup.controls.name.hasError('badWord')">Name beinhaltet nicht erlaubtes Wort</mat-error>
+    <mat-error *ngIf="rewardFormGroup.controls.name.hasError('rewardAlreadyExists')">Name existiert bereits</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Sage" formControlName="tale">
+      <mat-option [value]="null">Sage</mat-option>
+      <mat-option [value]="taleOption.id"
+                  *ngFor="let taleOption of taleOptions">{{taleOption.title}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">Titel der Sage</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Geschichte" formControlName="history">
+      <mat-option [value]="null">Geschichte</mat-option>
+      <mat-option [value]="historyOption.id"
+                  *ngFor="let historyOption of historyOptions">{{historyOption.title}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">Titel der Geschichte</mat-hint>
+  </mat-form-field><br>
+  <div>
+    <app-mediainput formControlName="pictures"></app-mediainput>
+  </div>
+  <br>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!rewardFormGroup.valid" (click)="createReward()">
+      <span *ngIf="!rewardFormGroup.controls.id.value">Erstellen</span>
+      <span *ngIf="rewardFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>
