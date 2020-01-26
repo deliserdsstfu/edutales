@@ -20,14 +20,15 @@ export class ParentListComponent implements OnInit {
 
   ngOnInit() {
     const currId = this.userService.getCurrentId();
+    this.languageOptions = this.route.snapshot.data.languageOptions;
     this.parentService.getParent(currId)
       .subscribe((response: any) => {
         this.parents.push(response);
-        const language = this.languageOptions.filter(f => f.id === this.parents[0].id)[0].language;
+        const language = this.languageOptions[0].language;
         this.parents[0].language = language;
         console.log(this.parents);
       });
-    this.languageOptions = this.route.snapshot.data.languageOptions;
+
   }
 
   deleteParent(parent) {

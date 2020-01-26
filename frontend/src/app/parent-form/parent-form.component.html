@@ -19,8 +19,9 @@
   </mat-form-field>
  <app-date placeholder="Geburtsdatum" formControlName="day_of_birth" hint="Geburtsdatum"
            [required]="true"></app-date>
- <br/>
- <mat-card-actions align="center">
+  <mat-error *ngIf="parentFormGroup.controls.day_of_birth.hasError('max')">Du bist aber noch zu jung!</mat-error>
+  <br/>
+  <mat-card-actions align="center">
    <button mat-raised-button color="primary" [disabled]="!parentFormGroup.valid" (click)="createParent()">
      <span *ngIf="parentFormGroup.controls.id.value">Update</span>
    </button>

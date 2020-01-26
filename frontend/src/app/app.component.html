@@ -1,12 +1,12 @@
 <div class="mat-typography app-frame mat-app-background" fxLayout="column">
   <mat-toolbar *ngIf="isLoggedIn && !isWorldMap() && !isTaleQuiz() && !isLogin() && !isHistoryQuiz() && !isWelcome()" color="primary">
     <button mat-stroked-button
-            [matMenuTriggerFor]="parentMenu"><i class="material-icons">account_circle</i>Persönliche Infos</button>
+            [matMenuTriggerFor]="parentMenu"><i class="material-icons">account_circle</i>&nbsp;Persönliche Infos</button>
     <mat-menu #parentMenu="matMenu">
       <button mat-menu-item routerLink="parent-list">Anzeigen</button>
     </mat-menu>&nbsp;
     <button mat-stroked-button
-            [matMenuTriggerFor]="childMenu"> <i class="material-icons">casino</i>Spielen</button>
+            [matMenuTriggerFor]="childMenu"> <i class="material-icons">casino</i>&nbsp;Spielen</button>
     <mat-menu #childMenu="matMenu">
       <button mat-menu-item routerLink="child-list/currentParent">Auswahl</button>
       <button mat-menu-item routerLink="child-form">Kind erstellen</button>
@@ -29,7 +29,7 @@
     </div>
     <div *ngIf="userService.hasPermission('edutales.add_reward')">
       <button mat-stroked-button
-              [matMenuTriggerFor]="rewardMenu">Auszeichnung</button>
+              [matMenuTriggerFor]="rewardMenu"><i class="material-icons">redeem</i>&nbsp;Auszeichnung</button>
       <mat-menu #rewardMenu="matMenu">
         <button mat-menu-item routerLink="reward-list">Anzeigen</button>
         <button mat-menu-item routerLink="reward-form">Erstellen</button>
