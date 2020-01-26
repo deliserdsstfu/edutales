@@ -5,7 +5,7 @@ SWENGS Project. With our website we want to arouse the interest of children in h
 German is used as the language for the content, so the target group are initially only children who speak or can read German. Translations into other languages are not planned in the project as this goes beyond the scope of the project. 
 
 <p align="center">
-  <img width="200" height="200" src="https://github.com/deliserdsstfu/edutales/blob/master/logo_small.png?raw=true">
+  <img width="200" height="200" src=https://github.com/deliserdsstfu/edutales/blob/master/logo_small.jpeg?raw=true>
 </p>
 
 ## Team Members
