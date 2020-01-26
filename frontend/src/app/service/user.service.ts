@@ -27,6 +27,7 @@ export class UserService {
         this.isLoggedIn.next(true);
         localStorage.setItem('access_token', res.token);
         this.router.navigate(['parent-list']);
+        // this.router.navigate(['parent-list']);
       }, () => {
         alert('wrong username or password');
       });
@@ -37,7 +38,9 @@ export class UserService {
     localStorage.removeItem(this.accessTokenLocalStorageKey);
     this.isLoggedIn.next(false);
     localStorage.clear();
-    this.router.navigate(['/welcome']);
+   // this.router.navigate(['/welcome']);
+    this.router.navigate(['welcome']);
+
   }
 
   hasPermission(permission) {

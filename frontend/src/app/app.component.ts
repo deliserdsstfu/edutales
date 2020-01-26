@@ -1,6 +1,7 @@
 import {UserService} from './service/user.service';
-import { Component, OnInit, ElementRef } from '@angular/core';
+import {Component, OnInit, ElementRef, ChangeDetectorRef, NgZone} from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {MediaMatcher} from '@angular/cdk/layout';
 
 
 @Component({
@@ -11,8 +12,17 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 export class AppComponent {
   isLoggedIn = false;
   title = 'frontend';
+  opened = false;
 
-  constructor(private userService: UserService, public location: Location) {
+  mdq: MediaQueryList;
+  mediaQueryListener: () => void;
+
+
+
+  constructor(private userService: UserService, public location: Location, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private ngZone: NgZone) {
+    this.mdq = media.matchMedia('(max-width: 992px)');
+    this.mediaQueryListener = () =>  this.ngZone.run(() => changeDetectorRef.detectChanges());
+    this.mdq.addListener(this.mediaQueryListener);
   }
 
   // tslint:disable-next-line:use-lifecycle-interface
@@ -84,4 +94,6 @@ export class AppComponent {
     }
 
   }
+
+
 }
