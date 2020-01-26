@@ -96,6 +96,17 @@ npm install -g @angular/cli
 
 ### Run Project in IDE
   - **backend**: Start **Django Application** (IntelliJ or PyCharm)
+    - run server
+```bash
+python manage.py runserver
+```
+  - make migrations
+```bash
+python manage.py makemigrations
+```
+```bash
+python manage.py migrate
+```
   - loaddata for **Mac**
 ```bash
 venv/bin/python manage.py loaddata db.json
@@ -106,18 +117,6 @@ venv/bin/python manage.py loaddata auth.json
 venv\Scripts\python.exe manage.py db.json
 venv\Scripts\python.exe manage.py auth.json
 ```
-  - make migrations
-```bash
-python manage.py makemigrations
-```
-```bash
-python manage.py migrate
-```
-  - run server
-```bash
-python manage.py runserver
-```
-
   - **frontend**: Start via **Angular CLI Server** (IntelliJ or WebStorm)
   - Check application running on http://localhost:4200 in browser
       - Default Admin:
