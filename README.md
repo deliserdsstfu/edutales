@@ -129,6 +129,10 @@ venv\Scripts\python.exe manage.py auth.json
       - Default User (Parent):
           - User: johndoe
           - Password: Pa55w.rd
+          
+**AGM**
+
+> Follow instructions [HERE](https://angular-maps.com/)
 
 ### Browser
   - For PDF-Export with Weasyprint (of children) you have to deactivate any PugIn that can block a PopUp
