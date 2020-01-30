@@ -130,9 +130,12 @@ venv\Scripts\python.exe manage.py auth.json
           - User: johndoe
           - Password: Pa55w.rd
           
-**AGM**
+**Angular Google Maps (AGM)**
 
 > Follow instructions [HERE](https://angular-maps.com/)
 
 ### Browser
   - For PDF-Export with Weasyprint (of children) you have to deactivate any PugIn that can block a PopUp
+  
+### Mobile
+  - Basic compatibility for mobile devices
